@@ -4,9 +4,11 @@ require_once("function.php");
 require_once("style.php");
 
 if(isset($_GET['type'])) $t=post_in($_GET['type']); else $t="login";
+if(isset($_GET['type'])) $_t=post_in($_GET['type']); else $_t="";
 if(isset($_GET['page'])) $p=post_in($_GET['page']); else $p="1";
 $page_header="";
 $page_description="";
+$refresh="";
 
 $user=check_user_logged_in();
 
@@ -67,9 +69,13 @@ else switch($t){
 		$t="group_manage";
 		break;
 }
+if($t!=$_t){
+	header("Location: index.php?type=$t");
+	exit();
+}
 require_once("function/$t.php");
 $content=page_content();
-echo page_header($page_header,$page_description);
+echo page_header($page_header,$page_description,$refresh);
 
 echo $content;
 

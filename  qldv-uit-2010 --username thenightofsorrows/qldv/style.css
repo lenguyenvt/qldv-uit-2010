@@ -40,7 +40,6 @@ body{
 }
 input[type="submit"]{
 	width:100px;
-	height:25px;
 }
 .lefthead{
 	background: url(images/lefthead.png) no-repeat top left;
@@ -1158,7 +1157,7 @@ input[type="submit"]{
 	border:solid 1px #FFFFFF;
 	text-align:center;
 }
-.error{
+.error-box{
 	color:red;
-	align:center;
+	text-align:center;
 }

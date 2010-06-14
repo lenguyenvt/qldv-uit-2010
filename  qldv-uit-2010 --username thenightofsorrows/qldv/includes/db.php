@@ -14,6 +14,7 @@
 // I have refrenced much sources: from jupiter cms, db tools, joomla 1.0, NukeViet 2.0 RC1 and other cms 2.0 to write this, not a lot of works but it's quite interesting, learnt many things from those sources.
 // todo list: fetch_row, affected_row
 // optional todo list: 
+// all config value can be edited in db_config, my design phisolophy is "config everything from configuration file".
 //require_once("db_config.php");
 require_once("db_lang.php");
 
@@ -28,6 +29,7 @@ class db
     var $link_id;
     var $time = 0;
     var $query_result;
+    var $num_rows=0;
    
 	
     /* connect()
@@ -61,6 +63,7 @@ class db
         {
              // free memory of the last query
              if ($this->query_result) @mysql_free_result($this->query_result);
+             if ($this->num_rows>0) $this->num_rows=0;
              // then... close the link to the database
              return @mysql_close($link_id);
         }
@@ -89,6 +92,7 @@ class db
         if ($sql_statement != '')
         {
              $this->query_result = @mysql_query($sql_statement, $this->link_id) or die(DB_QUERY_ERROR);
+	     $this->num_rows = @mysql_num_rows($this->query_result);
 	     return $this->query_result;
         }
 	$time = get_microtime() - $start_time;
