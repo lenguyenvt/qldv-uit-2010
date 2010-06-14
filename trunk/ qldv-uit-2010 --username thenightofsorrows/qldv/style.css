@@ -1,0 +1,1164 @@
+/*008BCE*/
+.main_content {
+	margin-left: auto;
+	margin-right: auto;
+	width: 960px;   
+}
+.clear {
+	clear: both;
+	display: block;
+	overflow: hidden;
+	visibility: hidden;
+	width: 0;
+	height: 0;
+}
+.form_header_text{
+	line-height:24px;
+	margin-left:10px;
+	color:#FFFFFF;
+}
+*{
+	padding:0px;
+	margin:0px;
+	font-size:12px;
+	font-family:Tahoma, Arial, Helvetica, sans-serif;
+}
+a{
+	color:#000000;
+	text-decoration:underline;
+}
+a:hover{
+	color:#0077FF;
+	text-decoration:underline;
+}
+html{
+	width:100%;
+	height:100%;
+}
+body{
+	background:#FFFFFF;
+}
+input[type="submit"]{
+	width:100px;
+	height:25px;
+}
+.lefthead{
+	background: url(images/lefthead.png) no-repeat top left;
+	width:15px;
+	height:25px;
+	float:left;
+}
+.midhead{
+	background: url(images/midhead.png) repeat-x top;
+	height:25px;
+	float:left;
+}
+.righthead{
+	background: url(images/righthead.png) no-repeat top right;
+	width:15px;
+	height:25px;
+	float:left;
+}
+.lefttop{
+	background: url(images/topleft.png) no-repeat top left;
+	width:15px;
+	height:15px;
+	float:left;
+}
+.midtop{
+	background: url(images/top.png) repeat-x top;
+	height:15px;
+	float:left;
+}
+.righttop{
+	background: url(images/topright.png) no-repeat top right;
+	width:15px;
+	height:15px;
+	float:left;
+}
+.left{
+	background: url(images/left.png) repeat-y top left;
+	float:left;
+	width: 15px;
+}
+.mid{
+	float:left;
+}
+.right{
+	background: url(images/right.png) repeat-y top right;
+	float:left;
+	width: 15px;
+}
+.leftfoot{
+	background: url(images/leftfoot.png) no-repeat bottom left;
+	width:15px;
+	height:15px;
+	float:left;
+}
+.midfoot{
+	background: url(images/midfoot.png) repeat-x top;
+	height:15px;
+	float:left;
+}
+.rightfoot{
+	background: url(images/rightfoot.png) no-repeat bottom right;
+	width:15px;
+	height:15px;
+	float:left;
+}
+.header{
+	display:inline;
+	float: left;
+	position: relative;
+	width:940px;
+	height: 275px;
+	margin: 0px 10px 10px 10px;
+}
+.header_top{
+	width:940px;
+	height:15px;
+}
+.header_top .lefttop{	
+	background: url(images/left.png)  repeat-y top left;
+}
+.header_top .righttop{	
+	background: url(images/right.png)  repeat-y top right;
+}
+.header_top .midtop{	
+	background:none;
+	width:910px;
+	height: 15px;
+}
+.header_mid .left{	
+	height: 245px;
+	width: 15px;
+}
+.header_mid .right{	
+	height: 245px;
+	width: 15px;
+}
+.header_mid .mid{
+	background-color: #008BCE;
+	height:245px;	
+	width:910px;
+}
+.header_bottom .midfoot{	
+	width:910px;
+	height:15px;
+}
+.footer{	
+	text-align:right;
+	margin: 40px 10px 0px 10px;	
+	background-color: #FFFFFF;
+	width:940px;
+	height: 75px;
+}
+.footer_top{	
+	width:940px;
+	height: 15px;
+}
+.footer_top .midtop{	
+	width:910px;
+	height: 15px;
+}
+.footer_mid .left{	
+	height: 45px;
+	width: 15px;
+}
+.footer_mid .right{	
+	height: 45px;
+	width: 15px;
+}
+.footer_mid .mid{
+	height:45px;	
+	width:910px;
+}
+.footer_bottom .midfoot{	
+	background:none;
+	width:910px;
+	height:15px;
+}
+.footer_bottom .leftfoot{	
+	background: url(images/left.png)  repeat-y top left;
+}
+.footer_bottom .rightfoot{	
+ 	background: url(images/right.png)  repeat-y top right;
+}
+.form_header_text{
+	line-height:24px;
+	margin-left:10px;
+}
+.form_body_table{
+	display:inline;
+	float: left;
+	position: relative;
+	margin: 20px 10px 10px 10px;
+}
+.user_main_form{
+	width: 160px;
+	height: 400px;
+	float:left;
+	margin-right:10px;
+	margin-left:10px;
+}
+.user_main_form_header{
+	width: 160px;
+	height: 25px;
+}
+.user_main_form_header .midhead{
+	width: 130px;
+}
+.user_main_form_body{	
+	width: 160px;	
+	height:350px;
+	background-color:#FFFFFF;
+}
+.user_main_form_body .left{
+	height:350px;
+}
+.user_main_form_body .mid{
+	height:350px;
+}
+.user_main_form_body .right{
+	height:350px;
+}
+.user_main_form_body .mid{
+	width: 130px;
+}
+.user_main_form_text{
+	margin-top:10px;	
+	margin-left:2px;
+}
+.user_main_form_avatar{
+	height:160px;
+	border:solid 1px #008BCE;
+}
+.user_main_form_footer{
+	width: 160px;
+	height:15px;
+}
+.user_main_form_footer .midfoot{
+	width: 130px;
+}
+/*=============================
+			Login
+=============================*/
+.login_form{
+	width: 360px;
+	height: 150px;
+	padding-left:300px;
+	padding-right:300px;
+	margin-top:40px;
+	margin-bottom:80px;
+}
+.login_form_header{
+	width: 360px;
+	height: 25px;
+}
+.login_form_header .midhead{		
+	width:330px;
+}
+.login_form_body{
+	width: 360px;
+	height:115px;
+	background-color:#FFFFFF;
+}
+.login_form_body .left{
+	height:115px;
+}
+.login_form_body .mid{
+	height:115px;
+}
+.login_form_body .right{
+	height:115px;
+}
+.login_form_body .mid{
+	width: 330px;
+}
+.login_table_left_align{
+	width:120px;
+	text-align:left;
+}
+.login_table_right_align{
+	width:210px;
+	text-align:right;
+}
+.login_textbox{
+	width:200px;
+}
+.login_form_footer{
+	width: 360px;
+	height: 15px;
+}
+.login_form_footer .midfoot{		
+	width:330px;
+}
+
+/*=============================
+			Lost pwd
+=============================*/
+.lostpwd_form {
+	width: 360px;
+	height: 105px;
+	padding-left:300px;
+	padding-right:300px;
+	margin-top:60px;
+	margin-bottom:105px;
+}
+
+.lostpwd_form_header{
+	width: 360px;
+	height: 25px;
+}
+.lostpwd_form_header .midhead{
+	width: 330px;
+}
+.lostpwd_form_body{	
+	width: 360px;
+	height: 80px;
+	background-color:#FFFFFF;	
+}
+.lostpwd_form_body .mid{
+	height: 80px;
+}
+.lostpwd_form_body .right{
+	height: 80px;
+}
+.lostpwd_form_body .left{
+	height: 80px;
+}
+.lostpwd_form_body .mid{
+	width: 330px;
+}
+.lostpwd_table_left_align{
+	width:100px;
+	text-align:left;
+}
+.lostpwd_table_right_align{
+	width:240px;
+	text-align:right;
+}
+.lostpwd_form_textbox{
+	width: 240px;
+}
+.lostpwd_form_footer{
+	width: 360px;
+	height: 15px;
+}
+.lostpwd_form_footer .midfoot{		
+	width:330px;
+}
+
+/*=============================
+			Change pwd
+=============================*/
+.changepwd_form{
+	width: 360px;
+	height: 160px;
+	padding-left:300px;
+	padding-right:300px;	
+	margin-top:50px;
+	margin-bottom:60px;
+}
+.changepwd_form_header{
+	width: 360px;
+	height: 25px;
+}
+.changepwd_form_header .midhead{		
+	width:330px;
+}
+
+.changepwd_form_body{
+	width: 360px;
+	height:120px;
+	background-color:#FFFFFF;
+}
+.changepwd_form_body .left{
+	height:120px;
+}
+.changepwd_form_body .mid{
+	height:120px;
+}
+.changepwd_form_body .right{
+	height:120px;
+}
+.changepwd_form_body .mid{
+	width: 330px;
+}
+.changepwd_form_footer{
+	width: 360px;
+	height: 15px;
+}
+.changepwd_form_footer .midfoot{		
+	width:330px;
+}
+.changepwd_table_left_align{
+	width:130px;
+	text-align:left;
+	line-height:22px;
+}
+.changepwd_table_right_align{
+	width:210px;
+	text-align:right;
+	line-height:22px;
+}
+.changepwd_textbox{
+	width:200px;
+}
+/*=============================
+			User Info
+=============================*/
+.user_info_form{
+	width: 760px;
+	height: 425px;
+	margin-left:10px;
+	float:left;
+}
+.user_info_form_header{
+	width: 760px;
+	height: 25px;
+}
+.user_info_form_header .midhead{
+	width: 730px;
+}
+.user_info_form_body{	
+	width: 760px;
+	height: 400px;
+	background-color:#FFFFFF;
+	float:left;
+}
+.user_info_form_body .left{
+	height: 400px;
+}
+.user_info_form_body .right{
+	height: 400px;
+}
+.user_info_form_body .mid{
+	height: 400px;
+	width: 730px;
+}
+.user_info_form_text{
+	margin-left:10px;
+}
+.user_info_form_footer{
+	width: 760px;
+	height: 15px;
+}
+.user_info_form_footer .midfoot{
+	width: 730px;
+}
+.user_info_button{
+	text-align:	right;
+	margin-right:20px;
+}
+/* User Info Form - Group Personal*/
+.user_info_group_personal{
+	width:360px;
+	height:190px;	
+}
+.user_info_group_personal_table{
+	width:330px;
+	line-height:24px;
+	margin-left:10px;	
+	border:none;
+	border-spacing:0px;
+}
+.user_info_group_personal_textbox{
+	width:220px;
+}
+.user_info_group_personal_table_left{
+	width:110px;
+	text-align:left;
+}
+.user_info_group_personal_table_right{
+	width:220px;
+	text-align:right;
+}
+
+/* User Info Form - Group Contact*/
+.user_info_group_contact{
+	margin-left:10px;
+	width:340px;
+	height:190px;
+}
+.user_info_group_contact_table {
+	width:310px;
+	line-height:24px;
+	margin-left:10px;	
+	border-spacing:0px;
+}
+.user_info_group_contact_textbox{
+	width:200px;
+}
+.user_info_group_contact_table_left{
+	width:110px;
+	text-align:left;
+}
+.user_info_group_contact_table_right{
+	width:200px;
+	text-align:right;
+}
+
+/* User Info Form - Group Member*/
+.user_info_group_member{
+	width:360px;
+	height:170px;
+}
+.user_info_group_member_table{
+	width:330px;
+	line-height:24px;
+	margin-left:10px;	
+	border:none;
+	border-spacing:0px;
+}
+.user_info_group_member_textbox{
+	width:220px;
+}
+.user_info_group_member_table_left{
+	width:110px;
+	text-align:left;
+}
+.user_info_group_member_table_right{
+	width:220px;
+	text-align:right;
+}
+
+/* User Info Form - Group Movement*/
+
+.user_info_group_movement{
+	margin-left:10px;
+	width:340px;
+	height:170px;
+}
+.user_info_group_movement_table{
+	width:320px;
+	margin-left:10px;
+	margin-top:3px;
+	background-color:#FFFFFF;
+	border-spacing:0px;
+	text-align:center;
+}
+.user_info_group_movement_table_header{
+	background-color:#008BCE;
+	color:#FFFFFF;
+	border: solid 1px #FFFFFF;
+	text-align:center;
+}
+.user_info_group_movement_table_scroll{
+	width:100%; 
+	overflow:scroll; 
+	height:100px;
+}
+.user_info_group_movement_table_content{
+	text-align:center;
+}
+.user_info_group_movement_table_content_highlight:hover{
+	background-color:#2288DD;
+	cursor:pointer;
+}
+.user_info_group_movement_text {
+	text-align:right;
+	margin-right:10px;
+}
+
+/*=============================
+	User Manage
+=============================*/
+.user_manage_form{
+	width: 760px;
+	height: 405px;
+	margin-left:10px;
+	float:left;
+}
+.user_manage_form_header{
+	width: 760px;
+	height: 25px;
+}
+.user_manage_form_header .midhead{
+	width: 730px;
+}
+.user_manage_form_body{	
+	width: 760px;
+	height: 380px;
+	background-color:#FFFFFF;
+	float:left;
+}
+.user_manage_form_text{	
+	width:730px;
+	height: 350px;
+	margin: 10px 10px 10px 10px;	
+}
+.user_manage_form_body .left{
+	height: 380px;
+}
+.user_manage_form_body .right{
+	height: 380px;
+}
+.user_manage_form_body .mid{
+	height: 380px;
+	width: 730px;
+}
+.user_manage_form_footer{
+	width: 760px;
+	height: 15px;
+}
+.user_manage_form_footer .midfoot{
+	width: 730px;
+}
+.user_manage_form_table{
+	width:521px;
+	background-color:#FFFFFF;
+   	border-spacing:0px;
+	text-align:center;
+}
+.user_manage_form_table_header{
+	border:solid 1px #FFFFFF;	
+	background-color:#008BCE;
+	color:#FFFFFF;
+	text-align:center;
+	line-height:24px;
+}
+.user_manage_form_table_scroll{
+	overflow:scroll; 
+	height:230px;
+}
+.user_manage_form_table_content{
+	text-align:center;
+	background-color:#FFFFFF;
+	line-height:22px;
+}
+.user_manage_form_table_content_highlight:hover{
+	background-color:#2288DD;
+	cursor:pointer;
+}
+.user_manage_form_right_content{
+	margin-left:10px;
+	width:183px;
+	background-color:#008BCE;
+	color:#FFFFFF;
+}
+.user_manage_form_avatar{
+	height:160px;
+	width:120px;
+	margin-bottom:5px;
+	border:solid 1px #008BCE;
+}
+.user_manage_form_right_content a{	
+	color:#FFFFFF;
+}
+.user_manage_form_right_content a:hover{	
+	color:#1166AA;
+	cursor:pointer;
+}
+.user_manage_form_textbox{
+	width:80px;	
+	text-align:right;
+	border:solid 1px #FFFFFF;
+	background-color:#FFFFFF;
+}
+/*=============================
+	User Rate Manage
+=============================*/
+.user_rate_manage_form{
+	width: 760px;
+	height: 405px;
+	margin-left:10px;
+	float:left;
+}
+.user_rate_manage_form_header{
+	width: 760px;
+	height: 25px;
+}
+.user_rate_manage_form_header .midhead{
+	width: 730px;
+}
+.user_rate_manage_form_body{	
+	width: 760px;
+	height: 380px;
+	background-color:#FFFFFF;
+	float:left;
+}
+.user_rate_manage_form_text{	
+	width:730px;
+	height: 350px;
+	margin: 10px 10px 10px 10px;	
+}
+.user_rate_manage_form_body .left{
+	height: 380px;
+}
+.user_rate_manage_form_body .right{
+	height: 380px;
+}
+.user_rate_manage_form_body .mid{
+	height: 380px;
+	width: 730px;
+}
+.user_rate_manage_form_footer{
+	width: 760px;
+	height: 15px;
+}
+.user_rate_manage_form_footer .midfoot{
+	width: 730px;
+}
+.user_rate_manage_form_table{
+	width:422px;
+	background-color:#FFFFFF;
+   	border-spacing:0px;
+	text-align:center;
+}
+.user_rate_manage_form_table_header{
+	border:solid 1px #FFFFFF;
+	background-color:#008BCE;
+	color:#FFFFFF;
+	text-align:center;
+	line-height:24px;
+}
+.user_rate_manage_form_table_scroll{
+	overflow:scroll; 
+	height:258px;
+}
+.user_rate_manage_form_table_content{
+	text-align:center;
+	background-color:#FFFFFF;
+	line-height:22px;
+}
+.user_rate_manage_form_textarea_content{
+	width:252px;
+	height:155px; 	
+	background-color:#FFFFFF;
+	border:solid 1px #FFFFFF;
+}
+.user_rate_manage_form_table_content_highlight:hover{
+	background-color:#2288DD;
+	cursor:pointer;
+}
+.user_rate_manage_form_right_content{
+	margin-left:10px;
+	line-height:24px;
+	width:252px;
+	background-color:#008BCE;
+	color:#FFFFFF;
+}
+.user_rate_manage_form_textbox{
+	width:125px;
+	border:solid 1px #FFFFFF;
+	text-align:center;
+}
+
+/*=============================
+			Activity
+=============================*/
+.activity_form{
+	width: 760px;
+	height: 405px;
+	margin-left:10px;
+	float:left;
+}
+
+.activity_form_header{
+	width: 760px;
+	height: 25px;
+}
+.activity_form_header .midhead{
+	width: 730px;
+}
+.activity_form_body{	
+	width: 760px;
+	height: 380px;
+	background-color:#FFFFFF;
+	float:left;
+}
+
+.activity_form_text{	
+	width:720px;
+	height: 350px;
+	margin: 10px 10px 10px 10px;	
+}
+.activity_form_body .left{
+	height: 380px;
+}
+.activity_form_body .right{
+	height: 380px;
+}
+.activity_form_body .mid{
+	height: 380px;
+	width: 730px;
+}
+.activity_form_footer{
+	width: 760px;
+	height: 15px;
+}
+.activity_form_footer .midfoot{
+	width: 730px;
+}
+.activity_form_table{
+	width:477px;
+	background-color:transparent;
+	border-spacing:0px;
+	text-align:center;
+}
+.activity_form_table_header{
+	border: 1px solid #FFFFFF;
+	background-color:#008BCE;
+	color:#FFFFFF;
+	text-align:center;
+	line-height:24px;
+}
+.activity_form_table_scroll{
+	width:100%; 
+	overflow:scroll; 
+	height:260px;
+}
+.activity_form_table_content{
+	text-align:center;
+	background-color:#FFFFFF;
+	line-height:24px;
+}
+.activity_form_table_content_highlight:hover{
+	background-color:#2288DD;
+	cursor:pointer;
+}
+.activity_form_right_content{
+	margin-left:10px;
+	line-height:22px;
+	background-color:#008BCE;
+	color:#FFFFFF;
+}
+.activity_form_textbox{
+	width:110px;
+	text-align:right;
+	background-color:#FFFFFF;
+	border: 1px solid #FFFFFF;
+	margin-left:1px;
+}
+.activity_form_textarea_content{
+	width:215px;
+	height:166px; 	
+	background-color:#FFFFFF;
+	border: 1px solid #FFFFFF;
+	margin-left:1px;
+}
+
+
+/*=============================
+			Account
+=============================*/
+.account_form{
+	width: 760px;
+	height: 405px;
+	margin-left:10px;
+	float:left;
+}
+.account_form_header{
+	width: 760px;
+	height: 25px;
+}
+.account_form_header .midhead{
+	width: 730px;
+}
+.account_form_body{	
+	width: 760px;
+	height: 380px;
+	background-color:#FFFFFF;
+	float:left;
+}
+.account_form_text{	
+	width:710px;
+	height: 350px;
+	margin: 10px 10px 10px 10px;	
+}
+.account_form_body .left{
+	height: 380px;
+}
+.account_form_body .right{
+	height: 380px;
+}
+.account_form_body .mid{
+	height: 380px;
+	width: 730px;
+}
+.account_form_footer{
+	width: 760px;
+	height: 15px;
+}
+.account_form_footer .midfoot{
+	width: 730px;
+}
+.account_form_table{
+	width:710px;
+	background-color:transparent;
+	border-spacing:0px;
+	text-align:center;
+}
+.account_form_table_header{
+	border:solid 1px #FFFFFF;
+	background-color:#008BCE;
+	color:#FFFFFF;
+	text-align:center;
+	line-height:24px;
+}
+.account_form_table_scroll{
+	width:710px; 
+	overflow:scroll; 
+	background-color:#FFFFFF;
+	height:250px;
+}
+.account_form_table_content{
+	text-align:center;
+	background-color:#FFFFFF;
+	line-height:24px;
+}
+.account_form_table_content_highlight:hover{
+	background-color:#2288DD;
+	cursor:pointer;
+}
+
+/*=============================
+		Phone History
+=============================*/
+.phone_history_form{
+	width: 310px;
+	height: 305px;
+	margin-left:210px;
+	float:left;
+}
+.phone_history_form_header{
+	width: 310px;
+	height: 25px;
+}
+.phone_history_form_header .midhead{
+	width: 280px;
+}
+.phone_history_form_body{	
+	width: 310px;
+	height: 280px;
+	background-color:#FFFFFF;
+	float:left;
+}
+.phone_history_form_text{	
+	width:260px;
+	height: 250px;
+	margin: 10px 10px 10px 10px;	
+}
+.phone_history_form_body .left{
+	height: 280px;
+}
+.phone_history_form_body .right{
+	height: 280px;
+}
+.phone_history_form_body .mid{
+	height: 280px;
+	width: 280px;
+}
+.phone_history_form_footer{
+	width: 310px;
+	height: 15px;
+}
+.phone_history_form_footer .midfoot{
+	width: 280px;
+}
+.phone_history_form_table{
+	width:256px;
+	background-color:transparent;
+	border-spacing:0px;
+	text-align:center;
+}
+.phone_history_form_table_header{
+	border:solid 1px #FFFFFF;
+	background-color:#008BCE;
+	color:#FFFFFF;
+	text-align:center;
+	line-height:24px;
+}
+.phone_history_form_table_scroll{
+	width:256px; 
+	overflow:scroll; 
+	background-color:#FFFFFF;
+	height:170px;
+}
+.phone_history_form_table_content{
+	text-align:center;
+	background-color:#FFFFFF;
+	line-height:24px;
+}
+.phone_history_form_table_content_highlight:hover{
+	background-color:#2288DD;
+	cursor:pointer;
+}
+
+/*=============================
+		Rate History
+=============================*/
+.rate_history_form{
+	width: 310px;
+	height: 345px;
+	margin-left:210px;
+	float:left;
+}
+.rate_history_form_header{
+	width: 310px;
+	height: 25px;
+}
+.rate_history_form_header .midhead{
+	width: 280px;
+}
+.rate_history_form_body{	
+	width: 310px;
+	height: 320px;
+	background-color:#FFFFFF;
+	float:left;
+}
+.rate_history_form_text{	
+	width:260px;
+	height: 250px;
+	margin: 10px 10px 10px 10px;	
+}
+.rate_history_form_body .left{
+	height: 320px;
+}
+.rate_history_form_body .right{
+	height: 320px;
+}
+.rate_history_form_body .mid{
+	height: 320px;
+	width: 280px;
+}
+.rate_history_form_footer{
+	width: 310px;
+	height: 15px;
+}
+.rate_history_form_footer .midfoot{
+	width: 280px;
+}
+.rate_history_form_table{
+	width:256px;
+	background-color:transparent;
+	border-spacing:0px;
+	text-align:center;
+}
+.rate_history_form_table_header{
+	border:solid 1px #FFFFFF;
+	background-color:#008BCE;
+	color:#FFFFFF;
+	text-align:center;
+	line-height:24px;
+}
+.rate_history_form_table_scroll{
+	width:256px; 
+	height:120px;
+	overflow:scroll; 
+	background-color:#FFFFFF;	
+}
+.rate_history_form_table_content{
+	text-align:center;
+	background-color:#FFFFFF;
+	line-height:24px;
+}
+.rate_history_form_table_content_highlight:hover{
+	background-color:#2288DD;
+	cursor:pointer;
+}
+.rate_history_form_textarea_content{	
+	height:95px; 	
+	background-color:#FFFFFF;
+	border:solid 1px #FFFFFF;
+	margin-bottom:10px;	
+}
+.rate_history_form_table_bottom_content{
+	border:solid 1px #FFFFFF;
+	background-color:#008BCE;
+	color:#FFFFFF;
+}
+
+/*=============================
+		Group Manage
+=============================*/
+.group_manage_form{
+	width: 760px;
+	height: 425px;
+	margin-left:10px;
+	float:left;
+}
+.group_manage_form_header{
+	width: 760px;
+	height: 25px;
+}
+.group_manage_form_header .midhead{
+	width: 730px;
+}
+.group_manage_form_body{	
+	width: 760px;
+	height: 400px;
+	background-color:#FFFFFF;
+	float:left;
+}
+.group_manage_form_text{	
+	width:710px;
+	height: 370px;
+	margin: 10px 10px 10px 10px;	
+}
+.group_manage_form_body .left{
+	height: 400px;
+}
+.group_manage_form_body .right{
+	height: 400px;
+}
+.group_manage_form_body .mid{
+	height: 400px;
+	width: 730px;
+}
+.group_manage_form_footer{
+	width: 760px;
+	height: 15px;
+}
+.group_manage_form_footer .midfoot{
+	width: 730px;
+}
+.group_manage_form_table{
+	width:442px;
+	background-color:#FFFFFF;
+   	border-spacing:0px;
+	text-align:center;
+}
+.group_manage_form_table_header{
+	border:solid 1px #FFFFFF;
+	background-color:#008BCE;
+	color:#FFFFFF;
+	text-align:center;
+	line-height:24px;
+}
+.group_manage_form_table_scroll{
+	overflow:scroll; 
+	height:258px;
+}
+.group_manage_form_table_content{
+	text-align:center;
+	background-color:#FFFFFF;
+	line-height:22px;
+}
+.group_manage_form_textarea_content{
+	width:252px;
+	height:55px; 	
+	background-color:#FFFFFF;
+	border:solid 1px #FFFFFF;
+}
+.group_manage_form_table_content_highlight:hover{
+	background-color:#2288DD;
+	cursor:pointer;
+}
+.group_manage_form_right_content{
+	margin-left:10px;
+	line-height:24px;
+	width:252px;
+	background-color:#008BCE;
+	color:#FFFFFF;
+}
+.group_manage_form_textbox{
+	width:125px;
+	border:solid 1px #FFFFFF;
+	text-align:center;
+}
+.error{
+	color:red;
+	align:center;
+}
