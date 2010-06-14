@@ -1,7 +1,8 @@
 ﻿<?php
 require_once("function.php");
 require_once("config.php");
-function page_header($title,$des){
+function page_header($title,$des,$refresh=""){
+if($refresh!="") $refresh='<meta http-equiv="refresh" content="3; URL='.$refresh.'" />';
 return
 <<<EOF
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
@@ -11,6 +12,7 @@ return
 <title>{$title}</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <meta name="description" content="$des">
+{$refresh}
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
@@ -65,6 +67,9 @@ return
 			</tr>
 			<tr>
 			<td align="center"><a href="index.php?type=changepwd">&#272;&#7893;i m&#7853;t kh&#7849;u</a></td>
+			</tr>
+			<tr>
+			<td align="center"><a href="index.php?type=logout">Tho&#225;t</a></td>
 			</tr>
 			<tr>
 			<td align="center">-----------------</td>
