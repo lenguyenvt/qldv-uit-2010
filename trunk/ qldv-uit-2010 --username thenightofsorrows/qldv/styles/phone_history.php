@@ -1,12 +1,12 @@
 <?php
 function phone_history_form($danhsachsdt){
 $thongtin="";
-for ($i=0;$i<count($danhsachsdt);$i++)
+for ($i=0;$i<sizeof($danhsachsdt);$i++)
 {	
 	$j=$i+1;
 	$thongtin.="<tr class=\"phone_history_form_table_content_highlight\">
 						<td width=\"41px\">$j</td>
-						<td width=\"164px\">".$danhsachsdt[$i]['sodienthoai']."</td>
+						<td width=\"164px\">".$danhsachsdt[$i]."</td>
 						<td width=\"25px\"><input id=\"checked\" name=\"checked\" type=\"checkbox\" value=\"checked\" /></td>
 				</tr>";
 };
