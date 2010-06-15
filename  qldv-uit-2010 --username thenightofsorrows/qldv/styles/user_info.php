@@ -44,7 +44,7 @@ return
                     </fieldset>
 EOF;
 }
-function thongtinlienlac($email,$truong,$dcgiadinh,$dchientru,$dienthoainr,$dienthoaidd){
+function thongtinlienlac($email,$dcgiadinh,$dchientru,$dienthoainr,$dienthoaidd){
 return
 <<<EOF
 	<fieldset class="user_info_group_contact">
@@ -53,11 +53,7 @@ return
 						<tr>
                             <td class="user_info_group_contact_table_left">Email:</td>
                             <td class="user_info_group_contact_table_right"><input class="user_info_group_contact_textbox" id="email" name="email" value="{$email}" type="text" /></td>
-                        </tr>
-                    	<tr>
-                            <td class="user_info_group_contact_table_left">Tr&#432;&#7901;ng:</td>
-                            <td class="user_info_group_contact_table_right"><input class="user_info_group_contact_textbox" id="truong" name="truong" value="{$truong}" type="text" /></td>
-                        </tr>                        	
+                        </tr>                    	                      	
                         <tr>
                             <td class="user_info_group_contact_table_left">&#272;C gia &#273;&#236;nh:</td>
                             <td class="user_info_group_contact_table_right"><input class="user_info_group_contact_textbox" id="dcgiadinh" name="dcgiadinh" value="{$dcgiadinh}" type="text" /></td>
