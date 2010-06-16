@@ -20,6 +20,9 @@ function mutate($text) {
 function dtime(){
 	return date("Y-m-d H:i:s");
 }
+function ddtime(){
+	return date("Y-m-d");
+}
 function check_auth($action,$required_auth){
 	//$action= view,add,edit,remove
 	global $user;
@@ -42,6 +45,41 @@ function check_auth($action,$required_auth){
 		}else return 0;
 	}else return 0;
 */
+}
+function check_cungcosodoan($id1,$id2){
+	global $db;
+	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$id1' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
+	$result1=mysql_fetch_array($db->query($sql));
+	
+	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$id2' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
+	$db->query($sql);
+	$result2=mysql_fetch_array($db->query($sql));
+
+	if($result2['id_cosodoan']==$result1['id_cosodoan']) return 1;
+	else return 0;
+}
+function check_cosodoancaptren($id1,$id2){
+	global $db;
+	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$id1' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
+	$result1=mysql_fetch_array($db->query($sql));
+	
+	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$id2' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
+	$db->query($sql);
+	$result2=mysql_fetch_array($db->query($sql));
+
+	$id_parent=$result2['id_cosodoan'];
+	$id_parent_tocheck=$result1['id_cosodoan'];
+	if($id_parent==0) return 0;
+	$sql="SELECT `id_cosodoan`,`cap`,`parent` FROM `cosodoan` WHERE `id_cosodoan`='{$id_parent}'";
+	$result3=mysql_fetch_array($db->query($sql));
+	while($result3['parent']!=0 && $result3['id_cosodoan']!=$id_parent_tocheck){
+		$id_parent=$result3['parent'];
+		$sql="SELECT `id_cosodoan`,`cap`,`parent` FROM `cosodoan` WHERE `id_cosodoan`='{$id_parent}'";
+		$result3=mysql_fetch_array($db->query($sql));
+	}
+
+	if($result3['id_cosodoan']==$id_parent_tocheck) return 1;
+	else return 0;
 }
 function check_user_logged_in(){
 	global $session,$ip,$db;
