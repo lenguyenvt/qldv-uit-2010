@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.2
+-- version 3.2.0.1
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Jun 15, 2010 at 04:39 AM
--- Server version: 5.1.45
--- PHP Version: 5.3.2
+-- Host: localhost
+-- Generation Time: Jun 16, 2010 at 09:40 AM
+-- Server version: 5.1.35
+-- PHP Version: 5.3.0
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -83,14 +83,16 @@ CREATE TABLE IF NOT EXISTS `cosodoan` (
   `parent` int(11) NOT NULL,
   `co_dau` int(1) NOT NULL,
   PRIMARY KEY (`id_cosodoan`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `cosodoan`
 --
 
 INSERT INTO `cosodoan` (`id_cosodoan`, `cap`, `ten`, `parent`, `co_dau`) VALUES
-(1, 1, 'Dai hoc Cong nghe thong tin', 2, 1);
+(1, 1, 'Dai hoc Cong nghe thong tin', 0, 1),
+(2, 2, 'DHCNTT - Khoa Khoa hoc may tinh', 1, 0),
+(3, 1, 'DH KHTN', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -149,14 +151,16 @@ CREATE TABLE IF NOT EXISTS `doanvien` (
   `ip` varchar(16) NOT NULL,
   `email` text NOT NULL,
   PRIMARY KEY (`id_doanvien`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `doanvien`
 --
 
 INSERT INTO `doanvien` (`id_doanvien`, `username`, `password`, `doan_phi`, `auth`, `sid`, `ip`, `email`) VALUES
-(1, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', '2010-06-03', 1, 'odpp25lko5jsjaa1vrql28h8q7', '127.0.0.1', 'admin@uit.edu.vn');
+(1, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', '2010-06-03', 1, 'sdpgd9n9vslc5k3qs4g49ejfl2', '127.0.0.1', 'admin@uit.edu.vn'),
+(2, 'test1', 'c3284d0f94606de1fd2af172aba15bf3', '0000-00-00', 1, '', '', ''),
+(3, 'test2', 'c3284d0f94606de1fd2af172aba15bf3', '2010-06-16', 1, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -215,14 +219,17 @@ CREATE TABLE IF NOT EXISTS `qhchidoan` (
   `start` date NOT NULL,
   `end` date NOT NULL,
   PRIMARY KEY (`qh_chidoan`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `qhchidoan`
 --
 
 INSERT INTO `qhchidoan` (`qh_chidoan`, `id_doanvien`, `id_cosodoan`, `start`, `end`) VALUES
-(1, 1, 1, '2010-01-01', '2010-12-31');
+(1, 1, 1, '2010-01-01', '2010-12-31'),
+(2, 2, 2, '2009-06-16', '2010-06-30'),
+(3, 3, 2, '2010-06-01', '2010-06-10'),
+(4, 3, 3, '2010-06-16', '2010-06-30');
 
 -- --------------------------------------------------------
 
