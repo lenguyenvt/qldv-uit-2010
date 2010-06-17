@@ -1,11 +1,14 @@
 <?php
 require_once("./styles/user_info.php");
 
-// to do list: (give to SQL statement) more conditions to some column chidoan, ngaydong, loai
+// to do list: (give to SQL statement) more conditions to some column chidoan, ngaydong
  
 function page_content(){
 	global $s,$t,$p,$page_header,$_GET,$_POST, $user,$db;
 	$page_header="Th&#244;ng tin c&#225; nh&#226;n";
+	
+	$this_year = date("Y");
+	// echo "<br />" + $this_year;
 	
 	// just a very complicated sql statement, but it save us a lot of queries, we need only one query for select all information
 	// in this sql, our purpose is  retrieving youth union member's information
@@ -42,11 +45,12 @@ function page_content(){
 				AND   `thongtindoanvien`.`id_doanvien` = `doanphi`.`id_doanvien`  
 				AND   `thongtindoanvien`.`id_doanvien` = `xeploaidoanvien`.`id_doanvien` 
 				AND   `thongtindoanvien`.`id_doanvien` = `doanvien`.`id_doanvien`
+				AND   `xeploaidoanvien`.`year_end`=$this_year
 							
 				LIMIT 0,1";
 
 	// for test only
-	echo $sql;
+	//echo $sql;
 	
 	// excute the query
 	$query = $db->query($sql);
@@ -59,18 +63,18 @@ function page_content(){
 	$lienlac=thongtinlienlac($canhan_data[11], $canhan_data[12], $canhan_data[13], $canhan_data[14], $phone_history[0]);
 	
 	// next, we select all activity that username had been taken part in...
-	$sql = "SELECT  		 `phongtraodoan`.`ten`,
-					         `phongtraodoan`.`start`,
-					         `thamgiaphongtrao`.`danhgia`	
+	$sql = "SELECT    `phongtraodoan`.`ten`,
+					  `phongtraodoan`.`start`,
+					  `thamgiaphongtrao`.`danhgia`	
 					
-			FROM	         `phongtraodoan`,
-					         `thamgiaphongtrao`
+			FROM	  `phongtraodoan`,
+					  `thamgiaphongtrao`
 					
-			WHERE	       	`thamgiaphongtrao`.`id_doanvien` = '{$user['id']}'
-			AND		      	`thamgiaphongtrao`.`id_phongtraodoan` = `phongtraodoan`.`id_phongtraodoan`";
+			WHERE	  `thamgiaphongtrao`.`id_doanvien` = '{$user['id']}'
+			AND		  `thamgiaphongtrao`.`id_phongtraodoan` = `phongtraodoan`.`id_phongtraodoan`";
 	
 	// for testing only
-	echo $sql;
+	// echo $sql;
 	
 	// get information about activities which username took part in
 	$query = $db->query($sql);
