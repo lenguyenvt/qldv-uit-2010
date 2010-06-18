@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 16, 2010 at 09:40 AM
+-- Generation Time: Jun 18, 2010 at 09:18 AM
 -- Server version: 5.1.35
 -- PHP Version: 5.3.0
 
@@ -38,14 +38,15 @@ CREATE TABLE IF NOT EXISTS `auth` (
   `qlhannopphi` tinyint(1) NOT NULL,
   `qlcosodoan` tinyint(1) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `auth`
 --
 
 INSERT INTO `auth` (`id`, `name`, `level`, `thongtincanhan`, `qlchucvu`, `qlthongtin`, `qldoanvien`, `qlphongtrao`, `qlxeploai`, `qlhannopphi`, `qlcosodoan`) VALUES
-(1, 'Administrator', 9, 7, 7, 7, 7, 7, 7, 7, 7);
+(1, 'Administrator', 9, 7, 7, 7, 7, 7, 7, 7, 7),
+(2, 'User', 1, 1, 0, 0, 0, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -83,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `cosodoan` (
   `parent` int(11) NOT NULL,
   `co_dau` int(1) NOT NULL,
   PRIMARY KEY (`id_cosodoan`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `cosodoan`
@@ -92,7 +93,8 @@ CREATE TABLE IF NOT EXISTS `cosodoan` (
 INSERT INTO `cosodoan` (`id_cosodoan`, `cap`, `ten`, `parent`, `co_dau`) VALUES
 (1, 1, 'Dai hoc Cong nghe thong tin', 0, 1),
 (2, 2, 'DHCNTT - Khoa Khoa hoc may tinh', 1, 0),
-(3, 1, 'DH KHTN', 0, 1);
+(3, 1, 'DH KHTN', 0, 1),
+(4, 2, 'KHMT - CNTN', 2, 0);
 
 -- --------------------------------------------------------
 
@@ -158,9 +160,9 @@ CREATE TABLE IF NOT EXISTS `doanvien` (
 --
 
 INSERT INTO `doanvien` (`id_doanvien`, `username`, `password`, `doan_phi`, `auth`, `sid`, `ip`, `email`) VALUES
-(1, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', '2010-06-03', 1, 'sdpgd9n9vslc5k3qs4g49ejfl2', '127.0.0.1', 'admin@uit.edu.vn'),
-(2, 'test1', 'c3284d0f94606de1fd2af172aba15bf3', '0000-00-00', 1, '', '', ''),
-(3, 'test2', 'c3284d0f94606de1fd2af172aba15bf3', '2010-06-16', 1, '', '', '');
+(1, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', '2010-06-03', 1, 'jqpj4u61u6jbgc9p2kbjnfcea6', '127.0.0.1', 'admin@uit.edu.vn'),
+(2, 'test1', 'c3284d0f94606de1fd2af172aba15bf3', '0000-00-00', 2, '', '127.0.0.1', ''),
+(3, 'test2', 'c3284d0f94606de1fd2af172aba15bf3', '2010-06-16', 1, '', '127.0.0.1', '');
 
 -- --------------------------------------------------------
 
@@ -202,8 +204,8 @@ CREATE TABLE IF NOT EXISTS `phongtraodoan` (
 --
 
 INSERT INTO `phongtraodoan` (`id_phongtraodoan`, `ten`, `diengiai`, `id_cosodoan`, `start`, `end`) VALUES
-(1, 'Mua he xanh 2010', 'Chien dich Mua he xanh 2010 cua truong Dai hoc Cong nghe thong tin', 1, '2010-07-12', '2010-08-15'),
-(2, 'Thanh nien khoe 2010', 'Phong trao thanh nien khoe, mot trong nhung noi dung de dat duoc danh hieu sinh vien 5 tot', 1, '2010-06-01', '2010-06-03'),
+(1, 'MÃ¡y tÃ­nh cÅ© tri thá»©c má»›i káº¿t há»£p vá»›i Tinh há»c xanh cá»§a Äáº¡i há»c CÃ´ng nghá»‡ thÃ´ng tin', 'Chien dich Mua he xanh 2010 cua truong Dai hoc Cong nghe thong tin', 1, '2010-07-12', '2010-08-15'),
+(2, 'Thanh nien khoe 2010', 'Phong trao thanh nien khoe, mot trong nhung noi dung de dat duoc danh hieu sinh vien 5 tot', 4, '2010-06-01', '2010-06-03'),
 (3, 'Tiep lua', 'Hoat dong tiep lua do ban Hoc tap cua Hoi sinh vien phat dong', 1, '2010-01-01', '2010-12-31');
 
 -- --------------------------------------------------------

@@ -763,7 +763,7 @@ input[type="submit"]{
 }
 .activity_form_body{	
 	width: 760px;
-	height: 380px;
+	height: 500px;
 	background-color:#FFFFFF;
 	float:left;
 }
@@ -774,13 +774,13 @@ input[type="submit"]{
 	margin: 10px 10px 10px 10px;	
 }
 .activity_form_body .left{
-	height: 380px;
+	height: 100%;
 }
 .activity_form_body .right{
-	height: 380px;
+	height: 100%;
 }
 .activity_form_body .mid{
-	height: 380px;
+	height: 100%;
 	width: 730px;
 }
 .activity_form_footer{
@@ -813,7 +813,7 @@ input[type="submit"]{
 	background-color:#FFFFFF;
 	line-height:24px;
 }
-.activity_form_table_content_highlight:hover{
+.activity_form_table_content_highlight:hover,focus{
 	background-color:#2288DD;
 	cursor:pointer;
 }

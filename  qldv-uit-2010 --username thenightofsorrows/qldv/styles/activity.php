@@ -1,5 +1,6 @@
 <?php
-function activity_form($danhsachphongtrao){
+function activity_form($danhsachphongtrao,$error=""){
+global $db,$user;
 $thongtin="";
 $var="";
 for ($i=0;$i<sizeof($danhsachphongtrao);$i++)
@@ -11,16 +12,24 @@ for ($i=0;$i<sizeof($danhsachphongtrao);$i++)
 					<td width=\"100px\">".$danhsachphongtrao[$i]['end']."</td>
 					<td width=\"25px\"><input name=\"checked\" type=\"checkbox\" value=\"checked\" /></td>
 				</tr>";
-	$var.="Array(\"".$danhsachphongtrao[$i]['ten']."\",\"".$danhsachphongtrao[$i]['id_phongtraodoan']."\",\"".$danhsachphongtrao[$i]['diengiai']."\",\"".$danhsachphongtrao[$i]['start']."\",\"".$danhsachphongtrao[$i]['end']."\")".($i<count($danhsachphongtrao)-1?",":"");
+	$var.="Array(\"".$danhsachphongtrao[$i]['ten']."\",\"".$danhsachphongtrao[$i]['id_phongtraodoan']."\",\"".$danhsachphongtrao[$i]['diengiai']."\",\"".$danhsachphongtrao[$i]['start']."\",\"".$danhsachphongtrao[$i]['end']."\",\"".$danhsachphongtrao[$i]['id_cosodoan']."\")".($i<count($danhsachphongtrao)-1?",":"");
 };
 if(check_auth("qlphongtrao",2)){
 	$buttons_1="                    		<input id=\"insert\" name=\"insert\" type=\"submit\" value=\"Th&#234;m\" style=\"margin-top:7px;width:70px\"/>
 	                        <input id=\"update\" name=\"update\" type=\"submit\" value=\"C&#7853;p nh&#7853;t\" style=\"margin-top:7px;width:70px\"/>
         	                <input id=\"attend\" name=\"attend\" type=\"submit\" value=\"Tham gia\" style=\"margin-top:7px;width:70px\"/>";
 	$buttons_2="<input id=\"delete\" name=\"delete\" type=\"submit\" value=\"X&#243;a\" style=\"margin-top:7px;width:70px\"/>";
+	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`");
+	$db->query($sql);
+	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:140px;font-size:8pt\">";
+	while($tmp=mysql_fetch_array($db->query_result)){
+		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
+	}
+	$option_cosodoan="\n<tr><td>C&#417; s&#7903; &#273;o&#224;n</td><td align=\"right\">$option_cosodoan</select></td></tr>";
 }else{
 	$buttons_1="        	                <input id=\"attend\" name=\"attend\" type=\"submit\" value=\"Tham gia\" style=\"margin-top:7px;width:70px\"/>";
-	$buttons_2="";	
+	$buttons_2="";
+	$option_cosodoan="";
 }
 return
 <<<EOF
@@ -31,7 +40,8 @@ function getcontent(i){
 	document.getElementById("id_phongtraodoan").value=danhsach[i][1];
 	document.getElementById("diengiai").value=danhsach[i][2];
 	document.getElementById("start").value=danhsach[i][3];
-	document.getElementById("end").value=danhsach[i][4];	
+	document.getElementById("end").value=danhsach[i][4];
+	document.getElementById("id_cosodoan").value=danhsach[i][5];
 }
 </script>
 <div class="activity_form">
@@ -50,7 +60,11 @@ function getcontent(i){
     <div class="left"></div>
 	<div class="mid">
 		<table class="activity_form_text">
-        <tbody>		
+        <tbody>
+		<tr>
+			<td>{$error}
+			</td>
+		</tr>
 		<tr height="24px">
 			<td width="477px">
 				Danh s&#225;ch phong tr&#224;o:
@@ -93,38 +107,35 @@ function getcontent(i){
 			</table>
 			</td>
 			<td>
+		<form method="POST">
             	<table class="activity_form_right_content">
                 <tr>
-                    <td colspan="2" >
-                        <input id="ten" name="ten" type="text"  class="activity_form_textbox" style="width:215px;text-align:center"/><br />
+                    <td colspan="2">
+                        <input id="ten" name="ten" type="text"  class="activity_form_textbox" style="width:215px;text-align:center" /><br />
                     </td>
+                </tr>
+                <tr>
+                    	<input id="id_phongtraodoan" name="id_phongtraodoan" type="hidden" /><br />  
                 </tr>
                 <tr>
                 	<td>
-                    	M&#227; s&#7889;: 
-                    </td>
-                    <td align="right">
-                    	<input id="id_phongtraodoan" name="id_phongtraodoan" type="text" class="activity_form_textbox" /><br />  
-                    </td>
-                </tr>
-                <tr>   
-                	<td>               
                     	Ng&#224;y b&#7855;t &#273;&#7847;u:
-					</td>
+			</td>
                     <td align="right">
                     	<input id="start" name="start" type="text" class="activity_form_textbox" />
                     </td>
                 </tr> 
                 <tr>   
-                	<td>                   
+                    <td>                   
                     	Ng&#224;y k&#7871;t th&#250;c:
                     </td>
                     <td align="right">
-                    	<input id= "end" name="end" type="text" class="activity_form_textbox"/><br />
+                    	<input id= "end" name="end" type="text" class="activity_form_textbox" /><br />
                     </td>
                 </tr>
+{$option_cosodoan}
                 <tr>   
-                	<td colspan="2"> 
+                	<td colspan="2">
                     N&#7897;i dung:
                     </td>
                 </tr>
@@ -135,12 +146,14 @@ function getcontent(i){
                 </tr>
                 <tr>
 			<td colspan="2" align="center">
+				<input type="hidden" id="to_post" name="to_post" value="1">
 {$buttons_1}
                 	</td>
                     <td>                        
                     </td>
                 </tr>            
                 </table>
+		</form>
 			</td>
 		</tr>		
         </tbody>
