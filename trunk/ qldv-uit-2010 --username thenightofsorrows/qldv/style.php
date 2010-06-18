@@ -43,7 +43,7 @@ function left_menu(){
 global $user;
 $ql="";
 if(check_auth("qlphongtrao",1)) $ql.='			<tr>
-			<td align="left"><a href="index.php?type=activity">Qu&#7843;n l&#253; ho&#7841;t &#273;&#7897;ng</a></td>
+			<td align="left"><a href="index.php?type=activity">Qu&#7843;n l&#253; phong tr&#224;o</a></td>
 			</tr>';
 if(check_auth("qldoanvien",1)) $ql.='			<tr>
 			<td align="left"><a href="index.php?type=user_manage">Qu&#7843;n l&#253; &#273;o&#224;n vi&#234;n</td>

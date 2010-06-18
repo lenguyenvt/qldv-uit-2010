@@ -81,9 +81,27 @@ function check_cosodoancaptren($id1,$id2){
 	if($result3['id_cosodoan']==$id_parent_tocheck) return 1;
 	else return 0;
 }
+function get_cosodoan($user,$SQL_COMPATIBLE=""){
+	global $db;
+	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$user' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
+	$result1=mysql_fetch_array($db->query($sql));
+	$id_parent=$result1['id_cosodoan'];
+
+	if($SQL_COMPATIBLE=="") $output=$id_parent; else $output="{$SQL_COMPATIBLE}='{$id_parent}'";
+	$sql="SELECT `id_cosodoan`,`cap`,`parent` FROM `cosodoan` WHERE `id_cosodoan`='{$id_parent}'";
+	$result3=mysql_fetch_array($db->query($sql));
+	while($result3['parent']!=0){
+		$id_parent=$result3['parent'];
+		$sql="SELECT `id_cosodoan`,`cap`,`parent` FROM `cosodoan` WHERE `id_cosodoan`='{$id_parent}'";
+		$result3=mysql_fetch_array($db->query($sql));
+		if($SQL_COMPATIBLE=="") $output=$id_parent.",".$output;
+		else $output="$output OR {$SQL_COMPATIBLE}='{$id_parent}'";
+	}
+	return $output;
+}
 function check_user_logged_in(){
 	global $session,$ip,$db;
-	$query=$db->query("SELECT `doanvien`.`username`,`doanvien`.`auth`,`doanvien`.`id_doanvien`,`auth`.* FROM `doanvien`,`auth` WHERE `doanvien`.`sid`='{$session}' AND `doanvien`.`ip`='{$ip}'");
+	$query=$db->query("SELECT `doanvien`.`username`,`doanvien`.`auth`,`doanvien`.`id_doanvien`,`auth`.* FROM `doanvien`,`auth` WHERE `doanvien`.`sid`='{$session}' AND `doanvien`.`ip`='{$ip}' AND `doanvien`.`auth`=`auth`.`id`");
 	if(mysql_num_rows($query)==1){
 		return mysql_fetch_array($query); //tra ve gia tri field cua query
 	}else{
