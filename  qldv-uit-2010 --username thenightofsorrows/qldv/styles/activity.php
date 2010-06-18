@@ -1,25 +1,34 @@
 <?php
-function activity_form($danhsachhoatdong){
+function activity_form($danhsachphongtrao){
 $thongtin="";
 $var="";
-for ($i=0;$i<count($danhsachhoatdong);$i++)
+for ($i=0;$i<sizeof($danhsachphongtrao);$i++)
 {	
 	$thongtin.="<tr class=\"activity_form_table_content_highlight\" onClick=\"javascript:getcontent($i);\">
-					<td width=\"30px\">".$danhsachhoatdong[$i]['stt']."</td>
-					<td width=\"200px\">".$danhsachhoatdong[$i]['ten']."</td>
-					<td width=\"100px\">".$danhsachhoatdong[$i]['start']."</td>
-					<td width=\"100px\">".$danhsachhoatdong[$i]['end']."</td>
+					<td width=\"30px\">".($i+1)."</td>
+					<td width=\"200px\">".$danhsachphongtrao[$i]['ten']."</td>
+					<td width=\"100px\">".$danhsachphongtrao[$i]['start']."</td>
+					<td width=\"100px\">".$danhsachphongtrao[$i]['end']."</td>
 					<td width=\"25px\"><input name=\"checked\" type=\"checkbox\" value=\"checked\" /></td>
 				</tr>";
-	$var.="Array(\"".$danhsachhoatdong[$i]['ten']."\",\"".$danhsachhoatdong[$i]['id_phongtrao']."\",\"".$danhsachhoatdong[$i]['diengiai']."\",\"".$danhsachhoatdong[$i]['start']."\",\"".$danhsachhoatdong[$i]['end']."\")".($i<count($danhsachhoatdong)-1?",":"");
+	$var.="Array(\"".$danhsachphongtrao[$i]['ten']."\",\"".$danhsachphongtrao[$i]['id_phongtraodoan']."\",\"".$danhsachphongtrao[$i]['diengiai']."\",\"".$danhsachphongtrao[$i]['start']."\",\"".$danhsachphongtrao[$i]['end']."\")".($i<count($danhsachphongtrao)-1?",":"");
 };
+if(check_auth("qlphongtrao",2)){
+	$buttons_1="                    		<input id=\"insert\" name=\"insert\" type=\"submit\" value=\"Th&#234;m\" style=\"margin-top:7px;width:70px\"/>
+	                        <input id=\"update\" name=\"update\" type=\"submit\" value=\"C&#7853;p nh&#7853;t\" style=\"margin-top:7px;width:70px\"/>
+        	                <input id=\"attend\" name=\"attend\" type=\"submit\" value=\"Tham gia\" style=\"margin-top:7px;width:70px\"/>";
+	$buttons_2="<input id=\"delete\" name=\"delete\" type=\"submit\" value=\"X&#243;a\" style=\"margin-top:7px;width:70px\"/>";
+}else{
+	$buttons_1="        	                <input id=\"attend\" name=\"attend\" type=\"submit\" value=\"Tham gia\" style=\"margin-top:7px;width:70px\"/>";
+	$buttons_2="";	
+}
 return
 <<<EOF
 <script>
 function getcontent(i){	
 	var danhsach=Array($var);
 	document.getElementById("ten").value=danhsach[i][0];
-	document.getElementById("id_phongtrao").value=danhsach[i][1];
+	document.getElementById("id_phongtraodoan").value=danhsach[i][1];
 	document.getElementById("diengiai").value=danhsach[i][2];
 	document.getElementById("start").value=danhsach[i][3];
 	document.getElementById("end").value=danhsach[i][4];	
@@ -31,7 +40,7 @@ function getcontent(i){
     <div class="lefthead"></div>
 	<div class="midhead">
         <div class="form_header_text">
-           <b>Qu&#7843;n l&#253; ho&#7841;t &#273;&#7897;ng</b>    
+           <b>Qu&#7843;n l&#253; phong tr&#224;o</b>    
         </div>
     </div>
 	<div class="righthead"></div>
@@ -44,10 +53,10 @@ function getcontent(i){
         <tbody>		
 		<tr height="24px">
 			<td width="477px">
-				Danh s&#225;ch ho&#7841;t &#273;&#7897;ng:
+				Danh s&#225;ch phong tr&#224;o:
 			</td>
 			<td width="213px">
-				&nbsp;&nbsp;Chi ti&#7871;t ho&#7841;t &#273;&#7897;ng:
+				&nbsp;&nbsp;Chi ti&#7871;t phong tr&#224;o:
 			</td>
 		</tr>
 		<tr valign="top">
@@ -58,7 +67,7 @@ function getcontent(i){
 					<table class = "activity_form_table_header" cellspacing="0" width="100%" border="1">
 					<tr>
 						<td width="30px">STT</td>
-						<td width="200px">Ho&#7841;t &#273;&#7897;ng</td>
+						<td width="200px">Phong tr&#224;o</td>
 						<td width="100px">Ng&#224;y b&#7855;t &#273;&#7847;u</td>
 						<td width="100px">Ng&#224;y k&#7871;t th&#250;c</td>
 						<td width="25px">&nbsp;</td>
@@ -78,7 +87,7 @@ function getcontent(i){
 			</tr>
             <tr>
                 <td align="right">
-                    <input id="delete" name="delete" type="submit" value="X&#243;a" style="margin-top:7px;width:70px"/>
+                    {$buttons_2}
                 </td>
             </tr>
 			</table>
@@ -95,7 +104,7 @@ function getcontent(i){
                     	M&#227; s&#7889;: 
                     </td>
                     <td align="right">
-                    	<input id="id_phongtrao" name="id_phongtrao" type="text" class="activity_form_textbox" /><br />  
+                    	<input id="id_phongtraodoan" name="id_phongtraodoan" type="text" class="activity_form_textbox" /><br />  
                     </td>
                 </tr>
                 <tr>   
@@ -119,16 +128,14 @@ function getcontent(i){
                     N&#7897;i dung:
                     </td>
                 </tr>
-                <tr>   
-                	<td colspan="2"> 
+                <tr>
+                	<td colspan="2">
                     <textarea class="activity_form_textarea_content" id="diengiai" name="diengiai"></textarea>
                     </td>
-                </tr>    
+                </tr>
                 <tr>
-					<td colspan="2" align="center">                    
-                    	<input id="insert" name="insert"  type="submit" value="Th&#234;m" style="margin-top:7px;width:70px"/>
-                        <input id="update" name="update"  type="submit" value="C&#7853;p nh&#7853;t" style="margin-top:7px;width:70px"/>
-                        <input id="attend" name="attend"   type="submit" value="Tham gia" style="margin-top:7px;width:70px"/>
+			<td colspan="2" align="center">
+{$buttons_1}
                 	</td>
                     <td>                        
                     </td>
