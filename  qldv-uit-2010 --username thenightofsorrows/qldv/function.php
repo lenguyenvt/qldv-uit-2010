@@ -23,32 +23,13 @@ function dtime(){
 function ddtime(){
 	return date("Y-m-d");
 }
-function is_valid_date($value, $format = 'dd/mm/yyyy'){ 
-    if(strlen($value) >= 6 && strlen($format) == 10){ 
-        
-        // find separator. Remove all other characters from $format 
-        $separator_only = str_replace(array('m','d','y'),'', $format); 
-        $separator = $separator_only[0]; // separator is first character 
-        
-        if($separator && strlen($separator_only) == 2){ 
-            // make regex 
-            $regexp = str_replace('mm', '(0?[1-9]|1[0-2])', $format); 
-            $regexp = str_replace('dd', '(0?[1-9]|[1-2][0-9]|3[0-1])', $regexp); 
-            $regexp = str_replace('yyyy', '(19|20)?[0-9][0-9]', $regexp); 
-            $regexp = str_replace($separator, "\\" . $separator, $regexp); 
-            if($regexp != $value && preg_match('/'.$regexp.'\z/', $value)){ 
-
-                // check date 
-                $arr=explode($separator,$value); 
-                $day=$arr[0]; 
-                $month=$arr[1]; 
-                $year=$arr[2]; 
-                if(@checkdate($month, $day, $year)) 
-                    return true; 
-            } 
-        } 
+function is_valid_date($value){ 
+    if(strlen($value) >= 6){ 
+        $regx=explode("-",$value);
+	if(@checkdate($regx[1], $regx[2], $regx[0]))
+		return 1;
     } 
-    return false; 
+    return 0; 
 }
 function check_auth($action,$required_auth){
 	//$action= view,add,edit,remove
@@ -100,7 +81,7 @@ function check_cosodoancaptren($id1,$id2){
 	if($result3['id_cosodoan']==$id_parent_tocheck) return 1;
 	else return 0;
 }
-function get_cosodoan($user,$SQL_COMPATIBLE=""){
+function get_cosodoan($user,$SQL_COMPATIBLE="",$ARRAY_OUT="",$CHECK_WITH=""){
 	global $db;
 	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$user' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
 	$result1=mysql_fetch_array($db->query($sql));
@@ -116,9 +97,16 @@ function get_cosodoan($user,$SQL_COMPATIBLE=""){
 		if($SQL_COMPATIBLE=="") $output=$id_parent.",".$output;
 		else $output="$output OR {$SQL_COMPATIBLE}='{$id_parent}'";
 	}
+	if($ARRAY_OUT==1) $output=explode(",",$output);
+	if($CHECK_WITH!=""){
+		for($i=0;$i<sizeof($output);$i++){
+			if($output[$i]==$CHECK_WITH) return 1;
+		}
+		return 0;
+	}
 	return $output;
 }
-function get_cosodoan_capduoi($user,$SQL_COMPATIBLE=""){
+function get_cosodoan_capduoi($user,$SQL_COMPATIBLE="",$ARRAY_OUT="",$CHECK_WITH=""){
 	global $db;
 	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$user' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
 	$result1=mysql_fetch_array($db->query($sql));
@@ -136,6 +124,13 @@ function get_cosodoan_capduoi($user,$SQL_COMPATIBLE=""){
 			if($SQL_COMPATIBLE=="") $output=$id_parent.",".$output;
 			else $output="$output OR {$SQL_COMPATIBLE}='{$id_parent}'";
 		}
+	}
+	if($ARRAY_OUT==1) $output=explode(",",$output);
+	if($CHECK_WITH!=""){
+		for($i=0;$i<sizeof($output);$i++){
+			if($output[$i]==$CHECK_WITH) return 1;
+		}
+		return 0;
 	}
 	return $output;
 }
