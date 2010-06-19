@@ -59,21 +59,6 @@ if(check_auth("qlcosodoan",1)) $ql.='			<tr>
 			</tr>';
 return
 <<<EOF
-			<tr>
-			<td class="user_main_form_avatar" align="center"><input type="image" src="images/avatar.png" /></td>
-			</tr>
-			<tr>
-			<td align="center"><a href="index.php?type=user_info">Th&#244;ng tin c&#225; nh&#226;n</a></td>
-			</tr>
-			<tr>
-			<td align="center"><a href="index.php?type=changepwd">&#272;&#7893;i m&#7853;t kh&#7849;u</a></td>
-			</tr>
-			<tr>
-			<td align="center"><a href="index.php?type=logout">Tho&#225;t</a></td>
-			</tr>
-			<tr>
-			<td align="center">-----------------</td>
-			</tr>
 {$ql}
 EOF;
 }
@@ -98,7 +83,18 @@ return
 	<div class="mid">
 		<table class="user_main_form_text">
 		<tbody>
-{$left_menu}
+			<tr>
+			<td class="user_main_form_avatar" align="center"><input type="image" src="images/avatar.png" /></td>
+			</tr>
+			<tr>
+			<td align="center"><a href="index.php?type=user_info">Th&#244;ng tin c&#225; nh&#226;n</a></td>
+			</tr>
+			<tr>
+			<td align="center"><a href="index.php?type=changepwd">&#272;&#7893;i m&#7853;t kh&#7849;u</a></td>
+			</tr>
+			<tr>
+			<td align="center"><a href="index.php?type=logout">Tho&#225;t</a></td>
+			</tr>
 		</tbody>
 		</table>
 	</div>
@@ -108,6 +104,33 @@ return
 			<div class="leftfoot"></div>
 			<div class="midfoot"></div>
 			<div class="rightfoot"></div>
+	</div>
+	<!---Form header--->
+	<div class="user_main_form_header" style="margin-top:20px">
+		<div class="lefthead"></div>
+		<div class="midhead">
+		<div class="form_header_text">
+			<b>Trang quản lý</b>        
+		</div>
+		</div>
+		<div class="righthead"></div>
+	</div>
+	<!---Form body--->
+	<div class="user_main_form_body" style="height:135px">
+	<div class="left"></div>
+	<div class="mid">
+		<table class="user_main_form_text" style="margin-left:10px">
+		<tbody>
+{$left_menu}
+		</tbody>
+		</table>
+	</div>
+	<div class="right"></div>
+	</div>
+	<div class="user_main_form_footer">
+		<div class="leftfoot"></div>
+		<div class="midfoot"></div>
+		<div class="rightfoot"></div>
 	</div>
 </div>
 {$user_info}

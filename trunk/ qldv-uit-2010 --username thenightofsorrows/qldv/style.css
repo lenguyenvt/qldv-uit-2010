@@ -198,7 +198,7 @@ input[type="submit"]{
 }
 .user_main_form{
 	width: 160px;
-	height: 400px;
+	height: 230px;
 	float:left;
 	margin-right:10px;
 	margin-left:10px;
@@ -220,7 +220,7 @@ input[type="submit"]{
 }
 .user_main_form_text{
 	margin-top:10px;	
-	margin-left:2px;
+	margin-left:3px;
 }
 .user_main_form_avatar{
 	height:160px;
