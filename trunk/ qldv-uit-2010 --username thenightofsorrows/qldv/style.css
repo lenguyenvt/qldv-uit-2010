@@ -212,7 +212,7 @@ input[type="submit"]{
 }
 .user_main_form_body{	
 	width: 160px;	
-	height:350px;
+	height:100%;
 	background-color:#FFFFFF;
 }
 .user_main_form_body .mid{
@@ -238,7 +238,7 @@ input[type="submit"]{
 =============================*/
 .login_form{
 	width: 360px;
-	height: 150px;
+	height: 120px;
 	padding-left:300px;
 	padding-right:300px;
 	margin-top:40px;
@@ -253,7 +253,7 @@ input[type="submit"]{
 }
 .login_form_body{
 	width: 360px;
-	height:115px;
+	height:100%;
 	background-color:#FFFFFF;
 }
 .login_form_body .mid{
@@ -299,7 +299,7 @@ input[type="submit"]{
 }
 .lostpwd_form_body{	
 	width: 360px;
-	height: 80px;
+	height:100%;
 	background-color:#FFFFFF;	
 }
 .lostpwd_form_body .mid{
@@ -325,11 +325,11 @@ input[type="submit"]{
 }
 
 /*=============================
-			Change pwd
+	Change pwd
 =============================*/
 .changepwd_form{
 	width: 360px;
-	height: 160px;
+	height: 140px;
 	padding-left:300px;
 	padding-right:300px;	
 	margin-top:50px;
@@ -345,7 +345,7 @@ input[type="submit"]{
 
 .changepwd_form_body{
 	width: 360px;
-	height:120px;
+	height:100%;
 	background-color:#FFFFFF;
 }
 .changepwd_form_body .mid{
@@ -389,7 +389,7 @@ input[type="submit"]{
 }
 .user_info_form_body{	
 	width: 760px;
-	height: 400px;
+	height:100%;
 	background-color:#FFFFFF;
 	float:left;
 }
@@ -538,7 +538,7 @@ input[type="submit"]{
 }
 .user_manage_form_body{	
 	width: 760px;
-	height: 380px;
+	height:100%;
 	background-color:#FFFFFF;
 	float:left;
 }
@@ -626,7 +626,7 @@ input[type="submit"]{
 }
 .user_rate_manage_form_body{	
 	width: 760px;
-	height: 380px;
+	height:100%;
 	background-color:#FFFFFF;
 	float:left;
 }
@@ -709,7 +709,7 @@ input[type="submit"]{
 }
 .activity_form_body{	
 	width: 760px;
-	height: 420px;
+	height:100%;
 	background-color:#FFFFFF;
 	float:left;
 }
@@ -796,7 +796,7 @@ input[type="submit"]{
 }
 .account_form_body{	
 	width: 760px;
-	height: 380px;
+	height:100%;
 	background-color:#FFFFFF;
 	float:left;
 }
@@ -862,7 +862,7 @@ input[type="submit"]{
 }
 .phone_history_form_body{	
 	width: 310px;
-	height: 280px;
+	height:100%;
 	background-color:#FFFFFF;
 	float:left;
 }
@@ -928,7 +928,7 @@ input[type="submit"]{
 }
 .rate_history_form_body{	
 	width: 310px;
-	height: 320px;
+	height:100%;
 	background-color:#FFFFFF;
 	float:left;
 }
@@ -1005,7 +1005,7 @@ input[type="submit"]{
 }
 .group_manage_form_body{	
 	width: 760px;
-	height: 400px;
+	height:100%;
 	background-color:#FFFFFF;
 	float:left;
 }
