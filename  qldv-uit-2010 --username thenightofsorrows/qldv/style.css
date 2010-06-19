@@ -79,14 +79,17 @@ input[type="submit"]{
 	background: url(images/left.png) repeat-y top left;
 	float:left;
 	width: 15px;
+	height:100%;
 }
 .mid{
 	float:left;
+	height:100%;
 }
 .right{
 	background: url(images/right.png) repeat-y top right;
 	float:left;
 	width: 15px;
+	height:100%;
 }
 .leftfoot{
 	background: url(images/leftfoot.png) no-repeat bottom left;
@@ -147,7 +150,7 @@ input[type="submit"]{
 }
 .footer{	
 	text-align:right;
-	margin: 40px 10px 0px 10px;	
+	margin: 40px 10px 0px 10px;
 	background-color: #FFFFFF;
 	width:940px;
 	height: 75px;
@@ -212,15 +215,6 @@ input[type="submit"]{
 	height:350px;
 	background-color:#FFFFFF;
 }
-.user_main_form_body .left{
-	height:350px;
-}
-.user_main_form_body .mid{
-	height:350px;
-}
-.user_main_form_body .right{
-	height:350px;
-}
 .user_main_form_body .mid{
 	width: 130px;
 }
@@ -261,15 +255,6 @@ input[type="submit"]{
 	width: 360px;
 	height:115px;
 	background-color:#FFFFFF;
-}
-.login_form_body .left{
-	height:115px;
-}
-.login_form_body .mid{
-	height:115px;
-}
-.login_form_body .right{
-	height:115px;
 }
 .login_form_body .mid{
 	width: 330px;
@@ -318,15 +303,6 @@ input[type="submit"]{
 	background-color:#FFFFFF;	
 }
 .lostpwd_form_body .mid{
-	height: 80px;
-}
-.lostpwd_form_body .right{
-	height: 80px;
-}
-.lostpwd_form_body .left{
-	height: 80px;
-}
-.lostpwd_form_body .mid{
 	width: 330px;
 }
 .lostpwd_table_left_align{
@@ -371,15 +347,6 @@ input[type="submit"]{
 	width: 360px;
 	height:120px;
 	background-color:#FFFFFF;
-}
-.changepwd_form_body .left{
-	height:120px;
-}
-.changepwd_form_body .mid{
-	height:120px;
-}
-.changepwd_form_body .right{
-	height:120px;
 }
 .changepwd_form_body .mid{
 	width: 330px;
@@ -426,14 +393,7 @@ input[type="submit"]{
 	background-color:#FFFFFF;
 	float:left;
 }
-.user_info_form_body .left{
-	height: 400px;
-}
-.user_info_form_body .right{
-	height: 400px;
-}
 .user_info_form_body .mid{
-	height: 400px;
 	width: 730px;
 }
 .user_info_form_text{
@@ -587,14 +547,7 @@ input[type="submit"]{
 	height: 350px;
 	margin: 10px 10px 10px 10px;	
 }
-.user_manage_form_body .left{
-	height: 380px;
-}
-.user_manage_form_body .right{
-	height: 380px;
-}
 .user_manage_form_body .mid{
-	height: 380px;
 	width: 730px;
 }
 .user_manage_form_footer{
@@ -682,14 +635,7 @@ input[type="submit"]{
 	height: 350px;
 	margin: 10px 10px 10px 10px;	
 }
-.user_rate_manage_form_body .left{
-	height: 380px;
-}
-.user_rate_manage_form_body .right{
-	height: 380px;
-}
 .user_rate_manage_form_body .mid{
-	height: 380px;
 	width: 730px;
 }
 .user_rate_manage_form_footer{
@@ -749,7 +695,7 @@ input[type="submit"]{
 =============================*/
 .activity_form{
 	width: 760px;
-	height: 405px;
+	height: 435px;
 	margin-left:10px;
 	float:left;
 }
@@ -763,7 +709,7 @@ input[type="submit"]{
 }
 .activity_form_body{	
 	width: 760px;
-	height: 500px;
+	height: 420px;
 	background-color:#FFFFFF;
 	float:left;
 }
@@ -773,14 +719,7 @@ input[type="submit"]{
 	height: 350px;
 	margin: 10px 10px 10px 10px;	
 }
-.activity_form_body .left{
-	height: 100%;
-}
-.activity_form_body .right{
-	height: 100%;
-}
 .activity_form_body .mid{
-	height: 100%;
 	width: 730px;
 }
 .activity_form_footer{
@@ -866,14 +805,7 @@ input[type="submit"]{
 	height: 350px;
 	margin: 10px 10px 10px 10px;	
 }
-.account_form_body .left{
-	height: 380px;
-}
-.account_form_body .right{
-	height: 380px;
-}
 .account_form_body .mid{
-	height: 380px;
 	width: 730px;
 }
 .account_form_footer{
@@ -939,14 +871,7 @@ input[type="submit"]{
 	height: 250px;
 	margin: 10px 10px 10px 10px;	
 }
-.phone_history_form_body .left{
-	height: 280px;
-}
-.phone_history_form_body .right{
-	height: 280px;
-}
 .phone_history_form_body .mid{
-	height: 280px;
 	width: 280px;
 }
 .phone_history_form_footer{
@@ -1012,14 +937,7 @@ input[type="submit"]{
 	height: 250px;
 	margin: 10px 10px 10px 10px;	
 }
-.rate_history_form_body .left{
-	height: 320px;
-}
-.rate_history_form_body .right{
-	height: 320px;
-}
 .rate_history_form_body .mid{
-	height: 320px;
 	width: 280px;
 }
 .rate_history_form_footer{
@@ -1096,14 +1014,7 @@ input[type="submit"]{
 	height: 370px;
 	margin: 10px 10px 10px 10px;	
 }
-.group_manage_form_body .left{
-	height: 400px;
-}
-.group_manage_form_body .right{
-	height: 400px;
-}
 .group_manage_form_body .mid{
-	height: 400px;
 	width: 730px;
 }
 .group_manage_form_footer{
