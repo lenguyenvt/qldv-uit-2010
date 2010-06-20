@@ -21,7 +21,7 @@ if(check_auth("qlphongtrao",2)){
 	$buttons_2="<input id=\"delete\" name=\"delete\" type=\"submit\" value=\"X&#243;a\" style=\"margin-top:7px;width:70px\"/>";
 	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`")." OR ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`");
 	$db->query($sql);
-	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:140px;font-size:8pt\">";
+	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:120px;font-size:8pt\">";
 	while($tmp=mysql_fetch_array($db->query_result)){
 		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
 	}
@@ -107,8 +107,8 @@ function getcontent(i){
 			</table>
 			</td>
 			<td>
-		<form method="POST">
-            	<table class="activity_form_right_content">
+			<form method="POST">
+        		<table class="activity_form_right_content">
                 <tr>
                     <td colspan="2">
                         <input id="ten" name="ten" type="text"  class="activity_form_textbox" style="width:215px;text-align:center" /><br />
@@ -118,19 +118,19 @@ function getcontent(i){
                     	<input id="id_phongtraodoan" name="id_phongtraodoan" type="hidden" /><br />  
                 </tr>
                 <tr>
-                	<td>
+					<td width="85px">
                     	Ng&#224;y b&#7855;t &#273;&#7847;u:
-			</td>
-                    <td align="right">
-                    	<input id="start" name="start" type="text" class="activity_form_textbox" />
                     </td>
+					<td width="130px" align="right">
+                    	<input id="start" name="start" type="text" class="activity_form_textbox" />
+					</td>
                 </tr> 
                 <tr>   
-                    <td>                   
+					<td width="85px">               
                     	Ng&#224;y k&#7871;t th&#250;c:
                     </td>
-                    <td align="right">
-                    	<input id= "end" name="end" type="text" class="activity_form_textbox" /><br />
+                    <td width="130px" align="right">
+                    	<input id= "end" name="end" type="text" class="activity_form_textbox" />
                     </td>
                 </tr>
 {$option_cosodoan}
