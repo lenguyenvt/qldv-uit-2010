@@ -1,17 +1,23 @@
-﻿<?php
+<?php
 function group_manage_form($danhsachdoanvien){
+global $db,$user;
 $thongtin="";
 $var="";
+$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`");
+$db->query($sql);
+$select_cosodoan="";
+while($tmp=mysql_fetch_array($db->query_result)){
+	$select_cosodoan.="<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
+}
 for ($i=0;$i<count($danhsachdoanvien);$i++)
 {	
 	$thongtin.="<tr class=\"group_manage_form_table_content_highlight\" onClick=\"javascript:getcontent($i);\">
-						<td width=\"31px\">".$danhsachdoanvien[$i]['stt']."</td>
-						<td width=\"80px\">".$danhsachdoanvien[$i]['id_cosodoan']."</td>
-						<td width=\"180px\">".$danhsachdoanvien[$i]['ten']."</td>
-						<td width=\"95px\">".$danhsachdoanvien[$i]['cap']."</td>					
+						<td width=\"31px\">".($i+1)."</td>
+						<td width=\"380px\">".$danhsachdoanvien[$i]['ten']."</td>
+						<td width=\"95px\">".$danhsachdoanvien[$i]['cap']."</td>
 						<td width=\"25px\"><input id=\"checked\" name=\"checked\" type=\"checkbox\" value=\"checked\" /></td>
 					</tr>";
-	$var.="Array(\"".$danhsachdoanvien[$i]['ten']."\",\"".$danhsachdoanvien[$i]['id_cosodoan']."\",\"".$danhsachdoanvien[$i]['cap']."\",\"".$danhsachdoanvien[$i]['parent']."\",\"".($danhsachdoanvien[$i]['co_dau']==1?"checked":"")."\",\"".$danhsachdoanvien[$i]['thongke_doanvien']."\",\"".$danhsachdoanvien[$i]['nhanxet']."\",\"".$danhsachdoanvien[$i]['loai']."\")".($i<count($danhsachdoanvien)-1?",":"");
+	$var.="Array(\"".$danhsachdoanvien[$i]['ten']."\",\"".$danhsachdoanvien[$i]['id_cosodoan']."\",\"".$danhsachdoanvien[$i]['cap']."\",\"".$danhsachdoanvien[$i]['parent']."\",\"".($danhsachdoanvien[$i]['co_dau']==1?"checked":"")."\")".($i<count($danhsachdoanvien)-1?",":"");
 };
 return
 <<<EOF
@@ -20,12 +26,12 @@ function getcontent(i){
 	var danhsach=Array($var);
 	document.getElementById("ten").value=danhsach[i][0];
 	document.getElementById("id_cosodoan").value=danhsach[i][1];
-	document.getElementById("cap").value=danhsach[i][2];	
-	document.getElementById("parent").value=danhsach[i][3];	
-	document.getElementById("co_dau").checked=danhsach[i][4];	
-	document.getElementById("thongke_doanvien").value=danhsach[i][5];
-	document.getElementById("nhanxet").value=danhsach[i][6];
-	document.getElementById("loai").value=danhsach[i][7];
+//	document.getElementById("cap").value=danhsach[i][2];
+	document.getElementById("parent").value=danhsach[i][3];
+	document.getElementById("co_dau").checked=danhsach[i][4];
+//	document.getElementById("thongke_doanvien").value=danhsach[i][5];
+//	document.getElementById("nhanxet").value=danhsach[i][6];
+//	document.getElementById("loai").value=danhsach[i][7];
 }
 </script>
 <div class="group_manage_form">
@@ -47,14 +53,7 @@ function getcontent(i){
         <tbody>
 		<tr height="24px">
 			<td width="442px">
-				T&#236;m theo t&#234;n: <input type="text" /> <input id="tim" name="tim" type="submit" value="T&#236;m" class="group_manage_form_submit"/>
-			</td>
-			<td>
-			</td>
-		</tr>
-		<tr height="24px">
-			<td width="442px">
-				Danh s&#225;ch c&#417; s&#7903; &#272;o&#224;n::
+				Danh s&#225;ch c&#417; s&#7903; &#272;o&#224;n:
 			</td>
 			<td>
             	&nbsp;&nbsp;Chi ti&#7871;t:	
@@ -68,10 +67,8 @@ function getcontent(i){
 						<table class = "group_manage_form_table_header" cellspacing="0" border="1">
 						<tr>
 							<td width="30px"><b>STT</b></td>
-							<td width="80px"><b>ID</b></td>
-							<td width="180px"><b>T&#234;n</b></td>
-							<td width="95px"><b>Cấp</b></td>
-							<td width="25px">&nbsp;</td>
+							<td width="380px"><b>T&#234;n</b></td>
+							<td width="95px"><b>C&#7845;p</b></td>
 							<td width="16px">&nbsp;</td>
 						</tr>
 						</table>
@@ -91,24 +88,9 @@ function getcontent(i){
 			<td>
             	<table class="group_manage_form_right_content">
                 <tr>
-                	<td colspan="2">
-						<input name="ten" id="ten" type="text" style="width:252px;" class="group_manage_form_textbox"/>
-                    </td>
-                </tr>                    
-                <tr>                    
-                    <td width="125px">
-                    	ID:
-                    </td>
-                    <td align="right">
-                    	<input id="id_cosodoan" name="id_cosodoan" type="text" class="group_manage_form_textbox"/>
-                    </td>
-                </tr>
-                <tr>                    
-                    <td>
-                    	C&#7845;p c&#417; s&#7903;:
-                    </td>
-                    <td align="right">
-                    	<input id="cap" name="cap" type="text" class="group_manage_form_textbox"/>
+                    <td colspan="2">
+				<input name="ten" id="ten" type="text" style="width:252px;" class="group_manage_form_textbox"/>
+				<input id="id_cosodoan" name="id_cosodoan" type="hidden"/>
                     </td>
                 </tr>
                 <tr>                    
@@ -116,7 +98,7 @@ function getcontent(i){
                     	C&#7845;p tr&#234;n:
                     </td>
                     <td align="right">
-                    	<input id="parent" name="parent" type="text" class="group_manage_form_textbox"/>
+                    	<select id="parent" name="parent" style="width:180px;font-size:8pt">{$select_cosodoan}</select>
                     </td>
                 </tr>
                 <tr>                    
@@ -127,38 +109,6 @@ function getcontent(i){
                     	<input id="co_dau" name="co_dau" type="checkbox" value="" />
                     </td>
                 </tr>
-                <tr>                    
-                    <td>
-                    	S&#7889; &#273;o&#224;n vi&#234;n:
-                    </td>
-                    <td align="right">
-                    	<input id="thongke_doanvien" name="thongke_doanvien" type="text" class="group_manage_form_textbox"/>
-                    </td>
-                </tr>
-                <tr>                    
-                    <td colspan="2" align="center">
-                    	<b>X&#7871;p lo&#7841;i h&#224;ng n&#259;m:</b>
-                </tr>
-                <tr>                    
-                    <td>
-                    	Nh&#7853;n x&#233;t:
-                    </td>
-                    <td>                    	
-                    </td>
-                </tr>
-                <tr> 
-                    <td colspan="2">
-                    	<textarea id="nhanxet" name="nhanxet" class="group_manage_form_textarea_content"></textarea>
-                    </td>
-                </tr>
-                <tr>                    
-                    <td>
-                    	X&#7871;p lo&#7841;i:
-                    </td>
-                    <td align="right">
-                    	<input id="loai" name="loai" type="text" class="group_manage_form_textbox"/>
-                    </td>
-                </tr>                
                 </table>
 			</td>
 		</tr>
