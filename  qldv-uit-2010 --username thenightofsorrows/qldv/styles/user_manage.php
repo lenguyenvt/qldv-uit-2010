@@ -92,7 +92,7 @@ function getcontent(i){
 				<table  class="user_manage_form_right_content">
                 <tr>
                     <td colspan="2" align="center">
-                        <input name="" type="image" class="user_manage_form_avatar" src="../images/avatar.png" />
+                        <input name="" type="image" class="user_manage_form_avatar" src="images/avatar.png" />
                     </td>
                 </tr>
 				<tr>

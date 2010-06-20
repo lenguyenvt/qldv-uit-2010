@@ -69,11 +69,13 @@ return
 				</div>
 				</td>	
 			</tr>
-            <tr>
-                <td align="right">
-                    <input id="delete" name="delete" type="submit" value="X&#243;a"/>
-                </td>
-            </tr>
+	<tr>
+	<td align="right">
+		<input id="delete" name="delete" type="submit" value="X&#243;a"/>
+		<input id="add" name="add" type="submit" value="Th&#234;m"/>
+		<input id="modify" name="modify" type="submit" value="S&#7917;a"/>
+	</td>
+	</tr>
 			</table>
 			</td>
 		</tr>		
