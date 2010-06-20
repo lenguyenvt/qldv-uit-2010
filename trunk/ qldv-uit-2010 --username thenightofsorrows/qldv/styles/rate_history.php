@@ -2,13 +2,13 @@
 function rate_history_form($danhsachxeploai){
 $thongtin="";
 $var="";
-for ($i=0;$i<count($danhsachxeploai);$i++)
+for ($i=0;$i<sizeof($danhsachxeploai);$i++)
 {
 	$thongtin.="<tr class=\"rate_history_form_table_content_highlight\" onClick=\"javascript:getcontent($i);\">
-						<td width=\"108px\">".$danhsachxeploai[$i]['nam']."</td>
-						<td width=\"124px\">".$danhsachxeploai[$i]['loai']."</td>
+						<td width=\"108px\">".$danhsachxeploai[$i][0]."</td>
+						<td width=\"124px\">".$danhsachxeploai[$i][1]."</td>
 				</tr>";
-	$var.="\"".$danhsachxeploai[$i]['danhgia']."\"".($i<count($danhsachxeploai)-1?",":"");
+	$var.="\"".$danhsachxeploai[$i][2]."\"".($i<sizeof($danhsachxeploai)-1?",":"");
 };	
 return
 <<<EOF

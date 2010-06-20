@@ -7,7 +7,7 @@ function page_content(){
 	// retrieve grade of youth union member by year
 	$sql = "SELECT  `xeploaidoanvien`.`loai` ,  
 	                `xeploaidoanvien`.`year_start`,
-	                `xeploaidoanvien`.`danhgia` 
+	                `xeploaidoanvien`.`Note` 
 	                          
 	        FROM `xeploaidoanvien`
 	        
@@ -16,7 +16,7 @@ function page_content(){
 	
 	
 	// for testing only
-	//echo $sql;
+	echo $sql;
 	
 	// get grade by year, pass it to generate the rate_form
 	$query = $db->query($sql);
