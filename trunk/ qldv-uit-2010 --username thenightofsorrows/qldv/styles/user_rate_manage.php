@@ -114,7 +114,12 @@ function getcontent(i){
                     	X&#7871;p lo&#7841;i:
                     </td>
                     <td align="right">
-                    	<input id="loai" name="loai" type="text" class="user_rate_manage_form_textbox"/>
+                    	<select id="loai" name="loai" class="user_rate_manage_form_textbox">
+			<option value="1">T&#7889;t</option>
+			<option value="2">Kh&#225;</option>
+			<option value="3">Trung b&#236;nh</option>
+			<option value="4">Y&#7871;u</option>
+		</select>
                     </td>
                 </tr>
                 <tr>

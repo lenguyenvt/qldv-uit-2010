@@ -150,7 +150,7 @@ input[type="submit"]{
 }
 .footer{	
 	text-align:right;
-	margin: 40px 10px 0px 10px;
+	margin: 60px 10px 0px 10px;
 	background-color: #FFFFFF;
 	width:940px;
 	height: 75px;
@@ -687,7 +687,7 @@ input[type="submit"]{
 .user_rate_manage_form_textbox{
 	width:125px;
 	border:solid 1px #FFFFFF;
-	text-align:center;
+	text-align:left;
 }
 
 /*=============================
@@ -763,7 +763,7 @@ input[type="submit"]{
 	color:#FFFFFF;
 }
 .activity_form_textbox{
-	width:110px;
+	width:117px;
 	text-align:right;
 	background-color:#FFFFFF;
 	border: 1px solid #FFFFFF;
@@ -851,6 +851,7 @@ input[type="submit"]{
 	width: 310px;
 	height: 305px;
 	margin-left:210px;
+	margin-bottom:120px;
 	float:left;
 }
 .phone_history_form_header{
@@ -917,6 +918,7 @@ input[type="submit"]{
 	width: 310px;
 	height: 345px;
 	margin-left:210px;
+	margin-bottom:120px;
 	float:left;
 }
 .rate_history_form_header{
