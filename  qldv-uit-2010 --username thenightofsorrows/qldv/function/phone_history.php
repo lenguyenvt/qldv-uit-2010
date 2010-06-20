@@ -1,5 +1,6 @@
 <?php
 require_once("./styles/phone_history.php");
+
 // done!it's all ok now
 function page_content(){
 	global $s,$t,$p,$page_header,$_GET,$_POST, $db, $user;
@@ -19,7 +20,36 @@ function page_content(){
 	$phone_history=explode("|", $phone_history_data['dienthoaididong']);
 	print_r($phone_history);
 	
+	var_dump($_GET);
+	var_dump($_POST);
+	
 	// return html document 
 	return user_main_form(phone_history_form($phone_history));
+}
+
+function delete()
+{
+	global $s,$t,$p,$page_header,$_GET,$_POST, $db, $user;
+	
+  	foreach ($_GET as $s=>$k)
+  	{  		
+  		// wtf, I forgot the function which help me to delete this fucking string :(.
+  		if (($s != "delete") && ($s != "op") && ($s != "type"))
+  		{  	  			
+			// xoa string ($s+"|"), neu end = "|" thi delete ki tu cuoi.		  	
+  		}  	
+  	}
+}
+
+if (isset($_GET['op']))
+{
+	switch($_GET['op'])
+	{
+		default:
+			break;
+		case "delete":
+			delete();
+			break;
+	}
 }
 ?>
