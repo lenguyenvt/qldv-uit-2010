@@ -545,7 +545,7 @@ input[type="submit"]{
 .user_manage_form_text{	
 	width:730px;
 	height: 350px;
-	margin: 10px 10px 10px 10px;	
+	margin: 10px 0px 10px 0px;	
 }
 .user_manage_form_body .mid{
 	width: 730px;
@@ -633,7 +633,7 @@ input[type="submit"]{
 .user_rate_manage_form_text{	
 	width:730px;
 	height: 350px;
-	margin: 10px 10px 10px 10px;	
+	margin: 10px 0px 10px 0px;	
 }
 .user_rate_manage_form_body .mid{
 	width: 730px;
@@ -717,7 +717,7 @@ input[type="submit"]{
 .activity_form_text{	
 	width:720px;
 	height: 350px;
-	margin: 10px 10px 10px 10px;	
+	margin: 10px 0px 10px 10px;	
 }
 .activity_form_body .mid{
 	width: 730px;
@@ -803,7 +803,7 @@ input[type="submit"]{
 .account_form_text{	
 	width:710px;
 	height: 350px;
-	margin: 10px 10px 10px 10px;	
+	margin: 10px 0px 10px 10px;	
 }
 .account_form_body .mid{
 	width: 730px;
@@ -862,7 +862,7 @@ input[type="submit"]{
 	width: 280px;
 }
 .phone_history_form_body{	
-	width: 310px;
+	width: 314px;
 	height:100%;
 	background-color:#FFFFFF;
 	float:left;
@@ -883,7 +883,7 @@ input[type="submit"]{
 	width: 280px;
 }
 .phone_history_form_table{
-	width:256px;
+	width:246px;
 	background-color:transparent;
 	border-spacing:0px;
 	text-align:center;
@@ -1014,7 +1014,7 @@ input[type="submit"]{
 .group_manage_form_text{	
 	width:710px;
 	height: 370px;
-	margin: 10px 10px 10px 10px;	
+	margin: 10px 0px 10px 0px;	
 }
 .group_manage_form_body .mid{
 	width: 730px;
