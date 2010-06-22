@@ -13,18 +13,18 @@ function page_content(){
 	               `xeploaidoanvien`.`loai`,
 	               `xeploaidoanvien`.`diem`,
 	               `xeploaidoanvien`.`Note`
-	       WHERE   `qhchidoan`.`id_doanvien` = {$user['id']}	      
+			FROM `thongtindoanvien`,`xeploaidoanvien`,`qhchidoan`
+	       WHERE   `qhchidoan`.`id_doanvien` = '{$user['id']}'
 	       AND     `thongtindoanvien`.`id_doanvien` = `qhchidoan`.`id_doanvien`
 	       AND     `xeploaidoanvien`.`id_doanvien` = `qhchidoan`.`id_doanvien`	   
 	 ";
-	echo $sql;
 	$query = $db->query($sql);
-	$dsdoanvien = mysql_fetch_array($sql);
-	while(($doanvien = mysql_fetch_row($dsdoanvien))!= null)
-	{
-	   $danhsachdoanvien[]=array($doanvien[0], $doanvien[1], $doanvien[2], $doanvien[3], $doanvien[4], $doanvien[5], $doanvien[6]);
+	if($db->num_rows>10){
+	while($doanvien = mysql_fetch_array($db->query_result))
+		{
+		   $danhsachdoanvien[]=array($doanvien['id_doanvien'], $doanvien[1], $doanvien[2], $doanvien[3], $doanvien[4], $doanvien[5], $doanvien[6]);
+		}
 	}
-	
 	return user_main_form(user_rate_manage_form($danhsachdoanvien));
 }
 ?>
