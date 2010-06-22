@@ -86,11 +86,12 @@ function getcontent(i){
 				</table>                
 			</td>
 			<td>
+		<form method="POST">
             	<table class="group_manage_form_right_content">
                 <tr>
                     <td colspan="2">
-				<input name="ten" id="ten" type="text" style="width:252px;" class="group_manage_form_textbox"/>
-				<input id="id_cosodoan" name="id_cosodoan" type="hidden"/>
+				<input name="ten" id="ten" type="text" style="width:252px;" class="group_manage_form_textbox" />
+				<input id="id_cosodoan" name="id_cosodoan" type="hidden" />
                     </td>
                 </tr>
                 <tr>                    
@@ -119,18 +120,20 @@ function getcontent(i){
             <td align="right">
             	<table width="260px">
                 <tr>
-                	<td  align="left">
+               	<td  align="left">
+		    <input type="hidden" name="to_post" id="to_post">
                     <input id="them" name="them" value="Th&#234;m" type="submit" style="margin-top:7px"/>
                     </td>
                     <td align="right">
                     <input id="sua" name="sua" value="C&#7853;p nh&#7853;t" type="submit" style="margin-top:7px"/>
                     </td>
                 </tr>
-           		</table>
+           	</table>
             </td>
         </tr>
         </tbody>
-        </table>    
+        </table>
+	</form>  
     </div>
 	<div class="right"></div>        
 	</div>

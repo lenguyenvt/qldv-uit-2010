@@ -12,7 +12,7 @@ $refresh="";
 
 $user=check_user_logged_in();
 
-print_r($user);
+//print_r($user);
 
 if(!is_logged_in()){
 	switch($t){
