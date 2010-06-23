@@ -43,6 +43,9 @@ function left_menu(){
 global $user;
 $ql="";
 if(check_auth("qlphongtrao",1)) $ql.='			<tr>
+			<td align="left"><a href="index.php?type=user_register">&#272;&#259;ng k&#237; &#273;o&#224;n vi&#234;n</a></td>
+			</tr>';
+if(check_auth("qlphongtrao",1)) $ql.='			<tr>
 			<td align="left"><a href="index.php?type=activity">Qu&#7843;n l&#253; phong tr&#224;o</a></td>
 			</tr>';
 if(check_auth("qldoanvien",1)) $ql.='			<tr>
@@ -88,6 +91,9 @@ return
 			</tr>
 			<tr>
 			<td align="center"><a href="index.php?type=user_info">Th&#244;ng tin c&#225; nh&#226;n</a></td>
+			</tr>
+			<tr>
+			<td align="center"><a href="index.php?type=change_group_info">Chuy&#7875;n SH &#273;o&#224;n</a></td>
 			</tr>
 			<tr>
 			<td align="center"><a href="index.php?type=changepwd">&#272;&#7893;i m&#7853;t kh&#7849;u</a></td>

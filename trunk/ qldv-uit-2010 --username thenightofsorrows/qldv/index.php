@@ -68,6 +68,15 @@ else switch($t){
 	case "group_manage":
 		$t="group_manage";
 		break;
+	case "user_register":
+		$t="user_register";
+		break;
+	case "change_group":
+		$t="change_group";
+		break;
+	case "change_group_info":
+		$t="change_group_info";
+		break;
 }
 if($t!=$_t){
 	header("Location: index.php?type=$t");
