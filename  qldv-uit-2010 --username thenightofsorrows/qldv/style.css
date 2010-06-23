@@ -412,6 +412,7 @@ input[type="submit"]{
 }
 /* User Info Form - Group Personal*/
 .user_info_group_personal{
+	margin:10px 0px 0px 0px;
 	width:360px;
 	height:190px;	
 }
@@ -436,7 +437,7 @@ input[type="submit"]{
 
 /* User Info Form - Group Contact*/
 .user_info_group_contact{
-	margin-left:10px;
+	margin:10px 0px 0px 0px;
 	width:340px;
 	height:190px;
 }
@@ -460,6 +461,7 @@ input[type="submit"]{
 
 /* User Info Form - Group Member*/
 .user_info_group_member{
+	margin:10px 0px 0px 0px;
 	width:360px;
 	height:170px;
 }
@@ -485,7 +487,7 @@ input[type="submit"]{
 /* User Info Form - Group Movement*/
 
 .user_info_group_movement{
-	margin-left:10px;
+	margin:10px 0px 0px 0px;
 	width:340px;
 	height:170px;
 }
@@ -1073,4 +1075,157 @@ input[type="submit"]{
 .error-box{
 	color:red;
 	text-align:center;
+}
+
+/*=============================
+			User Register
+=============================*/
+.user_register_form{
+	width: 360px;
+	height: 115px;
+	margin: 0px 0px 300px 180px;
+	float:left;
+}
+.user_register_form_header{
+	width: 360px;
+	height: 25px;
+}
+.user_register_form_header .midhead{
+	width: 330px;
+}
+.user_register_form_body{	
+	width: 360px;
+	height:100%;
+	background-color:#FFFFFF;
+	float:left;
+}
+.user_register_form_body .mid{
+	width: 330px;
+}
+.user_register_form_text{
+	margin: 10px 0px 0px 10px;
+	width:300px;
+}
+.user_register_form_footer{
+	width: 360px;
+	height: 15px;
+}
+.user_register_form_footer .midfoot{
+	width: 330px;
+}
+.user_register_button{
+	margin: 5px 0px 0px 0px;
+}
+.user_register_form_textbox{	
+	width:200px;
+}
+
+/*=============================
+			Change Group
+=============================*/
+.change_group_form{
+	width: 360px;
+	height: 95px;
+	margin: 0px 0px 300px 180px;
+	float:left;
+}
+.change_group_form_header{
+	width: 360px;
+	height: 25px;
+}
+.change_group_form_header .midhead{
+	width: 330px;
+}
+.change_group_form_body{	
+	width: 360px;
+	height:100%;
+	background-color:#FFFFFF;
+	float:left;
+}
+.change_group_form_body .mid{
+	width: 330px;
+}
+.change_group_form_text{
+	margin: 10px 0px 0px 10px;
+	width:300px;
+}
+.change_group_form_footer{
+	width: 360px;
+	height: 15px;
+}
+.change_group_form_footer .midfoot{
+	width: 330px;
+}
+.change_group_button{
+	margin: 5px 0px 0px 0px;
+}
+.change_group_form_textbox{	
+	width:160px;
+}
+
+/*=============================
+		Phone History
+=============================*/
+.change_group_info_form{
+	width: 360px;
+	height: 305px;
+	margin-left:210px;
+	margin-bottom:120px;
+	float:left;
+}
+.change_group_info_form_header{
+	width: 360px;
+	height: 25px;
+}
+.change_group_info_form_header .midhead{
+	width: 330px;
+}
+.change_group_info_form_body{	
+	width: 364px;
+	height:100%;
+	background-color:#FFFFFF;
+	float:left;
+}
+.change_group_info_form_text{	
+	width:310px;
+	height: 250px;
+	margin: 10px 10px 10px 10px;	
+}
+.change_group_info_form_body .mid{
+	width: 330px;
+}
+.change_group_info_form_footer{
+	width: 360px;
+	height: 15px;
+}
+.change_group_info_form_footer .midfoot{
+	width: 330px;
+}
+.change_group_info_form_table{
+	width:306px;
+	background-color:transparent;
+	border-spacing:0px;
+	text-align:center;
+}
+.change_group_info_form_table_header{
+	border:solid 1px #FFFFFF;
+	background-color:#008BCE;
+	color:#FFFFFF;
+	text-align:center;
+	line-height:24px;
+}
+.change_group_info_form_table_scroll{
+	width:306px; 
+	overflow:scroll; 
+	background-color:#FFFFFF;
+	height:230px;
+}
+.change_group_info_form_table_content{
+	text-align:center;
+	background-color:#FFFFFF;
+	line-height:24px;
+}
+.change_group_info_form_table_content_highlight:hover{
+	background-color:#2288DD;
+	cursor:pointer;
 }

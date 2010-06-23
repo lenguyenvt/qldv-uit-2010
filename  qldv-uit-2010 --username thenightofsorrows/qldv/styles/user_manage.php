@@ -117,14 +117,19 @@ function getcontent(i){
                     </td>
                 </tr> 
                 <tr>   
-                	<td>                   
-                    	
+                	<td>   
                     </td>
                     <td align="right">
                     	<a href="index.php?type=user_info">Th&#244;ng tin chi ti&#7871;t</a>
                     </td>
                 </tr>
-                  
+                <tr>   
+                	<td>   
+                    </td>
+                    <td align="right">
+                    	<a href="index.php?type=change_group">Chuy&#7875;n sinh ho&#7841;t &#273;o&#224;n</a>
+                    </td>
+                </tr>
 				</table>
 			</td>
 		</tr>
