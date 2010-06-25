@@ -77,6 +77,9 @@ else switch($t){
 	case "change_group_info":
 		$t="change_group_info";
 		break;
+	case "activity_info":
+		$t="activity_info";
+		break;
 }
 if($t!=$_t){
 	header("Location: index.php?type=$t");

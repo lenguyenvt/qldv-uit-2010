@@ -78,7 +78,7 @@ function getcontent(i){
 			<td width="477px">
 			<table class="activity_form_table">
 			<tr>
-				<td>
+				<td colspan="2">
 					<table class = "activity_form_table_header" cellspacing="0" width="100%" border="1">
 					<tr>
 						<td width="30px">STT</td>
@@ -92,7 +92,7 @@ function getcontent(i){
 				</td>
 			</tr> 
 			<tr>
-				<td>
+				<td colspan="2">
 				<div class="activity_form_table_scroll">
 					<table class="activity_form_table_content">
 {$thongtin}
@@ -101,7 +101,21 @@ function getcontent(i){
 				</td>	
 			</tr>
             <tr>
-                <td align="right">
+            	<td align="left">
+                <table width="250px">
+                <tr>
+                	<td>T&#7915; ng&#224;y:</td>
+                    <td align="right"><input name="from" id="from" type="text" style="width:100px"/></td>
+                    <td><input type="submit" value="Hi&#7875;n th&#7883;" style="width:70px"</td>
+                </tr>
+                <tr>
+                	<td>&#272;&#7871;n ng&#224;y:</td>
+                    <td align="right"><input name="to" id="to" type="text" style="width:100px"/></td>
+                    <td></td>
+                </tr>
+                </table>
+                </td>
+				<td align="right" valign="top">
                     {$buttons_2}
                 </td>
             </tr>
@@ -136,8 +150,11 @@ function getcontent(i){
                 </tr>
 {$option_cosodoan}
                 <tr>   
-                	<td colspan="2">
+                	<td >
                     N&#7897;i dung:
+                    </td>
+                    <td align="right">
+                    <a href="?type=activity_info">Th&#7889;ng k&#234;</a>
                     </td>
                 </tr>
                 <tr>

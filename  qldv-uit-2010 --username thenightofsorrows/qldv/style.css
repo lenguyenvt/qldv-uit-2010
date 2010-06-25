@@ -1164,7 +1164,7 @@ input[type="submit"]{
 }
 
 /*=============================
-		Phone History
+		Change Group Info
 =============================*/
 .change_group_info_form{
 	width: 360px;
@@ -1228,4 +1228,50 @@ input[type="submit"]{
 .change_group_info_form_table_content_highlight:hover{
 	background-color:#2288DD;
 	cursor:pointer;
+}
+/*=============================
+	Activity Info
+=============================*/
+.activity_info_form{
+	width: 360px;
+	height: 180px;
+	margin: 0px 0px 300px 180px;
+	float:left;
+}
+.activity_info_form_header{
+	width: 360px;
+	height: 25px;
+}
+.activity_info_form_header .midhead{
+	width: 330px;
+}
+.activity_info_form_body{	
+	width: 360px;
+	height:100%;
+	background-color:#FFFFFF;
+	float:left;
+}
+.activity_info_form_body .mid{
+	width: 330px;
+}
+.activity_info_form_text{
+	margin: 10px 0px 0px 10px;
+	width:300px;
+}
+.activity_info_form_footer{
+	width: 360px;
+	height: 15px;
+}
+.activity_info_form_footer .midfoot{
+	width: 330px;
+}
+.activity_info_button{
+	margin: 5px 0px 0px 0px;
+}
+.activity_info_form_textbox{	
+	width:170px;
+}
+.activity_info_form_textarea{	
+	width:170px;
+	height:80px;
 }
