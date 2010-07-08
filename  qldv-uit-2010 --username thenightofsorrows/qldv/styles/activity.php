@@ -19,7 +19,6 @@ if(check_auth("qlphongtrao",2)){
 	                        <input id=\"update\" name=\"update\" type=\"submit\" value=\"C&#7853;p nh&#7853;t\" style=\"margin-top:7px;width:70px\"/>
         	                <input id=\"attend\" name=\"attend\" type=\"submit\" value=\"Tham gia\" style=\"margin-top:7px;width:70px\"/>";
 	$buttons_2="<input id=\"delete\" name=\"delete\" type=\"submit\" value=\"X&#243;a\" style=\"margin-top:7px;width:70px\"/>";
-	$buttons_2="";
 	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`")." OR ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`");
 	$db->query($sql);
 	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:120px;font-size:8pt\">";

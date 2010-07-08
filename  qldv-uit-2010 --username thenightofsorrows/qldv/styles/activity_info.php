@@ -1,12 +1,10 @@
 ﻿<?php
-function activity_info_form($tenphongtrao,$chidoan,$songuoi,$danhgia,$save){
-$button="";
-if ($save==1)
-{
-	$button.="<tr>
-			<td align=\"right\" colspan=\"2\"><input type=\"submit\" value = \"L&#432;u\" class=\"activity_info_button\"></input></td>
-			</tr>";
-};
+function activity_info_form($danhsachchidoan){
+$thongtin="";
+for ($i=0;$i<count($danhsachchidoan);$i++)
+{	
+	$thongtin.="<option value =\"$i\">".$danhsachchidoan[$i]."</option>";
+}
 return
 <<<EOF
 <div class="activity_info_form">
@@ -28,21 +26,23 @@ return
 		<tbody>
 			<tr>
 			<td width="130px">T&#234;n phong tr&#224;o:</td>
-			<td><input name="phongtrao" type="text" class="activity_info_form_textbox" value="{$tenphongtrao}"></td>
+			<td><input name="id_doanvien" type="text" class="activity_info_form_textbox"></td>
             </tr>
 			<tr>
 			<td width="130px">Chi &#273;o&#224;n ph&#225;t &#273;&#7897;ng:</td>
-			<td><input name="chidoan" type="text" class="activity_info_form_textbox" value="{$chidoan}"></td>
+			<td><input type="text" class="activity_info_form_textbox"></td>
             </tr>
 			<tr>
 			<td width="130px">S&#7889; ng&#432;&#7901;i tham gia:</td>
-			<td><input name="songuoi" type="text" class="activity_info_form_textbox" value="{$songuoi}"></td>
+			<td><input type="text" class="activity_info_form_textbox"></td>
             </tr>	
 			<tr>
 			<td width="130px" valign="top">&#272;&#225;nh gi&#225;:</td>
-			<td><textarea name="danhgia" class="activity_info_form_textarea" >{$danhgia}</textarea></td>
-            </tr>
-{$button}
+			<td><textarea class="activity_info_form_textarea"></textarea></td>
+            </tr>			
+			<tr>
+			<td align="right" colspan="2"><input type="submit" value = "L&#432;u" class="activity_info_button"></input></td>
+			</tr>
         </tbody>
         </table>
 	</div>
