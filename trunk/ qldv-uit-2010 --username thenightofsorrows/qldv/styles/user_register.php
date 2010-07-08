@@ -25,17 +25,20 @@ return
 		<table class="user_register_form_text">
 		<tbody>
 			<tr>
-			<td width="100px">T&#234;n &#273;o&#224;n vi&#234;n:</td>
-			<td width="200px"><input name="id_doanvien" type="text" class="user_register_form_textbox"></td>
+			<td width="130px">T&#234;n &#273;o&#224;n vi&#234;n:</td>
+			<td width="170px"><input name="id_doanvien" type="text" class="user_register_form_textbox"></td>
             </tr>
 			<tr>
-			<td width="100px">Chi &#273;o&#224;n hi&#7879;n t&#7841;i:</td>
-			<td width="200px"><input name="password" type="text" class="user_register_form_textbox"></td>
+			<td width="130px">Chi &#273;o&#224;n hi&#7879;n t&#7841;i:</td>
+			<td width="170px">
+				<select style="width:172px">
+{$thongtin}
+				</select></td>
             </tr>
 			<tr>
-			<td width="100px">Chi &#273;o&#224;n chuy&#7875;n t&#7899;i:</td>
-			<td width="200px">
-				<select style="width:202px">
+			<td width="130px">Chi &#273;o&#224;n chuy&#7875;n t&#7899;i:</td>
+			<td width="170px">
+				<select style="width:172px">
 {$thongtin}
 				</select>
             </tr>
