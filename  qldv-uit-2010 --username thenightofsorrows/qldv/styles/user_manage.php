@@ -1,21 +1,39 @@
 <?php
 
-function user_manage_form($danhsachdoanvien){
+function user_manage_form($danhsachdoanvien,$error=""){
+global $db,$user;
 $thongtin="";
 $var="";
 for ($i=0;$i<count($danhsachdoanvien);$i++)
 {	
 	$thongtin.="<tr class=\"user_manage_form_table_content_highlight\" onClick=\"javascript:getcontent($i);\">
-						<td width=\"32px\">".$danhsachdoanvien[$i]['stt']."</td>
+						<td width=\"30px\">".($i+1)."</td>
 						<td width=\"70px\">".$danhsachdoanvien[$i]['id_doanvien']."</td>
 						<td width=\"170px\">".$danhsachdoanvien[$i]['hoten']."</td>
-						<td width=\"29px\">".($danhsachdoanvien[$i]['phai']==0?"Nam":"N&#7919;")."</td>
+						<td width=\"29px\">".($danhsachdoanvien[$i]['gioitinh']==0?"Nam":"N&#7919;")."</td>
 						<td width=\"85px\">".$danhsachdoanvien[$i]['ngaysinh']."</td>
 						<td width=\"85px\">".$danhsachdoanvien[$i]['doan_phi']."</td>
 						<td width=\"25px\"><input id=\"checked\" name=\"checked\" type=\"checkbox\" value=\"checked\" /></td>
 					</tr>";
-	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['id_doanvien']."\",\"".$danhsachdoanvien[$i]['chucvu']."\")".($i<count($danhsachdoanvien)-1?",":"");
+	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['id_doanvien']."\",\"".$danhsachdoanvien[$i]['ten']."\")".($i<count($danhsachdoanvien)-1?",":"");
 };
+if(check_auth("qldoanvien",2)){
+	$buttons_1 =" <input id =\"insert\" name = \"insert\" type=\"submit\" value =\"Th&#234;m\" style =\"margin-top:7px;width:70px\"/>";
+	$buttons_2=" <input id =\"delete\" name =\"delete\" type =\"submit\" value =\"X&#243;a\" style=\"margin-top:7px;width:70px\"/>";
+	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`")." OR ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`");
+	$db->query($sql);
+	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:120px;font-size:9pt\">";
+	while($tmp=mysql_fetch_array($db->query_result)){
+		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
+	}
+	$option_cosodoan="\n<tr><td>Chi &#272;o&#224;n: $option_cosodoan <input id=\"search\" name=\"search\" type=\"submit\" value=\"T&#236;m\" style=\"margin-top:7px;width:70px\"/></td></select></tr>";
+}
+else{
+	$option_cosodoan="";
+	$buttons_1="";
+	$buttons_2="";
+}
+
 return
 <<<EOF
 <script>
@@ -43,13 +61,11 @@ function getcontent(i){
 	<div class="mid">
 		<table class="user_manage_form_text">
         <tbody>
-		<tr height="24px">
-			<td width="521px">
-				Chi &#273;o&#224;n: <input type="text" /> <input id="tim" name="tim" type="submit" value="T&#236;m" class="user_manage_form_submit"/>
-			</td>
-			<td width="193px">
-			</td>
-		</tr>
+        <form method="POST">
+		<tr>
+        {$option_cosodoan}
+        </tr>
+        </form>
 		<tr height="24px">
 			<td width="521px">
 				Danh s&#225;ch &#273;o&#224;n vi&#234;n:
@@ -133,15 +149,16 @@ function getcontent(i){
 				</table>
 			</td>
 		</tr>
-		<tr>
+        <form method="POST">
+        <tr>
 			<td align="right" width="521px">
-				<input name="" type="submit" value="X&#243;a" class="user_manage_form_submit"/>
-				
+			{$buttons_2}
 			</td>
 			<td align="right" width="193px">
-            	<input name="" type="submit" value="Th&#234;m" class="user_manage_form_submit"/>
+            {$buttons_1}
 			</td>
 		</tr>
+        </form>
         </tbody>
         </table> 
     </div>
