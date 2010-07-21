@@ -4,7 +4,16 @@ function page_content(){
 	global $s,$t,$p,$page_header,$_GET,$_POST,$user,$db,$refresh;
 	if(check_auth("qlphongtrao",1)){
 		$page_header="Qu&#7843;n l&#253; phong tr&#224;o";
-		$sql="SELECT `phongtraodoan`.`id_phongtraodoan`,`phongtraodoan`.`ten`,`phongtraodoan`.`diengiai`,`phongtraodoan`.`start`,`phongtraodoan`.`end`,`phongtraodoan`.`id_cosodoan` FROM `phongtraodoan` WHERE ".get_cosodoan($user['id_doanvien'],"`phongtraodoan`.`id_cosodoan`")." OR ".get_cosodoan_capduoi($user['id_doanvien'],"`phongtraodoan`.`id_cosodoan`")." ORDER BY `phongtraodoan`.`id_phongtraodoan` DESC LIMIT 0,50";
+		$additional="";
+		if(isset($_GET['from']) && is_valid_date($_GET['from'])){
+			$_GET['from']=post_in($_GET['from']);
+			$additional=" AND `phongtraodoan`.`start`>='{$_GET['from']}'";
+		}else $_GET['from']="2010-01-01";
+		if(isset($_GET['to']) && is_valid_date($_GET['to'])){
+			$_GET['to']=post_in($_GET['to']);
+			$additional.=" AND `phongtraodoan`.`end`<='{$_GET['to']}'";
+		}else $_GET['to']="2010-01-01";
+		$sql="SELECT `phongtraodoan`.`id_phongtraodoan`,`phongtraodoan`.`ten`,`phongtraodoan`.`diengiai`,`phongtraodoan`.`start`,`phongtraodoan`.`end`,`phongtraodoan`.`id_cosodoan` FROM `phongtraodoan` WHERE (".get_cosodoan($user['id_doanvien'],"`phongtraodoan`.`id_cosodoan`")." OR ".get_cosodoan_capduoi($user['id_doanvien'],"`phongtraodoan`.`id_cosodoan`").") $additional ORDER BY `phongtraodoan`.`id_phongtraodoan` DESC LIMIT 0,50";
 		$db->query($sql);
 		if($db->num_rows>0){
 			$i=0;
@@ -87,9 +96,32 @@ function page_content(){
 							$db->query($sql);
 							$error=page_error("Tham gia phong tr&#224;o th&#224;nh c&#244;ng!");
 						}
-					}else $error=page_error("B&#7841;n kh&#244;ng th&#7875; tham gia phong tr&#224;o n&#224;y!"); 
+					}else $error=page_error("B&#7841;n kh&#244;ng th&#7875; tham gia phong tr&#224;o n&#224;y!");
 				}
 				else $error=page_error("B&#7841;n kh&#244;ng th&#7875; tham gia phong tr&#224;o n&#224;y!");
+			}else if(isset($_POST['delete'])){
+				if(check_auth("qlphongtrao",4)){
+					$not_del=0;
+					for($i=0;$i<sizeof($_POST['xoa_phong_trao']);$i++){
+						$todel=post_in($_POST['xoa_phong_trao'][$i]);
+						$sql="SELECT `phongtraodoan`.`id_phongtraodoan`,`phongtraodoan`.`ten` FROM `phongtraodoan` WHERE (".get_cosodoan_capduoi($user['id_doanvien'],"`phongtraodoan`.`id_cosodoan`").") AND `phongtraodoan`.`id_phongtraodoan`='$todel'";
+						$db->query($sql);
+						if($db->num_rows!=1){
+							$not_del=1;
+							break;
+						}
+					}
+					if($not_del==1) $error=page_error("Phong tr&#224;o b&#7841;n ch&#7885;n kh&#244;ng th&#7875; x&#243;a &#273;&#432;&#7907;c!");
+					else{
+						$todel=post_in(implode(",",$_POST['xoa_phong_trao']));
+						$sql="DELETE FROM `phongtraodoan` WHERE `id_phongtraodoan` IN ($todel)";
+						$db->query($sql);
+						$sql="DELETE FROM `thamgiaphongtrao` WHERE `id_phongtraodoan` IN ($todel)";
+						$db->query($sql);
+						$error=page_error("&#272;&#227; x&#243;a th&#224;nh c&#244;ng!");
+						$refresh="?type=activity";
+					}
+				}else $error=page_error("B&#7841;n kh&#244;ng c&#243; quy&#7873;n x&#243;a phong tr&#224;o!");
 			}
 		}
 		return user_main_form(activity_form($danhsachphongtrao,$error));
