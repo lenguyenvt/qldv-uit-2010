@@ -127,6 +127,9 @@ class db
           $this->query("$sql_statement");
      }
 
+     function fetch_array(){
+          return mysql_fetch_array($this->query_result);
+     }
 
 
     /* update_row()

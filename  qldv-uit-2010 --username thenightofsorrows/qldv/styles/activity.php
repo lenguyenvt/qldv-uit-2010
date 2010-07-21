@@ -1,8 +1,10 @@
 <?php
 function activity_form($danhsachphongtrao,$error=""){
-global $db,$user;
+global $db,$user,$_GET;
 $thongtin="";
 $var="";
+if(!isset($_GET['from'])) $_GET['from']="";
+if(!isset($_GET['to'])) $_GET['to']="";
 for ($i=0;$i<sizeof($danhsachphongtrao);$i++)
 {	
 	$thongtin.="<tr class=\"activity_form_table_content_highlight\" onClick=\"javascript:getcontent($i);\">
@@ -10,7 +12,7 @@ for ($i=0;$i<sizeof($danhsachphongtrao);$i++)
 					<td width=\"200px\">".$danhsachphongtrao[$i]['ten']."</td>
 					<td width=\"100px\">".$danhsachphongtrao[$i]['start']."</td>
 					<td width=\"100px\">".$danhsachphongtrao[$i]['end']."</td>
-					<td width=\"25px\"><input name=\"checked\" type=\"checkbox\" value=\"checked\" /></td>
+					<td width=\"25px\"><input name=\"xoa_phong_trao[]\" type=\"checkbox\" value=\"".$danhsachphongtrao[$i]['id_phongtraodoan']."\" /></td>
 				</tr>";
 	$var.="Array(\"".$danhsachphongtrao[$i]['ten']."\",\"".$danhsachphongtrao[$i]['id_phongtraodoan']."\",\"".$danhsachphongtrao[$i]['diengiai']."\",\"".$danhsachphongtrao[$i]['start']."\",\"".$danhsachphongtrao[$i]['end']."\",\"".$danhsachphongtrao[$i]['id_cosodoan']."\")".($i<count($danhsachphongtrao)-1?",":"");
 };
@@ -18,7 +20,11 @@ if(check_auth("qlphongtrao",2)){
 	$buttons_1="                    		<input id=\"insert\" name=\"insert\" type=\"submit\" value=\"Th&#234;m\" style=\"margin-top:7px;width:70px\"/>
 	                        <input id=\"update\" name=\"update\" type=\"submit\" value=\"C&#7853;p nh&#7853;t\" style=\"margin-top:7px;width:70px\"/>
         	                <input id=\"attend\" name=\"attend\" type=\"submit\" value=\"Tham gia\" style=\"margin-top:7px;width:70px\"/>";
-	$buttons_2="<input id=\"delete\" name=\"delete\" type=\"submit\" value=\"X&#243;a\" style=\"margin-top:7px;width:70px\"/>";
+	$buttons_2="<input type=\"hidden\" name=\"to_post\">\n<input id=\"delete\" onClick=\"if(confirm('B&#7841;n mu&#7889;n x&#243;a nh&#7919;ng phong tr&#224;o n&#224;y?')) return true; else return false;\" name=\"delete\" type=\"submit\" value=\"X&#243;a\" style=\"margin-top:3px;width:70px\"/>";
+}else{
+	$buttons_1="        	                <input id=\"attend\" name=\"attend\" type=\"submit\" value=\"Tham gia\" style=\"margin-top:7px;width:70px\"/>";
+	$buttons_2="";
+}
 	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`")." OR ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`");
 	$db->query($sql);
 	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:120px;font-size:8pt\">";
@@ -26,11 +32,6 @@ if(check_auth("qlphongtrao",2)){
 		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
 	}
 	$option_cosodoan="\n<tr><td>C&#417; s&#7903; &#273;o&#224;n</td><td align=\"right\">$option_cosodoan</select></td></tr>";
-}else{
-	$buttons_1="        	                <input id=\"attend\" name=\"attend\" type=\"submit\" value=\"Tham gia\" style=\"margin-top:7px;width:70px\"/>";
-	$buttons_2="";
-	$option_cosodoan="";
-}
 return
 <<<EOF
 <script>
@@ -59,6 +60,7 @@ function getcontent(i){
     <div class="activity_form_body">
     <div class="left"></div>
 	<div class="mid">
+		<form method="POST">
 		<table class="activity_form_text">
         <tbody>
 		<tr>
@@ -99,23 +101,30 @@ function getcontent(i){
 				</div>
 				</td>	
 			</tr>
+		<tr>
+		<td align="right" valign="top">
+                    {$buttons_2}
+                </td>
+		</tr>
+
+			</form>
             <tr>
             	<td align="left">
                 <table width="250px">
                 <tr>
+		<form method="GET">
                 	<td>T&#7915; ng&#224;y:</td>
-                    <td align="right"><input name="from" id="from" type="text" style="width:100px"/></td>
+			<input type="hidden" name="type" value="activity">
+                    <td align="right"><input name="from" id="from" type="text" style="width:100px" value="{$_GET['from']}" /></td>
                     <td><input type="submit" value="Hi&#7875;n th&#7883;" style="width:70px"</td>
                 </tr>
                 <tr>
                 	<td>&#272;&#7871;n ng&#224;y:</td>
-                    <td align="right"><input name="to" id="to" type="text" style="width:100px"/></td>
+                    <td align="right"><input name="to" id="to" type="text" style="width:100px" value="{$_GET['to']}" /></td>
                     <td></td>
                 </tr>
+		</form>
                 </table>
-                </td>
-				<td align="right" valign="top">
-                    {$buttons_2}
                 </td>
             </tr>
 			</table>
