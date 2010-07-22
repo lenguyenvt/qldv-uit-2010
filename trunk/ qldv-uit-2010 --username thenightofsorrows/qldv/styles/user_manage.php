@@ -1,9 +1,9 @@
 <?php
-
 function user_manage_form($danhsachdoanvien,$error=""){
 global $db,$user;
 $thongtin="";
 $var="";
+$id="";
 for ($i=0;$i<count($danhsachdoanvien);$i++)
 {	
 	$thongtin.="<tr class=\"user_manage_form_table_content_highlight\" onClick=\"javascript:getcontent($i);\">
@@ -40,8 +40,9 @@ return
 function getcontent(i){	
 	var danhsach=Array($var);
 	document.getElementById("hoten").value=danhsach[i][0];
-	document.getElementById("id_doanvien").value=danhsach[i][1];
+	document.getElementById("id_doanvien").value=danhsach[i][1];	
 	document.getElementById("chucvu").value=danhsach[i][2];	
+	document.getElementById("url").setAttribute('href','index.php?type=user_info&id_doanvien='+danhsach[i][1])	;
 }
 </script>
 <div class="user_manage_form">
@@ -136,7 +137,7 @@ function getcontent(i){
                 	<td>   
                     </td>
                     <td align="right">
-                    	<a href="index.php?type=user_info">Th&#244;ng tin chi ti&#7871;t</a>
+                    	<a id="url" href="index.php?type=user_info&id_doanvien=">Th&#244;ng tin chi ti&#7871;t</a>
                     </td>
                 </tr>
                 <tr>   
