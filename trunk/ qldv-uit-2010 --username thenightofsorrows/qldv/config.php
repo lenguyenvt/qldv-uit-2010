@@ -7,9 +7,9 @@ if(isset($_SERVER['HTTP_REFERER']) && strstr($_SERVER['HTTP_REFERER'],".swf"))
 	die("Dummy");
 }
 session_start();
-define("DB_HOST", "127.0.0.1");
+define("DB_HOST", "localhost");
 define("DB_USER", "root");
-define("DB_PASSWORD", "");
+define("DB_PASSWORD", "123456");
 define("DB_NAME", "qldv");
 define("DB_PREFIX", "");
 

@@ -2,13 +2,15 @@
 require_once("./styles/user_info.php");
 
 // to do list: (give to SQL statement) more conditions to some column chidoan, ngaydong
- 
+
 function page_content(){
 	global $s,$t,$p,$page_header,$_GET,$_POST, $user,$db;
 	$page_header="Th&#244;ng tin c&#225; nh&#226;n";
 	
 	$this_year = date("Y");
-	// echo "<br />" + $this_year;
+	
+	if (!isset($_POST["id_doanvien"])) $id = $user["id"];
+	else $id = $_POST["id_doanvien"];
 	
 	// just a very complicated sql statement, but it save us a lot of queries, we need only one query for select all information
 	// in this sql, our purpose is  retrieving youth union member's information
@@ -18,9 +20,9 @@ function page_content(){
 					`thongtindoanvien`.`dantoc`, 
 					`thongtindoanvien`.`tongiao`, 
 					`thongtindoanvien`.`cmnd`, 
-					`cosodoan`.`ten`, 
+					`cosodoan`.`ten` as `tencosodoan`, 
 					`thongtindoanvien`.`ngayvaodoan`, 
-					`danhmucchucvu`.`ten`, 
+					`danhmucchucvu`.`ten` as `chucvu`, 
 					`doanphi`.`ngaydong`, 
 					`xeploaidoanvien`.`loai`, 
 					`doanvien`.`email`, 
@@ -37,8 +39,8 @@ function page_content(){
 					 `xeploaidoanvien`, 
 					 `doanvien`
 	
-				WHERE `thongtindoanvien`.`id_doanvien`='{$user['id']}' 
-				AND   `qhchidoan`.`id_doanvien`='{$user['id']}' 
+				WHERE `thongtindoanvien`.`id_doanvien`='{$id}' 
+				AND   `qhchidoan`.`id_doanvien`='{$id}' 
 				AND   `cosodoan`.`id_cosodoan` =  `qhchidoan`.`id_cosodoan` 
 				AND   `thongtindoanvien`.`id_doanvien` = `chucvu`.`id_doanvien`
 				AND   `danhmucchucvu`.`id_chucvu` = `chucvu`.`id_chucvu`
@@ -49,18 +51,26 @@ function page_content(){
 							
 				LIMIT 0,1";
 
-	// for test only
-	//echo $sql;
-	
+
 	// excute the query
 	$query = $db->query($sql);
 	$canhan_data = mysql_fetch_array($query);
-		
-	// generate our youth union member's infomation form
-	$phone_history = explode("|", $canhan_data[15]);
-	$canhan= thongtincanhan($canhan_data[0], $canhan_data[1], $canhan_data[2], $canhan_data[3], $canhan_data[4],$canhan_data[5]);
-	$chidoan=thongtinchidoan($canhan_data[6], $canhan_data[7], $canhan_data[8], $canhan_data[9], $canhan_data[10]);
-	$lienlac=thongtinlienlac($canhan_data[11], $canhan_data[12], $canhan_data[13], $canhan_data[14], $phone_history[0]);
+	var_dump($canhan_data);	
+	
+	// generate our youth union member's infomation form	
+	$phone_history = explode("|", $canhan_data["dienthoaididong"]);
+	
+	$canhan= thongtincanhan($canhan_data["hoten"], $canhan_data["gioitinh"], 
+							$canhan_data["ngaysinh"], $canhan_data["dantoc"], 
+							$canhan_data["tongiao"],$canhan_data["cmnd"]);
+							
+	$chidoan=thongtinchidoan($canhan_data["tencosodoan"], $canhan_data["ngayvaodoan"], 
+							 $canhan_data["chucvu"], $canhan_data["ngaydong"], 
+							 $canhan_data["loai"]);
+							 
+	$lienlac=thongtinlienlac($canhan_data["email"], $canhan_data["noithuongtru"], 
+							$canhan_data["noitamtru"], $canhan_data["dienthoainharieng"], 
+							$phone_history[0]);
 	
 	// next, we select all activity that username had been taken part in...
 	$sql = "SELECT    `phongtraodoan`.`ten`,
@@ -70,7 +80,7 @@ function page_content(){
 			FROM	  `phongtraodoan`,
 					  `thamgiaphongtrao`
 					
-			WHERE	  `thamgiaphongtrao`.`id_doanvien` = '{$user['id']}'
+			WHERE	  `thamgiaphongtrao`.`id_doanvien` = '{$id}'
 			AND		  `thamgiaphongtrao`.`id_phongtraodoan` = `phongtraodoan`.`id_phongtraodoan`";
 	
 	// for testing only
