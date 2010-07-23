@@ -1,5 +1,6 @@
 <?php
 require_once("./styles/activity.php");
+
 function page_content(){
 	global $s,$t,$p,$page_header,$_GET,$_POST,$user,$db,$refresh;
 	if(check_auth("qlphongtrao",1)){
