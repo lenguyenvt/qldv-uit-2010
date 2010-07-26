@@ -17,6 +17,7 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 					</tr>";
 	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['id_doanvien']."\",\"".$danhsachdoanvien[$i]['ten']."\")".($i<count($danhsachdoanvien)-1?",":"");
 };
+
 if(check_auth("qldoanvien",2)){
 	$buttons_1 =" <input id =\"insert\" name = \"insert\" type=\"submit\" value =\"Th&#234;m\" style =\"margin-top:7px;width:70px\"/>";
 	$buttons_2=" <input id =\"delete\" name =\"delete\" type =\"submit\" value =\"X&#243;a\" style=\"margin-top:7px;width:70px\"/>";

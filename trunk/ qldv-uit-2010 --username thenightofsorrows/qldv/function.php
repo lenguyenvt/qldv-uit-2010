@@ -58,6 +58,7 @@ function check_cungcosodoan($id1,$id2){
 	if($result2['id_cosodoan']==$result1['id_cosodoan']) return 1;
 	else return 0;
 }
+
 function check_cosodoancaptren($id1,$id2){
 	global $db;
 	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$id1' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
@@ -81,6 +82,7 @@ function check_cosodoancaptren($id1,$id2){
 	if($result3['id_cosodoan']==$id_parent_tocheck) return 1;
 	else return 0;
 }
+
 function get_cosodoan($user,$SQL_COMPATIBLE="",$ARRAY_OUT="",$CHECK_WITH=""){
 	global $db;
 	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$user' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
@@ -106,6 +108,7 @@ function get_cosodoan($user,$SQL_COMPATIBLE="",$ARRAY_OUT="",$CHECK_WITH=""){
 	}
 	return $output;
 }
+
 function get_cosodoan_capduoi($user,$SQL_COMPATIBLE="",$ARRAY_OUT="",$CHECK_WITH=""){
 	global $db;
 	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$user' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
@@ -134,6 +137,7 @@ function get_cosodoan_capduoi($user,$SQL_COMPATIBLE="",$ARRAY_OUT="",$CHECK_WITH
 	}
 	return $output;
 }
+
 function check_user_logged_in(){
 	global $session,$ip,$db;
 	$query=$db->query("SELECT `doanvien`.`username`,`doanvien`.`auth`,`doanvien`.`id_doanvien`,`auth`.* FROM `doanvien`,`auth` WHERE `doanvien`.`sid`='{$session}' AND `doanvien`.`ip`='{$ip}' AND `doanvien`.`auth`=`auth`.`id`");
@@ -146,16 +150,19 @@ function check_user_logged_in(){
 		return $user;
 	}
 }
+
 function is_logged_in(){
 	global $user;
 	if($user['auth']==0) return 0; //kiem tra dang nhap nhanh
 	return 1;
 }
+
 function log_out(){
 	global $session,$db;
 	$db->query("UPDATE `doanvien` SET `sid`='' WHERE `sid`='{$session}'"); //xoa session id trong csdl, luu lai IP
 	return 1;
 }
+
 function check_log_in($username,$password){
 	global $db,$session,$ip;
 
@@ -170,6 +177,7 @@ function check_log_in($username,$password){
 		return 0; //tra ve 0 neu ko thanh cong
 	}
 }
+
 function encode($str){
 	return md5(md5($str)); //ma hoa md5 2 lan
 }
