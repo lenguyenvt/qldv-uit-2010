@@ -197,7 +197,7 @@ return
             </tr>
         </tbody>
         </table>
-        <div class="user_info_button"><input type="submit" value="S&#7917;a" class="user_info_form_submit" /></div>
+        <div class="user_info_button"><input type="submit" value="S&#7917;a" class="user_info_form_submit"></input></div>
 	</div>
 	<div class="right"></div>
 	</div>

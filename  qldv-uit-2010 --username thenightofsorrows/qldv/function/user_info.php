@@ -8,67 +8,114 @@ function page_content(){
 	$page_header="Th&#244;ng tin c&#225; nh&#226;n";
 	
 	$this_year = date("Y");
+	var_dump($_GET);
+	if (!isset($_GET['id_doanvien'])) $id = $user["id"];
+	else $id = post_in($_GET['id_doanvien']);
 	
-	if (!isset($_POST["id_doanvien"])) $id = $user["id"];
-	else $id = $_POST["id_doanvien"];
+	echo $id;
+	echo "<br/>";
 	
-	// just a very complicated sql statement, but it save us a lot of queries, we need only one query for select all information
-	// in this sql, our purpose is  retrieving youth union member's information
-	$sql = "SELECT  `thongtindoanvien`.`hoten`, 
-					`thongtindoanvien`.`gioitinh`, 
-					`thongtindoanvien`.`ngaysinh`, 
-					`thongtindoanvien`.`dantoc`, 
-					`thongtindoanvien`.`tongiao`, 
-					`thongtindoanvien`.`cmnd`, 
-					`cosodoan`.`ten` as `tencosodoan`, 
-					`thongtindoanvien`.`ngayvaodoan`, 
-					`danhmucchucvu`.`ten` as `chucvu`, 
-					`doanphi`.`ngaydong`, 
-					`xeploaidoanvien`.`loai`, 
-					`doanvien`.`email`, 
-					`thongtindoanvien`.`noithuongtru`, 
-					`thongtindoanvien`.`noitamtru`, 
-					`thongtindoanvien`.`dienthoainharieng`, 
-					`thongtindoanvien`.`dienthoaididong`
-						
-				FROM `thongtindoanvien`, 
-					 `cosodoan`, `qhchidoan`, 
-					 `danhmucchucvu`, 
-					 `chucvu`, 
-					 `doanphi`, 
-					 `xeploaidoanvien`, 
-					 `doanvien`
+	// get member infomation 
+	$sql1=
+	"
+		SELECT  `thongtindoanvien`.`hoten`,
+				`thongtindoanvien`.`gioitinh`,
+				`thongtindoanvien`.`ngaysinh`,
+				`thongtindoanvien`.`dantoc`,
+				`thongtindoanvien`.`tongiao`,
+				`thongtindoanvien`.`cmnd`,
+				`thongtindoanvien`.`noithuongtru`,
+				`thongtindoanvien`.`noitamtru`,
+				`thongtindoanvien`.`dienthoainharieng`,
+				`thongtindoanvien`.`dienthoaididong`,
+				`thongtindoanvien`.`ngayvaodoan`
+		
+		FROM	`thongtindoanvien`
+		
+		WHERE	`thongtindoanvien`.`id_doanvien` = '{$id}'
+	";
 	
-				WHERE `thongtindoanvien`.`id_doanvien`='{$id}' 
-				AND   `qhchidoan`.`id_doanvien`='{$id}' 
-				AND   `cosodoan`.`id_cosodoan` =  `qhchidoan`.`id_cosodoan` 
-				AND   `thongtindoanvien`.`id_doanvien` = `chucvu`.`id_doanvien`
-				AND   `danhmucchucvu`.`id_chucvu` = `chucvu`.`id_chucvu`
-				AND   `thongtindoanvien`.`id_doanvien` = `doanphi`.`id_doanvien`  
-				AND   `thongtindoanvien`.`id_doanvien` = `xeploaidoanvien`.`id_doanvien` 
-				AND   `thongtindoanvien`.`id_doanvien` = `doanvien`.`id_doanvien`
-				AND   `xeploaidoanvien`.`year_end`=$this_year
-							
-				LIMIT 0,1";
+	// get youth union name 
+	$sql2 =
+	"
+		SELECT   `cosodoan`.`ten` as `tencosodoan`
+		
+		FROM	 `qhchidoan`,
+				 `cosodoan`
+		
+		WHERE	 `qhchidoan`.`id_doanvien` = '{$id}'
+		AND		 `qhchidoan`.`id_cosodoan` = `cosodoan`.`id_cosodoan`
+	";
+	
+	$sql3 = 
+	"
+		SELECT 	 `danhmucchucvu`.`ten` as `tenchucvu`
+		
+		FROM	 `danhmucchucvu`, 
+				 `chucvu`
+				 
+		WHERE	 `danhmucchucvu`.`id_chucvu` = `chucvu`.`id_chucvu`
+		AND		 `chucvu`.`id_doanvien` = '{$id}'
+	";
+	
+	$sql4 = 
+	"
+		SELECT	 `doanvien`.`doan_phi`,
+				 `doanvien`.`email`
+		
+		FROM 	 `doanvien`
+		
+		WHERE 	 `doanvien`.`id_doanvien` = '{$id}' 
+	";
+	
+	$sql5 = 
+	"
+		SELECT   `xeploaidoanvien`.`loai`
+				
+		FROM	 `xeploaidoanvien`
+		
+		WHERE	 `xeploaidoanvien`.`id_doanvien` = '{$id}'
+		AND		 `xeploaidoanvien`.`year_end` <= $this_year		
+	";
 
-
+	echo $sql1;
+	echo "<br/>";
+	echo $sql2;
+	echo "<br/>";
+	echo $sql3;
+	echo "<br/>";
+	echo $sql4;
+	echo "<br/>";
+	echo $sql5;
+	
 	// excute the query
-	$query = $db->query($sql);
+	$query = $db->query($sql1);
 	$canhan_data = mysql_fetch_array($query);
-	var_dump($canhan_data);	
+	
+	$query = $db->query($sql2);
+	$cosodoan = mysql_fetch_array($query);
+	
+	$query = $db->query($sql3);
+	$chucvu = mysql_fetch_array($query);
+	
+	$query = $db->query($sql4);
+	$doanvien = mysql_fetch_array($query);
+	
+	$query = $db->query($sql5);
+	$xeploai = mysql_fetch_array($query);
 	
 	// generate our youth union member's infomation form	
 	$phone_history = explode("|", $canhan_data["dienthoaididong"]);
 	
-	$canhan= thongtincanhan($canhan_data["hoten"], $canhan_data["gioitinh"], 
+	$canhan = thongtincanhan($canhan_data["hoten"], $canhan_data["gioitinh"], 
 							$canhan_data["ngaysinh"], $canhan_data["dantoc"], 
 							$canhan_data["tongiao"],$canhan_data["cmnd"]);
 							
-	$chidoan=thongtinchidoan($canhan_data["tencosodoan"], $canhan_data["ngayvaodoan"], 
-							 $canhan_data["chucvu"], $canhan_data["ngaydong"], 
-							 $canhan_data["loai"]);
+	$chidoan=thongtinchidoan($cosodoan["tencosodoan"], $canhan_data["ngayvaodoan"], 
+							 $chucvu["tenchucvu"], $doanvien["doan_phi"], 
+							 $xeploai["loai"]);
 							 
-	$lienlac=thongtinlienlac($canhan_data["email"], $canhan_data["noithuongtru"], 
+	$lienlac=thongtinlienlac($doanvien["email"], $canhan_data["noithuongtru"], 
 							$canhan_data["noitamtru"], $canhan_data["dienthoainharieng"], 
 							$phone_history[0]);
 	
