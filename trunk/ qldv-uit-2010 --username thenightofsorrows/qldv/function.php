@@ -32,7 +32,6 @@ function is_valid_date($value){
     return 0; 
 }
 function check_auth($action,$required_auth){
-	//$action= view,add,edit,remove
 	global $user;
 	$action=strtolower($action);
 	if(is_logged_in()){

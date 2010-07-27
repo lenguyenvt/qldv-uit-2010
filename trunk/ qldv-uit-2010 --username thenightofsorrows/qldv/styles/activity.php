@@ -163,7 +163,7 @@ function getcontent(i){
                     N&#7897;i dung:
                     </td>
                     <td align="right">
-                    <a href="?type=activity_info" id="url">Th&#7889;ng k&#234;</a>
+                    <a href="?type=activity_info" id="url" target="_blank">Th&#7889;ng k&#234;</a>
                     </td>
                 </tr>
                 <tr>

@@ -87,9 +87,12 @@ if($t!=$_t){
 }
 require_once("function/$t.php");
 $content=page_content();
-echo page_header($page_header,$page_description,$refresh);
-
-echo $content;
-
-echo page_footer();
+if($t!= 'activity_info'){
+	echo page_header($page_header,$page_description,$refresh);
+	echo $content;
+	echo page_footer();
+}
+else{
+	echo $content;
+}
 ?>
