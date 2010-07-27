@@ -1,4 +1,20 @@
 <?php
+function submit_button()
+{
+	global $user, $_GET;
+	
+	if (! isset ( $_GET ['id_doanvien'] ))
+		$id = $user ["id"];
+	else
+		$id = post_in ( $_GET ['id_doanvien'] );
+		
+	if (($_GET['id_doanvien'] == $id) && (check_auth("qlthongtin", 1)))
+	{
+		$button  = "";
+	}
+	//if (($_GET['id_doanvien'] == $id) && (check_auth("qlthongtin", 2) && ()))
+	
+}
 function thongtincanhan($hoten, $gioitinh, $ngaysinh, $dantoc, $tongiao, $cmnd) {
 	if ($gioitinh == 0) {
 		$nam = "checked=\"checked\"";
@@ -157,6 +173,7 @@ EOF;
 }
 
 function user_info_form($thongtincanhan, $thongtinlienlac, $thongtinchidoan, $thongtinphongtrao) {
+//submit_button();
 	return <<<EOF
 <div class="user_info_form">
     <!---Form header--->
