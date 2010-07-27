@@ -48,10 +48,10 @@ function check_auth($action,$required_auth){
 }
 function check_cungcosodoan($id1,$id2){
 	global $db;
-	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$id1' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
+	$sql="SELECT `qhchidoan`.`id_cosodoan` FROM `qhchidoan`,`doanvien` WHERE `doanvien`.`id_doanvien`='$id1' AND `qhchidoan`.`qh_chidoan`=`doanvien`.`qh_chidoan` ORDER BY `qh_chidoan` DESC LIMIT 0,1";
 	$result1=mysql_fetch_array($db->query($sql));
 	
-	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$id2' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
+	$sql="SELECT `qhchidoan`.`id_cosodoan` FROM `qhchidoan`,`doanvien` WHERE `doanvien`.`id_doanvien`='$id2' AND `qhchidoan`.`qh_chidoan`=`doanvien`.`qh_chidoan` ORDER BY `qh_chidoan` DESC LIMIT 0,1";
 	$db->query($sql);
 	$result2=mysql_fetch_array($db->query($sql));
 
@@ -61,10 +61,10 @@ function check_cungcosodoan($id1,$id2){
 
 function check_cosodoancaptren($id1,$id2){
 	global $db;
-	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$id1' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
+	$sql="SELECT `qhchidoan`.`id_cosodoan` FROM `qhchidoan`,`doanvien` WHERE `doanvien`.`id_doanvien`='$id1' AND `qhchidoan`.`qh_chidoan`=`doanvien`.`qh_chidoan` ORDER BY `qh_chidoan` DESC LIMIT 0,1";
 	$result1=mysql_fetch_array($db->query($sql));
 	
-	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$id2' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
+	$sql="SELECT `qhchidoan`.`id_cosodoan` FROM `qhchidoan`,`doanvien` WHERE `doanvien`.`id_doanvien`='$id2' AND `qhchidoan`.`qh_chidoan`=`doanvien`.`qh_chidoan` ORDER BY `qh_chidoan` DESC LIMIT 0,1";
 	$db->query($sql);
 	$result2=mysql_fetch_array($db->query($sql));
 
@@ -85,9 +85,11 @@ function check_cosodoancaptren($id1,$id2){
 
 function get_cosodoan($user,$SQL_COMPATIBLE="",$ARRAY_OUT="",$CHECK_WITH=""){
 	global $db;
+	/*
 	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$user' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
 	$result1=mysql_fetch_array($db->query($sql));
-	$id_parent=$result1['id_cosodoan'];
+	*/
+	$id_parent=$user['id_cosodoan'];
 
 	if($SQL_COMPATIBLE=="") $output=$id_parent; else $output="{$SQL_COMPATIBLE}='{$id_parent}'";
 	$sql="SELECT `id_cosodoan`,`cap`,`parent` FROM `cosodoan` WHERE `id_cosodoan`='{$id_parent}'";
@@ -111,9 +113,11 @@ function get_cosodoan($user,$SQL_COMPATIBLE="",$ARRAY_OUT="",$CHECK_WITH=""){
 
 function get_cosodoan_capduoi($user,$SQL_COMPATIBLE="",$ARRAY_OUT="",$CHECK_WITH=""){
 	global $db;
+	/*
 	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$user' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
 	$result1=mysql_fetch_array($db->query($sql));
-	$id_parent=$result1['id_cosodoan'];
+	*/
+	$id_parent=$user['id_cosodoan'];
 
 	if($SQL_COMPATIBLE=="") $output=$id_parent; else $output="{$SQL_COMPATIBLE}='{$id_parent}'";
 	$i=0;
@@ -140,7 +144,7 @@ function get_cosodoan_capduoi($user,$SQL_COMPATIBLE="",$ARRAY_OUT="",$CHECK_WITH
 
 function check_user_logged_in(){
 	global $session,$ip,$db;
-	$query=$db->query("SELECT `doanvien`.`username`,`doanvien`.`auth`,`doanvien`.`id_doanvien`,`auth`.* FROM `doanvien`,`auth` WHERE `doanvien`.`sid`='{$session}' AND `doanvien`.`ip`='{$ip}' AND `doanvien`.`auth`=`auth`.`id`");
+	$query=$db->query("SELECT `doanvien`.`username`,`doanvien`.`auth`,`doanvien`.`id_doanvien`,`qhchidoan`.`id_cosodoan`,`auth`.* FROM `doanvien`,`auth`,`qhchidoan` WHERE `doanvien`.`sid`='{$session}' AND `doanvien`.`ip`='{$ip}' AND `doanvien`.`auth`=`auth`.`id` AND `qhchidoan`.`qh_chidoan`=`doanvien`.`qh_chidoan`");
 	if(mysql_num_rows($query)==1){
 		return mysql_fetch_array($query); //tra ve gia tri field cua query
 	}else{

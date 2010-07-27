@@ -101,7 +101,7 @@ function page_content(){
 				}
 				else $error=page_error("B&#7841;n kh&#244;ng th&#7875; tham gia phong tr&#224;o n&#224;y!");
 			}else if(isset($_POST['delete'])){
-				if(check_auth("qlphongtrao",4)){
+				if(check_auth("qlphongtrao",4) && isset($_POST['xoa_phong_trao']) && sizeof($_POST['xoa_phong_trao'])){
 					$not_del=0;
 					for($i=0;$i<sizeof($_POST['xoa_phong_trao']);$i++){
 						$todel=post_in($_POST['xoa_phong_trao'][$i]);

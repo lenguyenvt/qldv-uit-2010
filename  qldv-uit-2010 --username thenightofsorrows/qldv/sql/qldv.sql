@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.0.1
+-- version 3.1.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 18, 2010 at 09:18 AM
--- Server version: 5.1.35
--- PHP Version: 5.3.0
+-- Generation Time: Jul 27, 2010 at 01:38 AM
+-- Server version: 5.1.30
+-- PHP Version: 5.2.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `qldv`
+-- Database: `qldv2`
 --
 
 -- --------------------------------------------------------
@@ -152,6 +152,7 @@ CREATE TABLE IF NOT EXISTS `doanvien` (
   `sid` varchar(255) NOT NULL,
   `ip` varchar(16) NOT NULL,
   `email` text NOT NULL,
+  `qh_chidoan` int(11) NOT NULL,
   PRIMARY KEY (`id_doanvien`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
@@ -159,10 +160,10 @@ CREATE TABLE IF NOT EXISTS `doanvien` (
 -- Dumping data for table `doanvien`
 --
 
-INSERT INTO `doanvien` (`id_doanvien`, `username`, `password`, `doan_phi`, `auth`, `sid`, `ip`, `email`) VALUES
-(1, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', '2010-06-03', 1, 'jqpj4u61u6jbgc9p2kbjnfcea6', '127.0.0.1', 'admin@uit.edu.vn'),
-(2, 'test1', 'c3284d0f94606de1fd2af172aba15bf3', '0000-00-00', 2, '', '127.0.0.1', ''),
-(3, 'test2', 'c3284d0f94606de1fd2af172aba15bf3', '2010-06-16', 1, '', '127.0.0.1', '');
+INSERT INTO `doanvien` (`id_doanvien`, `username`, `password`, `doan_phi`, `auth`, `sid`, `ip`, `email`, `qh_chidoan`) VALUES
+(1, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', '2010-06-03', 1, '05f428b3dc8e155453e8a77ff2c9ffad', '127.0.0.1', 'admin@uit.edu.vn', 1),
+(2, 'test1', 'c3284d0f94606de1fd2af172aba15bf3', '0000-00-00', 2, '', '127.0.0.1', '', 4),
+(3, 'test2', 'c3284d0f94606de1fd2af172aba15bf3', '2010-06-16', 2, 'cb74372e0ee10c9ad74c3df67962b0b6', '127.0.0.1', '', 3);
 
 -- --------------------------------------------------------
 
@@ -230,8 +231,8 @@ CREATE TABLE IF NOT EXISTS `qhchidoan` (
 INSERT INTO `qhchidoan` (`qh_chidoan`, `id_doanvien`, `id_cosodoan`, `start`, `end`) VALUES
 (1, 1, 1, '2010-01-01', '2010-12-31'),
 (2, 2, 2, '2009-06-16', '2010-06-30'),
-(3, 3, 2, '2010-06-01', '2010-06-10'),
-(4, 3, 3, '2010-06-16', '2010-06-30');
+(4, 2, 3, '2010-07-26', '2011-07-26'),
+(3, 3, 3, '2010-07-26', '2013-07-26');
 
 -- --------------------------------------------------------
 
@@ -360,7 +361,8 @@ CREATE TABLE IF NOT EXISTS `thongtindoanvien` (
 --
 
 INSERT INTO `thongtindoanvien` (`id_doanvien`, `congvieclaunhat`, `congviec`, `khenthuong`, `kyluat`, `tinhtrangsuckhoe`, `chieucao`, `cannang`, `nhommau`, `cmnd`, `thuongbinhloai`, `hoten`, `tenkhac`, `gioitinh`, `capuyhientai`, `capuykiem`, `chucvu`, `ngaysinh`, `noisinh`, `quequan`, `noitamtru`, `dienthoainharieng`, `dantoc`, `tongiao`, `xuatthangiadinh`, `ngaytuyendung`, `coquan`, `ngayvaocoquancongtac`, `ngayvaodangdubi`, `ngayvaodangchinhthuc`, `ngaynhapngu`, `ngayxuatngu`, `chucvucaonhat`, `trinhdovanhoa`, `trinhdolyluanchinhtri`, `trinhdongoaingu`, `hochamcaonhat`, `congtacchinh`, `ngachcongchuc`, `bacluong`, `hesoluong`, `danhhieu`, `sotruong`, `giadinhlietsi`, `dacdiembanthan`, `quanhenuocngoai`, `noithuongtru`, `dienthoaididong`, `ngayvaodoan`) VALUES
-('1', NULL, NULL, NULL, NULL, 'Tot', 202, 105, 'AB', '201130402', NULL, 'Nguyen Van A', NULL, 0, NULL, NULL, NULL, '1990-06-01', 'Binh Duong', 'Nghe An', 'KP6, Linh Trung, Thu Duc', '0812345', 'Kinh', 'Cong giao', 'Ban nong', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12/12', 'Trung cap chinh tri', 'Bang C tieng Anh', 'Khong co', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'So 80, Dai lo Binh Duong, Binh Duong', '0973798990|0985848481|0922334455', '2003-03-26');
+('1', NULL, NULL, NULL, NULL, 'Tot', 202, 105, 'AB', '201130402', NULL, 'Nguyen Van A', NULL, 0, NULL, NULL, NULL, '1990-06-01', 'Binh Duong', 'Nghe An', 'KP6, Linh Trung, Thu Duc', '0812345', 'Kinh', 'Cong giao', 'Ban nong', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12/12', 'Trung cap chinh tri', 'Bang C tieng Anh', 'Khong co', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'So 80, Dai lo Binh Duong, Binh Duong', '0973798990|0985848481|0922334455', '2003-03-26'),
+('3', NULL, 'Bi Thu Doan Truong', '1', '1', 'Tot', 170, 70, 'B', 'xxxxxxxxx', NULL, 'Tran Van B', NULL, 0, NULL, NULL, NULL, '1985-07-26', 'khong ro', 'khong hay', 'Tam thoi chua biet', '0832100216', 'Kinh', 'khong', 'Ban nong', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12/12', 'trung cap chinh tri', 'bang C', 'Thac si', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Tam thoi chua biet', '0903002001', '2010-03-26');
 
 -- --------------------------------------------------------
 
