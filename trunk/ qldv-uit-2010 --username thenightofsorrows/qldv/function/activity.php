@@ -18,7 +18,7 @@ function page_content(){
 		$db->query($sql);
 		if($db->num_rows>0){
 			$i=0;
-			while($tmp=mysql_fetch_array($db->query_result)){
+			while($tmp = mysql_fetch_array($db->query_result)){
 				$danhsachphongtrao[$i++]=$tmp;
 			}
 		}
