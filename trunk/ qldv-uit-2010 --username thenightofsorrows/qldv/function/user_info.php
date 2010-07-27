@@ -227,7 +227,10 @@ function page_content() {
 	// generating activity form
 	$phongtrao = thongtinphongtrao ( $danhsachphongtrao );
 	
+	// generating submit button
+	$button = submit_button();
+
 	// then return html document
-	return user_main_form ( user_info_form ( $canhan, $lienlac, $chidoan, $phongtrao ) );
+	return user_main_form ( user_info_form ( $canhan, $lienlac, $chidoan, $phongtrao, $button ) );
 }
 ?>

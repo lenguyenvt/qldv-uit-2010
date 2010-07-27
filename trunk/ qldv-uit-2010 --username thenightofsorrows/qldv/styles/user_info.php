@@ -1,20 +1,31 @@
 <?php
-function submit_button()
-{
+function submit_button() {
 	global $user, $_GET;
 	
 	if (! isset ( $_GET ['id_doanvien'] ))
 		$id = $user ["id"];
 	else
 		$id = post_in ( $_GET ['id_doanvien'] );
-		
-	if (($_GET['id_doanvien'] == $id) && (check_auth("qlthongtin", 1)))
-	{
-		$button  = "";
-	}
-	//if (($_GET['id_doanvien'] == $id) && (check_auth("qlthongtin", 2) && ()))
 	
+	if ((($_GET ['id_doanvien'] == $id) || (! isset ( $_GET ['id_doanvien'] )))
+		&& (check_auth("qlthongtin", 1)))	
+	{
+		$button = "<div class=\"user_info_button\"><input id=\"sua_doanvien\" name=\"sua_doanvien\" type=\"submit\" value=\"S&#7917;a\" class=\"user_info_form_submit\"></input></div>";
+	}
+	
+	else 
+	if (($_GET ['id_doanvien'] == $id) && (check_auth ( "qlthongtin", 2 ) && (check_cosodoancaptren ( get_cosodoan ( $user ['id'] ), get_cosodoan ( $id ) )))) {
+		$button = "<div class=\"user_info_button\"><input id=\"sua_doanvien\" name=\"sua_doanvien\" type=\"submit\" value=\"S&#7917;a\" class=\"user_info_form_submit\"></input></div>";
+	}
+	 
+	else 
+	{
+		$button = "";
+	}
+	
+	return $button;
 }
+
 function thongtincanhan($hoten, $gioitinh, $ngaysinh, $dantoc, $tongiao, $cmnd) {
 	if ($gioitinh == 0) {
 		$nam = "checked=\"checked\"";
@@ -172,8 +183,8 @@ function thongtinphongtrao($danhsachphongtrao) {
 EOF;
 }
 
-function user_info_form($thongtincanhan, $thongtinlienlac, $thongtinchidoan, $thongtinphongtrao) {
-//submit_button();
+function user_info_form($thongtincanhan, $thongtinlienlac, $thongtinchidoan, $thongtinphongtrao, $button) {
+	//submit_button();
 	return <<<EOF
 <div class="user_info_form">
     <!---Form header--->
@@ -211,8 +222,9 @@ function user_info_form($thongtincanhan, $thongtinlienlac, $thongtinchidoan, $th
             </tr>
         </tbody>
         </table>
-        <div class="user_info_button"><input id="sua_doanvien" name="sua_doanvien" type="submit" value="S&#7917;a" class="user_info_form_submit"></input></div>        
+                
 	</div>
+{$button}
 	</form>
 	<div class="right"></div>
 	</div>
