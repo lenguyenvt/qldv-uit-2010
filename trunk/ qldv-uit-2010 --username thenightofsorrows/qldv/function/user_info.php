@@ -17,6 +17,97 @@ function page_content() {
 	
 	echo $id;
 	echo "<br/>";
+	if ($_POST ['sua_doanvien']) {
+		echo "1";
+		echo "<br/>";
+		var_dump ( $_POST );
+		echo "<br/>";
+		
+		if (isset ( $_POST ['hoten'] ))
+			$hoten = post_in ( $_POST ['hoten'] );
+		else
+			$error = "B&#7841;n ch&#432;a nh&#7853;p h&#7885; t&#234;n, vui l&#242;ng th&#7917; l&#7841;i l&#7847;n sau";
+		
+		if (isset ( $_POST ['gioitinh'] ))
+			$gioitinh = post_in ( $_POST ['gioitinh'] );
+		else
+			$error = "B&#7841;n ch&#432;a nh&#7853;p gi&#7899;i t&#237;nh, vui l&#242;ng th&#7917; l&#7841;i l&#7847;n sau";
+		
+		if (isset ( $_POST ['ngaysinh'] ))
+			$ngaysinh = post_in ( $_POST ['ngaysinh'] );
+		else
+			$error = "B&#7841;n ch&#432;a nh&#7853;p ng&#224;y sinh, vui l&#242;ng th&#7917; l&#7841;i l&#7847;n sau";
+		
+		if (isset ( $_POST ['tongiao'] ))
+			$tongiao = post_in ( $_POST ['tongiao'] );
+		else
+			$error = "B&#7841;n ch&#432;a nh&#7853;p t&#244;n gi&#225;o, vui l&#242;ng th&#7917; l&#7841;i l&#7847;n sau";
+		
+		if (isset ( $_POST ['cmnd'] ))
+			$cmnd = post_in ( $_POST ['cmnd'] );
+		else
+			$error = "";
+		
+		if (isset ( $_POST ['email'] ))
+			$email = post_in ( $_POST ['email'] );
+		else
+			$error = "";
+		
+		if (isset ( $_POST ['dcgiadinh'] ))
+			$dcgiadinh = post_in ( $_POST ['dcgiadinh'] );
+		else
+			$error = "";
+		
+		if (isset ( $_POST ['dchientru'] ))
+			$dchientru = post_in ( $_POST ['dchientru'] );
+		else
+			$error = "";
+		
+		if (isset ( $_POST ['dienthoainr'] ))
+			$dienthoainr = post_in ( $_POST ['dienthoainr'] );
+		else
+			$error = "";
+		
+		if (isset ( $_POST ['dienthoaidd'] ))
+			$dienthoaidd = post_in ( $_POST ['dienthoaidd'] );
+		else
+			$error = "";
+		
+		if (isset ( $_POST ['chidoan'] ))
+			$chidoan = post_in ( $_POST ['chidoan'] );
+		else
+			$error = "";
+		
+		if (isset ( $_POST ['ngayvaodoan'] ))
+			$ngayvaodoan = post_in ( $_POST ['ngayvaodoan'] );
+		else
+			$error = "";
+		
+		if (isset ( $_POST ['dantoc'] ))
+			$dantoc = post_in ( $_POST ['dantoc'] );
+		else
+			$error = "";
+		
+		$sql_update = "UPDATE `qldv`.`thongtindoanvien` 
+
+		SET `thongtindoanvien`.`hoten` = '$hoten',
+			`thongtindoanvien`.`gioitinh` = '$gioitinh',
+			`thongtindoanvien`.`ngaysinh` = '$ngaysinh',
+			`thongtindoanvien`.`dantoc` = '$dantoc',
+			`thongtindoanvien`.`tongiao` = '$tongiao',
+			`thongtindoanvien`.`cmnd` = '$cmnd',
+			`thongtindoanvien`.`noithuongtru` = '$dcgiadinh',
+			`thongtindoanvien`.`noitamtru` = '$dchientru',
+			`thongtindoanvien`.`dienthoainharieng` = '$dienthoainr',
+			`thongtindoanvien`.`dienthoaididong` = '$dienthoaidd',
+			`thongtindoanvien`.`ngayvaodoan` = '$ngayvaodoan'
+			
+		WHERE `thongtindoanvien`.`id_doanvien` =  '$id';
+		";
+		
+		echo $sql_update;
+		$query = $db->query ( $sql_update );
+	}
 	
 	// get member infomation 
 	$sql1 = "

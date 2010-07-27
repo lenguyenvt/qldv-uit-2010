@@ -1,17 +1,17 @@
 <?php
-function thongtincanhan($hoten,$gioitinh,$ngaysinh,$dantoc,$tongiao,$cmnd){
-if($gioitinh==0){
-	$nam="checked=\"checked\"";
-	$nu="";
-}else{
-	$nam="";
-	$nu="checked=\"checked\"";
-}
-return
-<<<EOF
+function thongtincanhan($hoten, $gioitinh, $ngaysinh, $dantoc, $tongiao, $cmnd) {
+	if ($gioitinh == 0) {
+		$nam = "checked=\"checked\"";
+		$nu = "";
+	} else {
+		$nam = "";
+		$nu = "checked=\"checked\"";
+	}
+	return <<<EOF
 	<fieldset class="user_info_group_personal">
                     <legend>C&#225; nh&#226;n</legend>
-                        <table class="user_info_group_personal_table">                        	
+                    
+                        <table class="user_info_group_personal_table">                     	
                         <tr>
                             <td class="user_info_group_personal_table_left">H&#7885; t&#234;n:</td>
                             <td class="user_info_group_personal_table_right"><input class="user_info_group_personal_textbox" id="hoten" name="hoten" value="{$hoten}" type="text" /></td>
@@ -40,13 +40,12 @@ return
                             <td class="user_info_group_personal_table_left">CMND:</td>
                             <td class="user_info_group_personal_table_right"><input class="user_info_group_personal_textbox" id="cmnd" name="cmnd" value="{$cmnd}" type="text" /></td>
                         </tr>
-                        </table>
+                        </table>                        
                     </fieldset>
 EOF;
 }
-function thongtinlienlac($email,$dcgiadinh,$dchientru,$dienthoainr,$dienthoaidd){
-return
-<<<EOF
+function thongtinlienlac($email, $dcgiadinh, $dchientru, $dienthoainr, $dienthoaidd) {
+	return <<<EOF
 	<fieldset class="user_info_group_contact">
                     <legend>Li&#234;n l&#7841;c</legend>
                     <table class="user_info_group_contact_table">
@@ -79,9 +78,8 @@ return
 EOF;
 }
 
-function thongtinchidoan($chidoan,$ngayvaodoan,$chucvu,$hannopphi,$loai){
-return
-<<<EOF
+function thongtinchidoan($chidoan, $ngayvaodoan, $chucvu, $hannopphi, $loai) {
+	return <<<EOF
 <fieldset class="user_info_group_member">
                     <legend>Th&#244;ng tin &#272;o&#224;n vi&#234;n</legend>
                         <table class="user_info_group_member_table">                        	
@@ -114,18 +112,17 @@ return
 EOF;
 }
 
-function thongtinphongtrao($danhsachphongtrao){
-$thongtin="";
-for ($i=0;$i<count($danhsachphongtrao);$i++)
-{	
-	$thongtin.="<tr class=\"user_info_group_movement_table_content_highlight\">
-					<td width=\"160px\">".$danhsachphongtrao[$i][0]."</td>
-					<td width=\"70px\">".$danhsachphongtrao[$i][1]."</td>
-					<td width=\"65px\">".$danhsachphongtrao[$i][2]."</td>
+function thongtinphongtrao($danhsachphongtrao) {
+	$thongtin = "";
+	for($i = 0; $i < count ( $danhsachphongtrao ); $i ++) {
+		$thongtin .= "<tr class=\"user_info_group_movement_table_content_highlight\">
+					<td width=\"160px\">" . $danhsachphongtrao [$i] [0] . "</td>
+					<td width=\"70px\">" . $danhsachphongtrao [$i] [1] . "</td>
+					<td width=\"65px\">" . $danhsachphongtrao [$i] [2] . "</td>
 				</tr>";
-};
-return
-<<<EOF
+	}
+	;
+	return <<<EOF
 <fieldset class="user_info_group_movement">
                     <legend>Th&#244;ng tin phong tr&#224;o
                     </legend>					
@@ -159,9 +156,8 @@ return
 EOF;
 }
 
-function user_info_form($thongtincanhan,$thongtinlienlac,$thongtinchidoan,$thongtinphongtrao){
-return
-<<<EOF
+function user_info_form($thongtincanhan, $thongtinlienlac, $thongtinchidoan, $thongtinphongtrao) {
+	return <<<EOF
 <div class="user_info_form">
     <!---Form header--->
     <div class="user_info_form_header">
@@ -176,6 +172,7 @@ return
     <!---Form body--->
     <div class="user_info_form_body">
 	<div class="left"></div>
+	<form method="POST">
 	<div class="mid">
       <table class="user_info_form_text">
         <tbody>
@@ -197,8 +194,9 @@ return
             </tr>
         </tbody>
         </table>
-        <div class="user_info_button"><input type="submit" value="S&#7917;a" class="user_info_form_submit"></input></div>
+        <div class="user_info_button"><input id="sua_doanvien" name="sua_doanvien" type="submit" value="S&#7917;a" class="user_info_form_submit"></input></div>        
 	</div>
+	</form>
 	<div class="right"></div>
 	</div>
 	<div class="user_info_form_footer">
