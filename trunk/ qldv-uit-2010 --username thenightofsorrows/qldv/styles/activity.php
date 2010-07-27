@@ -43,6 +43,7 @@ function getcontent(i){
 	document.getElementById("start").value=danhsach[i][3];
 	document.getElementById("end").value=danhsach[i][4];
 	document.getElementById("id_cosodoan").value=danhsach[i][5];
+	document.getElementById("url").setAttribute('href','index.php?type=activity_info&id_phongtraodoan='+danhsach[i][1])
 }
 </script>
 <div class="activity_form">
@@ -162,7 +163,7 @@ function getcontent(i){
                     N&#7897;i dung:
                     </td>
                     <td align="right">
-                    <a href="?type=activity_info">Th&#7889;ng k&#234;</a>
+                    <a href="?type=activity_info" id="url">Th&#7889;ng k&#234;</a>
                     </td>
                 </tr>
                 <tr>
