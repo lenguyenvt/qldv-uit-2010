@@ -7,7 +7,7 @@ function submit_button() {
 	else
 		$id = post_in ( $_GET ['id_doanvien'] );
 	
-	if ((($_GET ['id_doanvien'] == $id) || (! isset ( $_GET ['id_doanvien'] )))
+	if (((isset($_GET['id_doanvien']) && ($_GET ['id_doanvien'] == $id)) || (! isset ( $_GET ['id_doanvien'] )))
 		&& (check_auth("qlthongtin", 1)))	
 	{
 		$button = "<div class=\"user_info_button\"><input id=\"sua_doanvien\" name=\"sua_doanvien\" type=\"submit\" value=\"S&#7917;a\" class=\"user_info_form_submit\"></input></div>";

@@ -2,26 +2,19 @@
 require_once ("./styles/user_info.php");
 
 // to do list: (give to SQL statement) more conditions to some column chidoan, ngaydong
-
+// Check input's date format 
 
 function page_content() {
 	global $s, $t, $p, $page_header, $_GET, $_POST, $user, $db;
 	$page_header = "Th&#244;ng tin c&#225; nh&#226;n";
 	
 	$this_year = date ( "Y" );
-	var_dump ( $_GET );
 	if (! isset ( $_GET ['id_doanvien'] ))
 		$id = $user ["id"];
 	else
 		$id = post_in ( $_GET ['id_doanvien'] );
 	
-	echo $id;
-	echo "<br/>";
-	if ($_POST ['sua_doanvien']) {
-		echo "1";
-		echo "<br/>";
-		var_dump ( $_POST );
-		echo "<br/>";
+	if (isset($_POST ['sua_doanvien'])) {
 		
 		if (isset ( $_POST ['hoten'] ))
 			$hoten = post_in ( $_POST ['hoten'] );
@@ -105,7 +98,6 @@ function page_content() {
 		WHERE `thongtindoanvien`.`id_doanvien` =  '$id';
 		";
 		
-		echo $sql_update;
 		$query = $db->query ( $sql_update );
 	}
 	
@@ -166,16 +158,6 @@ function page_content() {
 		WHERE	 `xeploaidoanvien`.`id_doanvien` = '{$id}'
 		AND		 `xeploaidoanvien`.`year_end` <= $this_year		
 	";
-	
-	echo $sql1;
-	echo "<br/>";
-	echo $sql2;
-	echo "<br/>";
-	echo $sql3;
-	echo "<br/>";
-	echo $sql4;
-	echo "<br/>";
-	echo $sql5;
 	
 	// excute the query
 	$query = $db->query ( $sql1 );
