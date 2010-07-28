@@ -166,7 +166,7 @@ function thongtinphongtrao($danhsachphongtrao) {
 								</table>
 							</td>
                         </tr> 
-                       	<tr
+                       	<tr>
 							<td>
 							<div class="user_info_group_movement_table_scroll">
 								<table class="user_info_group_movement_table_content">
