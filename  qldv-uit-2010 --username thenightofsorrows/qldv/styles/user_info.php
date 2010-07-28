@@ -200,8 +200,8 @@ function user_info_form($thongtincanhan, $thongtinlienlac, $thongtinchidoan, $th
     <!---Form body--->
     <div class="user_info_form_body">
 	<div class="left"></div>
-	<form method="POST">
 	<div class="mid">
+	 <form method="POST">
       <table class="user_info_form_text">
         <tbody>
             <tr>
@@ -222,10 +222,9 @@ function user_info_form($thongtincanhan, $thongtinlienlac, $thongtinchidoan, $th
             </tr>
         </tbody>
         </table>
-                
-	</div>
 {$button}
-	</form>
+	 </form>
+	</div>
 	<div class="right"></div>
 	</div>
 	<div class="user_info_form_footer">
@@ -233,6 +232,7 @@ function user_info_form($thongtincanhan, $thongtinlienlac, $thongtinchidoan, $th
 		<div class="midfoot"></div>
 		<div class="rightfoot"></div>
 	</div>
+	</form>
 </div>
 EOF;
 }
