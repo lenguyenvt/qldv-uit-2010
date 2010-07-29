@@ -1,5 +1,40 @@
 <?php
-function user_rate_manage_form($danhsachdoanvien){
+function thongtinphongtrao($danhsachphongtrao) {
+$thongtin = "";
+for($i = 0; $i < count ( $danhsachphongtrao ); $i++) {
+		$thongtin .= "<tr class=\"user_info_group_movement_table_content_highlight\" >
+					<td width=\"160px\">" . $danhsachphongtrao [$i] [0] . "</td>
+					<td width=\"65px\">" . $danhsachphongtrao [$i] [1] . "</td>
+				</tr>";
+};
+return 
+<<<EOF
+<table class="user_rate_manage_movement_table">
+	<tr>
+		<td>
+			<table class = "user_info_group_movement_table_header" cellspacing="0" width="100%" border="1">
+			<tr>
+				<td width="160px">Phong tr&#224;o</td>
+				<td width="65px">Ng&#224;y</td>
+				<td width="16px">&nbsp;</td>
+			</tr>
+			</table>
+		</td>
+	</tr> 
+	<tr>
+		<td>
+		<div class="user_info_group_movement_table_scroll">
+			<table class="user_info_group_movement_table_content">
+{$thongtin}
+			</table>	
+		</div>
+		</td>	
+	</tr>
+</table>				
+EOF;
+}
+
+function user_rate_manage_form($danhsachdoanvien,$thongtinphongtrao){
 $thongtin="";
 $var="";
 for ($i=0;$i<count($danhsachdoanvien);$i++)
@@ -90,12 +125,17 @@ function getcontent(i){
                 	<td colspan="2">
 						<input name="hoten" id="hoten" type="text" style="width:252px;" class="user_rate_manage_form_textbox"/>
                     </td>
-                </tr>    
+                </tr>   
+                <tr>                    
+                    <td colspan="2">
+{$thongtinphongtrao}
+                    </td>
+                </tr> 
                 <tr>
                 	<td colspan="2">
                     	&#272;&#225;nh gi&#225;:
                     </td>
-                </tr>
+                </tr>                
                 <tr>                    
                     <td colspan="2">
                     	<textarea class="user_rate_manage_form_textarea_content" id="danhgia" name="danhgia"></textarea>
