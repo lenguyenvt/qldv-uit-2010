@@ -80,6 +80,9 @@ else switch($t){
 	case "activity_info":
 		$t="activity_info";
 		break;
+	case "activity_rate":
+		$t="activity_rate";
+		break;
 }
 if($t!=$_t){
 	header("Location: index.php?type=$t");

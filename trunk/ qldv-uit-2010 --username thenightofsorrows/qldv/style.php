@@ -55,7 +55,10 @@ if(check_auth("qlchucvu",1)) $ql.='			<tr>
 			<td align="left"><a href="index.php?type=account">Qu&#7843;n l&#253; ch&#7913;c v&#7909;</td>
 			</tr>';
 if(check_auth("qlxeploai",1)) $ql.='			<tr>
-			<td align="left"><a href="index.php?type=user_rate_manage">Đ&#225;nh gi&#225; x&#7871;p lo&#7841;i</td>
+			<td align="left"><a href="index.php?type=user_rate_manage">Đ&#225;nh gi&#225; &#273;o&#224;n vi&#234;n</td>
+			</tr>';
+if(check_auth("qlphongtrao",1)) $ql.='			<tr>
+			<td align="left"><a href="index.php?type=activity_rate">Đ&#225;nh gi&#225; phong tr&#224;o</a></td>
 			</tr>';
 if(check_auth("qlcosodoan",1)) $ql.='			<tr>
 			<td align="left"><a href="index.php?type=group_manage">C&#417; s&#7903; &#272;o&#224;n</td>
