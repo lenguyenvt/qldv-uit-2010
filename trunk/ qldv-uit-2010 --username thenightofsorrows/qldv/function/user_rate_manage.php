@@ -25,6 +25,26 @@ function page_content(){
 		   $danhsachdoanvien[]=array($doanvien['id_doanvien'], $doanvien[1], $doanvien[2], $doanvien[3], $doanvien[4], $doanvien[5], $doanvien[6]);
 		}
 	}
-	return user_main_form(user_rate_manage_form($danhsachdoanvien));
+
+	if (! isset ( $_GET ['id_doanvien'] ))
+		$id = $user ["id"];
+	else
+		$id = post_in ( $_GET ['id_doanvien'] );
+	$sql1= "SELECT    `phongtraodoan`.`ten`,
+					   `phongtraodoan`.`start`	
+					
+			FROM	  `phongtraodoan`,
+					  `thamgiaphongtrao`
+					
+			WHERE	  `thamgiaphongtrao`.`id_doanvien` = '{$id}'
+			AND		  `thamgiaphongtrao`.`id_phongtraodoan` = `phongtraodoan`.`id_phongtraodoan`";
+	$query1 = $db->query ( $sql1 );
+	$danhsachphongtrao = array ();
+	while ( ($pt = mysql_fetch_row ( $query1 )) != null ) {
+		$danhsachphongtrao [] = $pt;
+	}
+	$phongtrao = thongtinphongtrao ( $danhsachphongtrao );
+
+	return user_main_form(user_rate_manage_form($danhsachdoanvien,$phongtrao));
 }
 ?>
