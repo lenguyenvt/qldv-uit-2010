@@ -6,6 +6,7 @@ $var="";
 $id="";
 for ($i=0;$i<count($danhsachdoanvien);$i++)
 {	
+	$id_dv = $danhsachdoanvien[$i]['id_doanvien'];
 	$thongtin.="<tr class=\"user_manage_form_table_content_highlight\" onClick=\"javascript:getcontent($i);\">
 						<td width=\"30px\">".($i+1)."</td>
 						<td width=\"70px\">".$danhsachdoanvien[$i]['id_doanvien']."</td>
@@ -13,14 +14,13 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 						<td width=\"29px\">".($danhsachdoanvien[$i]['gioitinh']==0?"Nam":"N&#7919;")."</td>
 						<td width=\"85px\">".$danhsachdoanvien[$i]['ngaysinh']."</td>
 						<td width=\"85px\">".$danhsachdoanvien[$i]['doan_phi']."</td>
-						<td width=\"25px\"><input id=\"checked\" name=\"checked\" type=\"checkbox\" value=\"checked\" /></td>
+						<td width=\"25px\"><input id=\"dsdoanvien[{$danhsachdoanvien[$i]['id_doanvien']}]\" name=\"dsdoanvien[]\" type=\"checkbox\" value=\"$id_dv\" /></td>
 					</tr>";
 	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['id_doanvien']."\",\"".$danhsachdoanvien[$i]['ten']."\")".($i<count($danhsachdoanvien)-1?",":"");
 };
 
 if(check_auth("qldoanvien",2)){
-	$buttons_1 =" <input id =\"insert\" name = \"insert\" type=\"submit\" value =\"Th&#234;m\" style =\"margin-top:7px;width:70px\"/>";
-	$buttons_2=" <input id =\"delete\" name =\"delete\" type =\"submit\" value =\"X&#243;a\" style=\"margin-top:7px;width:70px\"/>";
+	$buttons_1=" <input id =\"delete\" name =\"delete\" type =\"submit\" value =\"X&#243;a\" style=\"margin-top:7px;width:70px\"/>";
 	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`")." OR ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`");
 	$db->query($sql);
 	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:120px;font-size:9pt\">";
@@ -31,8 +31,7 @@ if(check_auth("qldoanvien",2)){
 }
 else{
 	$option_cosodoan="";
-	$buttons_1="";
-	$buttons_2="";
+	$buttons_1="";	
 }
 
 return
@@ -61,13 +60,12 @@ function getcontent(i){
     <div class="user_manage_form_body">
     <div class="left"></div>
 	<div class="mid">
+	<form method="POST">
 		<table class="user_manage_form_text">
-        <tbody>
-        <form method="POST">
+        <tbody>        
 		<tr>
         {$option_cosodoan}
         </tr>
-        </form>
 		<tr height="24px">
 			<td width="521px">
 				Danh s&#225;ch &#273;o&#224;n vi&#234;n:
@@ -151,18 +149,14 @@ function getcontent(i){
 				</table>
 			</td>
 		</tr>
-        <form method="POST">
         <tr>
 			<td align="right" width="521px">
-			{$buttons_2}
+			{$buttons_1}
 			</td>
-			<td align="right" width="193px">
-            {$buttons_1}
-			</td>
-		</tr>
-        </form>
+		</tr>        
         </tbody>
         </table> 
+        </form>
     </div>
 	<div class="right"></div>       
 	</div>
