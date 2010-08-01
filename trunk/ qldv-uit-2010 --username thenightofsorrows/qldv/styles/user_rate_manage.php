@@ -4,8 +4,9 @@ function thongtinphongtrao($danhsachphongtrao) {
 	$thongtin = "";
 	for($i = 0; $i < count ($danhsachphongtrao ); $i++) {
 		$thongtin .= "<tr class=\"user_info_group_movement_table_content_highlight\" >
-					<td width=\"160px\">" . $danhsachphongtrao [$i] [0] . "</td>
-					<td width=\"65px\">" . $danhsachphongtrao [$i] [1] . "</td>
+					<td width=\"160px\">" . $danhsachphongtrao [$i] ['phongtrao'] . "</td>
+					<td width=\"65px\">" . $danhsachphongtrao [$i] ['ngay'] . "</td>
+					<td width=\"65px\">" . $danhsachphongtrao [$i] ['danhgia'] . "</td>
 				</tr>";
 	};
 return 
@@ -17,6 +18,7 @@ return
 			<tr>
 				<td width="160px">Phong tr&#224;o</td>
 				<td width="65px">Ng&#224;y</td>
+				<td>&#272;&#225;nh gi&#225;</td>
 				<td width="16px">&nbsp;</td>
 			</tr>
 			</table>
@@ -43,10 +45,8 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 {	
 	$thongtin.="<tr class=\"user_rate_manage_form_table_content_highlight\" onClick=\"javascript:getcontent($i);\">
 						<td width=\"32px\">".$danhsachdoanvien[$i]['stt']."</td>
-						<td width=\"75px\">".$danhsachdoanvien[$i]['id_doanvien']."</td>
 						<td width=\"180px\">".$danhsachdoanvien[$i]['hoten']."</td>
-						<td width=\"34px\">".($danhsachdoanvien[$i]['phai']==0?"Nam":"N&#7919;")."</td>
-						<td width=\"90px\">".$danhsachdoanvien[$i]['ngaysinh']."</td>
+						<td width=\"145px\">".$danhsachdoanvien[$i]['chidoan']."</td>
 					</tr>";
 	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['danhgia']."\",\"".$danhsachdoanvien[$i]['diem']."\",\"".$danhsachdoanvien[$i]['loai']."\")".($i<count($danhsachdoanvien)-1?",":"");
 };
@@ -86,8 +86,10 @@ function getcontent(i){
     <div class="user_rate_manage_form_body">
     <div class="left"></div>
 	<div class="mid">
+      <form method = "POST">
 		<table class="user_rate_manage_form_text">
         <tbody>
+
 		<tr>
         {$option_cosodoan}
 		</tr>
@@ -95,9 +97,9 @@ function getcontent(i){
 			<td width="442px">
 				Danh s&#225;ch &#273;o&#224;n vi&#234;n:
 			</td>
-			<td>
-            	&nbsp;&nbsp;Chi ti&#7871;t:	
-			</td>	
+            <td>
+             Chi ti&#7871;t:	
+            </td>
 		</tr>
 		<tr valign="top">
 			<td width="422px">
@@ -107,10 +109,8 @@ function getcontent(i){
 						<table class = "user_rate_manage_form_table_header" cellspacing="0" border="1">
 						<tr>
 							<td width="30px"><b>STT</b></td>
-							<td width="75px"><b>ID &#272;o&#224;n</b></td>
 							<td width="180px"><b>H&#7885; t&#234;n</b></td>
-							<td width="35px"><b>Ph&#225;i</b></td>
-							<td width="90px"><b>Ng&#224;y sinh</b></td>
+							<td width="165px"><b>Chi &#272;o&#224;n</b></td>
 							<td width="16px">&nbsp;</td>
 						</tr>
 						</table>
@@ -127,11 +127,11 @@ function getcontent(i){
 				</tr>
 				</table>
 			</td>
-			<td>
+			<td>  
             	<table class="user_rate_manage_form_right_content">
                 <tr>
                 	<td colspan="2">
-						<input name="hoten" id="hoten" type="text" style="width:252px;" class="user_rate_manage_form_textbox"/>
+						<input name="hoten" id="hoten" type="text" style="width:330px;" class="user_rate_manage_form_textbox"/>
                     </td>
                 </tr>   
                 <tr>                    
@@ -181,7 +181,8 @@ function getcontent(i){
 			</td>
 		</tr>
         </tbody>
-        </table>  
+        </table> 
+      </form> 
     </div>
 	<div class="right"></div>        
 	</div>

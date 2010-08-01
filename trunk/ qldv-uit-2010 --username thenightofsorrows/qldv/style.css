@@ -648,7 +648,7 @@ input[type="submit"]{
 	width: 730px;
 }
 .user_rate_manage_form_table{
-	width:422px;
+	width:391px;
 	background-color:#FFFFFF;
    	border-spacing:0px;
 	text-align:center;
@@ -670,7 +670,7 @@ input[type="submit"]{
 	line-height:22px;
 }
 .user_rate_manage_form_textarea_content{
-	width:252px;
+	width:330px;
 	height:85px; 	
 	background-color:#FFFFFF;
 	border:solid 1px #FFFFFF;
@@ -682,7 +682,7 @@ input[type="submit"]{
 .user_rate_manage_form_right_content{
 	margin-left:10px;
 	line-height:24px;
-	width:252px;
+	width:332px;
 	background-color:#008BCE;
 	color:#FFFFFF;
 }
@@ -697,7 +697,7 @@ input[type="submit"]{
 	height:170px;
 }
 .user_rate_manage_movement_table{
-	width:250px;
+	width:330px;
 	color:#000000;
 	background-color:#FFFFFF;
 	border-spacing:0px;
