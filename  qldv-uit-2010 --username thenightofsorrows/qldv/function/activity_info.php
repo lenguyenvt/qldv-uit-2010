@@ -1,11 +1,13 @@
 <?php
 require_once("./styles/activity_info.php");
 function page_content(){
-	global $s,$t,$p,$page_header,$_GET,$_POST,$db,$id_phongtraodoan;
+	global $s,$t,$p,$page_header,$_GET,$_POST,$db,$id_phongtraodoan,$user;
 	$page_header="Th&#7889;ng k&#234; phong tr&#224;o";
 	if(isset($_GET['id_phongtraodoan']) && $_GET['id_phongtraodoan']!="") $id_phongtraodoan=post_in($_GET['id_phongtraodoan']); else return "L&#7895;i x&#7917; l&#253;!";
 	if(isset($_GET['is_print'])) $is_print=1; else $is_print=0;
-	if(!check_auth("qlphongtrao",2) && get_cosodoan_capduoi($user,"","",$id_phongtraodoan)) return "B&#7841;n kh&#244;ng c&#243; quy&#7873;n xem th&#244;ng k&#234; phong tr&#224;o n&#224;y.";
+	$db->query("SELECT `id_cosodoan` FROM `phongtraodoan` WHERE `id_phongtraodoan`='$id_phongtraodoan'");
+	$temp_id_cosodoan=$db->fetch_array();
+	if(!check_auth("qlphongtrao",2) || !get_cosodoan_capduoi($user,"",1,$temp_id_cosodoan['id_cosodoan'])) return "B&#7841;n kh&#244;ng c&#243; quy&#7873;n xem th&#244;ng k&#234; phong tr&#224;o n&#224;y.";
 	if(isset($_POST['update_danhgia']) && isset($_POST['danhgia_phongtrao'])){
 		foreach($_POST['danhgia_phongtrao'] as $a => $b){
 			$a=post_in($a);
