@@ -143,9 +143,9 @@ function thongtinphongtrao($danhsachphongtrao) {
 	$thongtin = "";
 	for($i = 0; $i < count ( $danhsachphongtrao ); $i ++) {
 		$thongtin .= "<tr class=\"user_info_group_movement_table_content_highlight\">
-					<td width=\"160px\">" . $danhsachphongtrao [$i] [0] . "</td>
-					<td width=\"70px\">" . $danhsachphongtrao [$i] [1] . "</td>
-					<td width=\"65px\">" . $danhsachphongtrao [$i] [2] . "</td>
+					<td width=\"160px\">" . $danhsachphongtrao [$i] ['ten'] . "</td>
+					<td width=\"70px\">" . $danhsachphongtrao [$i] ['start'] . "</td>
+					<td width=\"65px\">" . $danhsachphongtrao [$i] ['danhgia'] . "</td>
 				</tr>";
 	}
 	;
