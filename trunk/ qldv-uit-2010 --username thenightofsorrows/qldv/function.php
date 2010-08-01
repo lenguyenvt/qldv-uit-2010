@@ -98,7 +98,7 @@ function check_cosodoancaptren($id1, $id2) {
 		return 0;
 	*/
 	$id2_cosodoan=get_cosodoan_hientai($id2);
-	return get_cosodoan_capduoi($id1,"","",$id2_cosodoan);
+	return get_cosodoan_capduoi($id1,"",1,$id2_cosodoan);
 }
 
 function get_cosodoan($user, $SQL_COMPATIBLE = "", $ARRAY_OUT = "", $CHECK_WITH = "") {
