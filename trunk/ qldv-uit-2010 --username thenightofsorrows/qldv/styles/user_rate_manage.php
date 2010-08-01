@@ -1,12 +1,13 @@
 <?php
 function thongtinphongtrao($danhsachphongtrao) {
-$thongtin = "";
-for($i = 0; $i < count ( $danhsachphongtrao ); $i++) {
+	global $db,$user,$_POST;
+	$thongtin = "";
+	for($i = 0; $i < count ($danhsachphongtrao ); $i++) {
 		$thongtin .= "<tr class=\"user_info_group_movement_table_content_highlight\" >
 					<td width=\"160px\">" . $danhsachphongtrao [$i] [0] . "</td>
 					<td width=\"65px\">" . $danhsachphongtrao [$i] [1] . "</td>
 				</tr>";
-};
+	};
 return 
 <<<EOF
 <table class="user_rate_manage_movement_table">
@@ -26,15 +27,16 @@ return
 		<div class="user_info_group_movement_table_scroll">
 			<table class="user_info_group_movement_table_content">
 {$thongtin}
-			</table>	
+			</table>
 		</div>
-		</td>	
+		</td>
 	</tr>
-</table>				
+</table>
 EOF;
 }
 
 function user_rate_manage_form($danhsachdoanvien,$thongtinphongtrao){
+global $db,$user,$_POST;
 $thongtin="";
 $var="";
 for ($i=0;$i<count($danhsachdoanvien);$i++)
@@ -48,7 +50,17 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 					</tr>";
 	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['danhgia']."\",\"".$danhsachdoanvien[$i]['diem']."\",\"".$danhsachdoanvien[$i]['loai']."\")".($i<count($danhsachdoanvien)-1?",":"");
 };
-return
+
+if(check_auth("qlxeploai",2)){
+	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`");
+	$db->query($sql);
+	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:120px;font-size:9pt\">";
+	while($tmp=mysql_fetch_array($db->query_result)){
+		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
+	}
+	$option_cosodoan="\n<tr><td>Chi &#272;o&#224;n: $option_cosodoan </select> <input id=\"search\" name=\"search\" type=\"submit\" value=\"T&#236;m\" style=\"margin-top:7px;width:70px\"/></td></tr>";
+	}
+	return
 <<<EOF
 <script>
 function getcontent(i){	
@@ -76,12 +88,8 @@ function getcontent(i){
 	<div class="mid">
 		<table class="user_rate_manage_form_text">
         <tbody>
-		<tr height="24px">
-			<td width="442px">
-				Chi &#273;o&#224;n: <input type="text" /> <input name="" type="submit" value="T&#236;m" style="width:70px"/>
-			</td>
-			<td>
-			</td>
+		<tr>
+        {$option_cosodoan}
 		</tr>
 		<tr height="24px">
 			<td width="442px">
@@ -172,7 +180,6 @@ function getcontent(i){
                 </table>
 			</td>
 		</tr>
-		
         </tbody>
         </table>  
     </div>
