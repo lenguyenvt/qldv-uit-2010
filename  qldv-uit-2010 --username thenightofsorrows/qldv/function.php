@@ -76,17 +76,18 @@ function check_cosodoancaptren($id1, $id2) {
 	global $db;
 	$sql = "SELECT `qhchidoan`.`id_cosodoan` FROM `qhchidoan`,`doanvien` WHERE `doanvien`.`id_doanvien`='$id1' AND `qhchidoan`.`qh_chidoan`=`doanvien`.`qh_chidoan` ORDER BY `qhchidoan`.`qh_chidoan` DESC LIMIT 0,1";
 	$result1 = mysql_fetch_array ( $db->query ( $sql ) );
-	
+	echo $result1;
 	$sql = "SELECT `qhchidoan`.`id_cosodoan` FROM `qhchidoan`,`doanvien` WHERE `doanvien`.`id_doanvien`='$id2' AND `qhchidoan`.`qh_chidoan`=`doanvien`.`qh_chidoan` ORDER BY `qhchidoan`.`qh_chidoan` DESC LIMIT 0,1";
 	$db->query ( $sql );
 	$result2 = mysql_fetch_array ( $db->query ( $sql ) );
-	
+	echo $result1;
 	$id_parent = $result2 ['id_cosodoan'];
 	$id_parent_tocheck = $result1 ['id_cosodoan'];
 	if ($id_parent == 0)
 		return 0;
 	$sql = "SELECT `id_cosodoan`,`cap`,`parent` FROM `cosodoan` WHERE `id_cosodoan`='{$id_parent}'";
 	$result3 = mysql_fetch_array ( $db->query ( $sql ) );
+	echo $result3;
 	while ( $result3 ['parent'] != 0 && $result3 ['id_cosodoan'] != $id_parent_tocheck ) {
 		$id_parent = $result3 ['parent'];
 		$sql = "SELECT `id_cosodoan`,`cap`,`parent` FROM `cosodoan` WHERE `id_cosodoan`='{$id_parent}'";
