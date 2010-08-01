@@ -7,13 +7,14 @@ for ($i=0;$i<sizeof($danhsachsdt);$i++)
 	$thongtin.="<tr class=\"phone_history_form_table_content_highlight\">
 						<td width=\"41px\">$j</td>
 						<td width=\"164px\">".$danhsachsdt[$i]."</td>
-						<td width=\"25px\"><input id=\"checked\" name=\"checked\" type=\"checkbox\" value=\"checked\" /></td>
+						<td width=\"25px\"><input id=\"dsdt[]\" name=\"dsdt[]\" type=\"checkbox\" value=\"$danhsachsdt[$i]\" /></td>
 				</tr>";
 };
 
 	
 return
 <<<EOF
+<form input method = "POST">
 <div class="phone_history_form">
     <!---Form header--->
     <div class="phone_history_form_header">
@@ -61,9 +62,11 @@ return
 				</td>	
 			</tr>
             <tr>
+            	
                 <td align="right">
                     <input id="delete" name="delete" type="submit" value="X&#243;a" style="margin-top:7px"/>
                 </td>
+                
             </tr>
 			</table>
 			</td>
@@ -79,6 +82,7 @@ return
 		<div class="rightfoot"></div>
 	</div>
 </div>
+</form>
 EOF;
 }
 ?>
