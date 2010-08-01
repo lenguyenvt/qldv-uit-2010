@@ -196,13 +196,13 @@ function page_content() {
 			AND		  `thamgiaphongtrao`.`id_phongtraodoan` = `phongtraodoan`.`id_phongtraodoan`";
 	
 	// for testing only
-	// echo $sql;
+	//echo $sql;
 	
 
 	// get information about activities which username took part in
 	$query = $db->query ( $sql );
 	$danhsachphongtrao = array ();
-	while ( ($pt = mysql_fetch_row ( $query )) != null ) {
+	while ( ($pt = mysql_fetch_array( $query )) != null ) {
 		$danhsachphongtrao [] = $pt;
 	}
 	
