@@ -1,23 +1,22 @@
 <?php
-function group_manage_form($danhsachdoanvien){
+function group_manage_form($danhsachcosodoan){
 global $db,$user;
 $thongtin="";
 $var="";
-$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`");
+$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`")." OR ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`");
 $db->query($sql);
 $select_cosodoan="";
 while($tmp=mysql_fetch_array($db->query_result)){
 	$select_cosodoan.="<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
 }
-for ($i=0;$i<count($danhsachdoanvien);$i++)
+for ($i=0;$i<count($danhsachcosodoan);$i++)
 {	
 	$thongtin.="<tr class=\"group_manage_form_table_content_highlight\" onClick=\"javascript:getcontent($i);\">
 						<td width=\"31px\">".($i+1)."</td>
-						<td width=\"380px\">".$danhsachdoanvien[$i]['ten']."</td>
-						<td width=\"95px\">".$danhsachdoanvien[$i]['cap']."</td>
-						<td width=\"25px\"><input id=\"checked\" name=\"checked\" type=\"checkbox\" value=\"checked\" /></td>
+						<td width=\"380px\">".$danhsachcosodoan[$i]['ten']."</td>
+						<td width=\"25px\"><input id=\"select_cosodoan\" name=\"select_cosodoan\" type=\"checkbox\" value=\"".($danhsachcosodoan[$i]['co_dau']==1?"checked":"")."\" /></td>
 					</tr>";
-	$var.="Array(\"".$danhsachdoanvien[$i]['ten']."\",\"".$danhsachdoanvien[$i]['id_cosodoan']."\",\"".$danhsachdoanvien[$i]['cap']."\",\"".$danhsachdoanvien[$i]['parent']."\",\"".($danhsachdoanvien[$i]['co_dau']==1?"checked":"")."\")".($i<count($danhsachdoanvien)-1?",":"");
+	$var.="Array(\"".$danhsachcosodoan[$i]['ten']."\",\"".$danhsachcosodoan[$i]['id_cosodoan']."\",\"".$danhsachcosodoan[$i]['parent']."\",\"".($danhsachcosodoan[$i]['co_dau']==1?"checked":"")."\")".($i<count($danhsachcosodoan)-1?",":"");
 };
 return
 <<<EOF
@@ -27,8 +26,8 @@ function getcontent(i){
 	document.getElementById("ten").value=danhsach[i][0];
 	document.getElementById("id_cosodoan").value=danhsach[i][1];
 //	document.getElementById("cap").value=danhsach[i][2];
-	document.getElementById("parent").value=danhsach[i][3];
-	document.getElementById("co_dau").checked=danhsach[i][4];
+	document.getElementById("parent").value=danhsach[i][2];
+	document.getElementById("co_dau").checked=danhsach[i][3];
 //	document.getElementById("thongke_doanvien").value=danhsach[i][5];
 //	document.getElementById("nhanxet").value=danhsach[i][6];
 //	document.getElementById("loai").value=danhsach[i][7];
@@ -68,7 +67,7 @@ function getcontent(i){
 						<tr>
 							<td width="30px"><b>STT</b></td>
 							<td width="380px"><b>T&#234;n</b></td>
-							<td width="95px"><b>C&#7845;p</b></td>
+							<td width="95px"><b>L&#7921;a ch&#7885;n</b></td>
 							<td width="16px">&nbsp;</td>
 						</tr>
 						</table>
