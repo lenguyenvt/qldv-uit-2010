@@ -26,7 +26,7 @@ return
 	</tr> 
 	<tr>
 		<td>
-		<div class="user_info_group_movement_table_scroll">
+		<div class="user_rate_manage_movement_table_scroll">
 			<table class="user_info_group_movement_table_content">
 {$thongtin}
 			</table>
@@ -94,7 +94,7 @@ function getcontent(i){
         {$option_cosodoan}
 		</tr>
 		<tr height="24px">
-			<td width="442px">
+			<td width="390px">
 				Danh s&#225;ch &#273;o&#224;n vi&#234;n:
 			</td>
             <td>
@@ -102,10 +102,10 @@ function getcontent(i){
             </td>
 		</tr>
 		<tr valign="top">
-			<td width="422px">
+			<td width="390px">
 				<table class="user_rate_manage_form_table">
 				<tr>
-					<td>
+					<td colspan="2">
 						<table class = "user_rate_manage_form_table_header" cellspacing="0" border="1">
 						<tr>
 							<td width="30px"><b>STT</b></td>
@@ -115,38 +115,38 @@ function getcontent(i){
 						</tr>
 						</table>
 					</td>
+                    <td>
+                    </td>
 				</tr> 
 				<tr>
-					<td>
+					<td colspan="2">
 					<div class="user_rate_manage_form_table_scroll">
 						<table class="user_rate_manage_form_table_content">
 {$thongtin}
 						</table>	
 					</div>
 					</td>
-				</tr>
+                    <td>
+                    </td>
+				</tr>                
 				</table>
-			</td>
-			<td>  
-            	<table class="user_rate_manage_form_right_content">
+                Chi ti&#7871;t &#273;o&#224;n vi&#234;n:
+                <table style="background-color:#008BCE; color:#FFFFFF; width:390px; margin-top:10px;">                                
                 <tr>
-                	<td colspan="2">
-						<input name="hoten" id="hoten" type="text" style="width:330px;" class="user_rate_manage_form_textbox"/>
+                	<td>
+						H&#7885; t&#234;n:
+                    </td>
+                    <td align="right">
+                    	<input name="hoten" id="hoten" type="text" class="user_rate_manage_form_textbox"/>
                     </td>
                 </tr>   
-                <tr>                    
-                    <td colspan="2">
-{$thongtinphongtrao}
-                    </td>
-                </tr> 
+                
                 <tr>
-                	<td colspan="2">
+                	<td valign="top">
                     	&#272;&#225;nh gi&#225;:
                     </td>
-                </tr>                
-                <tr>                    
-                    <td colspan="2">
-                    	<textarea class="user_rate_manage_form_textarea_content" id="danhgia" name="danhgia"></textarea>
+                    <td align="right">
+	                    <textarea class="user_rate_manage_form_textarea_content" id="danhgia" name="danhgia"></textarea>
                     </td>
                 </tr>
                 <tr>                    
@@ -163,21 +163,24 @@ function getcontent(i){
                     </td>
                     <td align="right">
                     	<select id="loai" name="loai" class="user_rate_manage_form_textbox">
-			<option value="1">T&#7889;t</option>
-			<option value="2">Kh&#225;</option>
-			<option value="3">Trung b&#236;nh</option>
-			<option value="4">Y&#7871;u</option>
-		</select>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="right">
-                    </td>
-                    <td align="right">
-                        <input name="" type="submit" value="C&#7853;p nh&#7853;t" style="width:80px;height:25px;"/>
+                            <option value="1">T&#7889;t</option>
+                            <option value="2">Kh&#225;</option>
+                            <option value="3">Trung b&#236;nh</option>
+                            <option value="4">Y&#7871;u</option>
+						</select>
                     </td>
                 </tr>
                 </table>
+			</td>
+			<td align="right">  
+            	<table class="user_rate_manage_form_right_content">
+                <tr>                    
+                    <td colspan="2">
+{$thongtinphongtrao}
+                    </td>
+                </tr> 
+                </table>
+                <input name="" type="submit" value="C&#7853;p nh&#7853;t" style="width:80px;height:25px; margin-top:7px"/>
 			</td>
 		</tr>
         </tbody>

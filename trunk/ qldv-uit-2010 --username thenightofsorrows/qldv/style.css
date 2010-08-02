@@ -219,7 +219,6 @@ input[type="submit"]{
 	width: 130px;
 }
 .user_main_form_text{
-	margin-top:10px;	
 	margin-left:3px;
 }
 .user_main_form_avatar{
@@ -547,7 +546,6 @@ input[type="submit"]{
 .user_manage_form_text{	
 	width:730px;
 	height: 350px;
-	margin: 10px 0px 10px 0px;	
 }
 .user_manage_form_body .mid{
 	width: 730px;
@@ -615,7 +613,7 @@ input[type="submit"]{
 =============================*/
 .user_rate_manage_form{
 	width: 760px;
-	height: 405px;
+	height: 565px;
 	margin-left:10px;
 	float:left;
 }
@@ -634,8 +632,7 @@ input[type="submit"]{
 }
 .user_rate_manage_form_text{	
 	width:730px;
-	height: 350px;
-	margin: 10px 0px 10px 0px;	
+	height: 350px;	
 }
 .user_rate_manage_form_body .mid{
 	width: 730px;
@@ -662,15 +659,16 @@ input[type="submit"]{
 }
 .user_rate_manage_form_table_scroll{
 	overflow:scroll; 
-	height:303px;
+	height:253px;
+	margin: 0px 0px 10px 0px
 }
 .user_rate_manage_form_table_content{
 	text-align:center;
-	background-color:#FFFFFF;
+	!background-color:#FFFFFF;
 	line-height:22px;
 }
 .user_rate_manage_form_textarea_content{
-	width:330px;
+	width:300px;
 	height:85px; 	
 	background-color:#FFFFFF;
 	border:solid 1px #FFFFFF;
@@ -687,14 +685,14 @@ input[type="submit"]{
 	color:#FFFFFF;
 }
 .user_rate_manage_form_textbox{
-	width:125px;
+	width:300px;
 	border:solid 1px #FFFFFF;
 	text-align:left;
 }
 .user_rate_manage_movement{
 	margin:10px 0px 0px 0px;
 	width:252px;
-	height:170px;
+	height:300px;
 }
 .user_rate_manage_movement_table{
 	width:330px;
@@ -703,7 +701,11 @@ input[type="submit"]{
 	border-spacing:0px;
 	text-align:center;
 }
-
+.user_rate_manage_movement_table_scroll{
+	width:100%; 
+	overflow:scroll; 
+	height:438px;
+}
 /*=============================
 			Activity
 =============================*/
@@ -731,7 +733,6 @@ input[type="submit"]{
 .activity_form_text{	
 	width:720px;
 	height: 350px;
-	margin: 10px 0px 10px 10px;	
 }
 .activity_form_body .mid{
 	width: 730px;
@@ -817,7 +818,6 @@ input[type="submit"]{
 .account_form_text{	
 	width:710px;
 	height: 350px;
-	margin: 10px 0px 10px 10px;	
 }
 .account_form_body .mid{
 	width: 730px;
@@ -883,8 +883,7 @@ input[type="submit"]{
 }
 .phone_history_form_text{	
 	width:260px;
-	height: 250px;
-	margin: 10px 10px 10px 10px;	
+	height: 250px;	
 }
 .phone_history_form_body .mid{
 	width: 280px;
@@ -951,7 +950,6 @@ input[type="submit"]{
 .rate_history_form_text{	
 	width:260px;
 	height: 250px;
-	margin: 10px 10px 10px 10px;	
 }
 .rate_history_form_body .mid{
 	width: 280px;
@@ -1028,7 +1026,6 @@ input[type="submit"]{
 .group_manage_form_text{	
 	width:710px;
 	height: 370px;
-	margin: 10px 0px 10px 0px;	
 }
 .group_manage_form_body .mid{
 	width: 730px;
@@ -1088,50 +1085,6 @@ input[type="submit"]{
 	color:red;
 	text-align:center;
 }
-
-/*=============================
-			User Register
-=============================*/
-.user_register_form{
-	width: 360px;
-	height: 95px;
-	margin: 0px 0px 300px 180px;
-	float:left;
-}
-.user_register_form_header{
-	width: 360px;
-	height: 25px;
-}
-.user_register_form_header .midhead{
-	width: 330px;
-}
-.user_register_form_body{	
-	width: 360px;
-	height:100%;
-	background-color:#FFFFFF;
-	float:left;
-}
-.user_register_form_body .mid{
-	width: 330px;
-}
-.user_register_form_text{
-	margin: 10px 0px 0px 10px;
-	width:300px;
-}
-.user_register_form_footer{
-	width: 360px;
-	height: 15px;
-}
-.user_register_form_footer .midfoot{
-	width: 330px;
-}
-.user_register_button{
-	margin: 5px 0px 0px 0px;
-}
-.user_register_form_textbox{	
-	width:170px;
-}
-
 /*=============================
 			Change Group
 =============================*/
@@ -1158,7 +1111,6 @@ input[type="submit"]{
 	width: 330px;
 }
 .change_group_form_text{
-	margin: 10px 0px 0px 10px;
 	width:300px;
 }
 .change_group_form_footer{
@@ -1200,8 +1152,7 @@ input[type="submit"]{
 }
 .change_group_info_form_text{	
 	width:310px;
-	height: 250px;
-	margin: 10px 10px 10px 10px;	
+	height: 250px;	
 }
 .change_group_info_form_body .mid{
 	width: 330px;
@@ -1267,7 +1218,6 @@ input[type="submit"]{
 	width: 330px;
 }
 .activity_info_form_text{
-	margin: 10px 0px 0px 10px;
 	width:300px;
 }
 .activity_info_form_footer{
