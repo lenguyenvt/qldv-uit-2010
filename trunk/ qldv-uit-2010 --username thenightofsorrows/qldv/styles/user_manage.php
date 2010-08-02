@@ -16,7 +16,7 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 						<td width=\"85px\">".$danhsachdoanvien[$i]['doan_phi']."</td>
 						<td width=\"25px\"><input id=\"dsdoanvien[{$danhsachdoanvien[$i]['id_doanvien']}]\" name=\"dsdoanvien[]\" type=\"checkbox\" value=\"$id_dv\" /></td>
 					</tr>";
-	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['id_doanvien']."\",\"".$danhsachdoanvien[$i]['ten']."\")".($i<count($danhsachdoanvien)-1?",":"");
+	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['id_doanvien']."\",\"".$danhsachdoanvien[$i]['chucvu']."\")".($i<count($danhsachdoanvien)-1?",":"");
 };
 
 if(check_auth("qldoanvien",2)){
@@ -42,7 +42,12 @@ function getcontent(i){
 	document.getElementById("hoten").value=danhsach[i][0];
 	document.getElementById("id_doanvien").value=danhsach[i][1];	
 	document.getElementById("chucvu").value=danhsach[i][2];	
-	document.getElementById("url").setAttribute('href','index.php?type=user_info&id_doanvien='+danhsach[i][1])	;
+	document.getElementById("url").setAttribute('href','index.php?type=user_info&id_doanvien='+danhsach[i][1]);
+	document.getElementById("avatar").setAttribute('src','images/ava_'+danhsach[i][1]+'.png');
+}
+function resetimage()
+{
+	document.getElementById("avatar").setAttribute('src','images/avatar.png');	
 }
 </script>
 <div class="user_manage_form">
@@ -108,7 +113,7 @@ function getcontent(i){
 				<table  class="user_manage_form_right_content">
                 <tr>
                     <td colspan="2" align="center">
-                        <input name="" type="image" class="user_manage_form_avatar" src="images/avatar.png" />
+                        <input id= "avatar" name="avatar" type="image" class="user_manage_form_avatar" src="images/avatar.png" onerror="javascript:resetimage();"/>
                     </td>
                 </tr>
 				<tr>
