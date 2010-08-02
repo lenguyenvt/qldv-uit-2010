@@ -14,7 +14,7 @@ return
 <table class="user_rate_manage_movement_table">
 	<tr>
 		<td>
-			<table class = "user_info_group_movement_table_header" cellspacing="0" width="100%" border="1">
+			<table class = "user_rate_manage_movement_table_header" cellspacing="0" width="100%" border="1">
 			<tr>
 				<td width="160px">Phong tr&#224;o</td>
 				<td width="65px">Ng&#224;y</td>

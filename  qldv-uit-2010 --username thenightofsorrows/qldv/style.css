@@ -664,7 +664,7 @@ input[type="submit"]{
 }
 .user_rate_manage_form_table_content{
 	text-align:center;
-	!background-color:#FFFFFF;
+	background-color:#FFFFFF;
 	line-height:22px;
 }
 .user_rate_manage_form_textarea_content{
@@ -694,6 +694,14 @@ input[type="submit"]{
 	width:252px;
 	height:300px;
 }
+.user_rate_manage_movement_table_header{
+	background-color:#008BCE;
+	color:#FFFFFF;
+	border: solid 1px #FFFFFF;
+	text-align:center;
+	line-height:23px;
+	font-weight:bold;
+}
 .user_rate_manage_movement_table{
 	width:330px;
 	color:#000000;
@@ -704,7 +712,7 @@ input[type="submit"]{
 .user_rate_manage_movement_table_scroll{
 	width:100%; 
 	overflow:scroll; 
-	height:438px;
+	height:430px;
 }
 /*=============================
 			Activity
