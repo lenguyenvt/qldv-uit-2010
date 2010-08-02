@@ -1,4 +1,4 @@
-/*008BCE*/
+/*296AC1*/
 .main_content {
 	margin-left: auto;
 	margin-right: auto;
@@ -223,7 +223,7 @@ input[type="submit"]{
 }
 .user_main_form_avatar{
 	height:160px;
-	border:solid 1px #008BCE;
+	border:solid 1px #296AC1;
 }
 .user_main_form_footer{
 	width: 160px;
@@ -499,7 +499,7 @@ input[type="submit"]{
 	text-align:center;
 }
 .user_info_group_movement_table_header{
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 	border: solid 1px #FFFFFF;
 	text-align:center;
@@ -565,7 +565,7 @@ input[type="submit"]{
 }
 .user_manage_form_table_header{
 	border:solid 1px #FFFFFF;	
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 	text-align:center;
 	line-height:24px;
@@ -586,14 +586,14 @@ input[type="submit"]{
 .user_manage_form_right_content{
 	margin-left:10px;
 	width:183px;
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 }
 .user_manage_form_avatar{
 	height:160px;
 	width:120px;
 	margin-bottom:5px;
-	border:solid 1px #008BCE;
+	border:solid 1px #296AC1;
 }
 .user_manage_form_right_content a{	
 	color:#FFFFFF;
@@ -652,7 +652,7 @@ input[type="submit"]{
 }
 .user_rate_manage_form_table_header{
 	border:solid 1px #FFFFFF;
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 	text-align:center;
 	line-height:24px;
@@ -681,7 +681,7 @@ input[type="submit"]{
 	margin-left:10px;
 	line-height:24px;
 	width:332px;
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 }
 .user_rate_manage_form_textbox{
@@ -695,7 +695,7 @@ input[type="submit"]{
 	height:300px;
 }
 .user_rate_manage_movement_table_header{
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 	border: solid 1px #FFFFFF;
 	text-align:center;
@@ -760,7 +760,7 @@ input[type="submit"]{
 }
 .activity_form_table_header{
 	border: 1px solid #FFFFFF;
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 	text-align:center;
 	line-height:24px;
@@ -782,7 +782,7 @@ input[type="submit"]{
 .activity_form_right_content{
 	margin-left:10px;
 	line-height:22px;
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 }
 .activity_form_textbox{
@@ -845,7 +845,7 @@ input[type="submit"]{
 }
 .account_form_table_header{
 	border:solid 1px #FFFFFF;
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 	text-align:center;
 	line-height:24px;
@@ -911,7 +911,7 @@ input[type="submit"]{
 }
 .phone_history_form_table_header{
 	border:solid 1px #FFFFFF;
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 	text-align:center;
 	line-height:24px;
@@ -977,7 +977,7 @@ input[type="submit"]{
 }
 .rate_history_form_table_header{
 	border:solid 1px #FFFFFF;
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 	text-align:center;
 	line-height:24px;
@@ -1005,7 +1005,7 @@ input[type="submit"]{
 }
 .rate_history_form_table_bottom_content{
 	border:solid 1px #FFFFFF;
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 }
 
@@ -1053,7 +1053,7 @@ input[type="submit"]{
 }
 .group_manage_form_table_header{
 	border:solid 1px #FFFFFF;
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 	text-align:center;
 	line-height:24px;
@@ -1081,7 +1081,7 @@ input[type="submit"]{
 	margin-left:10px;
 	line-height:24px;
 	width:252px;
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 }
 .group_manage_form_textbox{
@@ -1180,7 +1180,7 @@ input[type="submit"]{
 }
 .change_group_info_form_table_header{
 	border:solid 1px #FFFFFF;
-	background-color:#008BCE;
+	background-color:#296AC1;
 	color:#FFFFFF;
 	text-align:center;
 	line-height:24px;

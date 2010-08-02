@@ -131,7 +131,7 @@ function getcontent(i){
 				</tr>                
 				</table>
                 Chi ti&#7871;t &#273;o&#224;n vi&#234;n:
-                <table style="background-color:#008BCE; color:#FFFFFF; width:390px; margin-top:10px;">                                
+                <table style="background-color:#296AC1; color:#FFFFFF; width:390px; margin-top:10px;">                                
                 <tr>
                 	<td>
 						H&#7885; t&#234;n:
