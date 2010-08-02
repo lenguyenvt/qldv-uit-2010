@@ -131,21 +131,20 @@ function getcontent(i){
 				</tr>                
 				</table>
                 Chi ti&#7871;t &#273;o&#224;n vi&#234;n:
-                <table style="width:390px; margin-top:10px;">                                
+                <table style="width:390px; margin-top:10px; line-height:20px;background-color:#296AC1; color:#FFFFFF">                                
                 <tr>
-                	<td>
-						H&#7885; t&#234;n:
-                    </td>
-                    <td align="right" >
-                    	<input name="hoten" id="hoten" type="text" class="user_rate_manage_form_textbox"/>
+                    <td align="right" colspan="2" >
+                    	<input name="hoten" id="hoten" type="text" style="width:386px;" class="user_rate_manage_form_textbox"/>
                     </td>
                 </tr>   
                 
                 <tr>
-                	<td valign="top">
+                	<td valign="top" colspan="2">
                     	&#272;&#225;nh gi&#225;:
-                    </td>
-                    <td align="right">
+                    </td>                    
+                </tr>
+                 <tr>                	
+                    <td colspan="2">
 	                    <textarea class="user_rate_manage_form_textarea_content" id="danhgia" name="danhgia"></textarea>
                     </td>
                 </tr>

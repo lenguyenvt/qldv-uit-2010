@@ -613,7 +613,7 @@ input[type="submit"]{
 =============================*/
 .user_rate_manage_form{
 	width: 760px;
-	height: 565px;
+	height: 580px;
 	margin-left:10px;
 	float:left;
 }
@@ -668,7 +668,7 @@ input[type="submit"]{
 	line-height:22px;
 }
 .user_rate_manage_form_textarea_content{
-	width:300px;
+	width:386px;
 	height:85px; 	
 	background-color:#FFFFFF;
 	border:solid 1px #999999;
@@ -685,7 +685,7 @@ input[type="submit"]{
 	color:#FFFFFF;
 }
 .user_rate_manage_form_textbox{
-	width:300px;
+	width:210px;
 	border:solid 1px #999999;
 	text-align:left;
 }
@@ -712,7 +712,7 @@ input[type="submit"]{
 .user_rate_manage_movement_table_scroll{
 	width:100%; 
 	overflow:scroll; 
-	height:430px;
+	height:457px;
 }
 /*=============================
 			Activity
