@@ -54,7 +54,7 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 if(check_auth("qlxeploai",2)){
 	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`");
 	$db->query($sql);
-	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:120px;font-size:9pt\">";
+	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:260px;font-size:9pt\">";
 	while($tmp=mysql_fetch_array($db->query_result)){
 		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
 	}
@@ -98,7 +98,7 @@ function getcontent(i){
 				Danh s&#225;ch &#273;o&#224;n vi&#234;n:
 			</td>
             <td>
-             Chi ti&#7871;t:	
+             <div style="margin-left:10px;">Th&#244;ng tin phong tr&#224;o:	</div>
             </td>
 		</tr>
 		<tr valign="top">
@@ -131,12 +131,12 @@ function getcontent(i){
 				</tr>                
 				</table>
                 Chi ti&#7871;t &#273;o&#224;n vi&#234;n:
-                <table style="background-color:#296AC1; color:#FFFFFF; width:390px; margin-top:10px;">                                
+                <table style="width:390px; margin-top:10px;">                                
                 <tr>
                 	<td>
 						H&#7885; t&#234;n:
                     </td>
-                    <td align="right">
+                    <td align="right" >
                     	<input name="hoten" id="hoten" type="text" class="user_rate_manage_form_textbox"/>
                     </td>
                 </tr>   

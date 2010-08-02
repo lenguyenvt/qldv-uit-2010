@@ -671,7 +671,7 @@ input[type="submit"]{
 	width:300px;
 	height:85px; 	
 	background-color:#FFFFFF;
-	border:solid 1px #FFFFFF;
+	border:solid 1px #999999;
 }
 .user_rate_manage_form_table_content_highlight:hover{
 	background-color:#2288DD;
@@ -686,7 +686,7 @@ input[type="submit"]{
 }
 .user_rate_manage_form_textbox{
 	width:300px;
-	border:solid 1px #FFFFFF;
+	border:solid 1px #999999;
 	text-align:left;
 }
 .user_rate_manage_movement{
