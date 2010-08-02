@@ -760,7 +760,7 @@ input[type="submit"]{
 .activity_form_table_scroll{
 	width:100%; 
 	overflow:scroll; 
-	height:260px;
+	height:265px;
 }
 .activity_form_table_content{
 	text-align:center;
