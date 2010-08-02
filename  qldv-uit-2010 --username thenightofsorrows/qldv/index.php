@@ -68,9 +68,6 @@ else switch($t){
 	case "group_manage":
 		$t="group_manage";
 		break;
-	case "user_register":
-		$t="user_register";
-		break;
 	case "change_group":
 		$t="change_group";
 		break;
@@ -79,9 +76,6 @@ else switch($t){
 		break;
 	case "activity_info":
 		$t="activity_info";
-		break;
-	case "activity_rate":
-		$t="activity_rate";
 		break;
 }
 if($t!=$_t){
