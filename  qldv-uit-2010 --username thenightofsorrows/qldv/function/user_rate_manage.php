@@ -4,25 +4,33 @@ function page_content(){
 	global $s,$t,$p,$page_header,$_GET,$_POST, $user, $db;
 	$page_header="&#272;&#225;nh gi&#225; x&#7871;p lo&#7841;i &#273;o&#224;n vi&#234;n";
 	$danhsachdoanvien=array();	
+	$id_cosodoan="";
 	// may be it have problem with the condition, just check out later
-	$sql = "
-	       SELECT  `thongtindoanvien`.`id_doanvien`,
-	               `thongtindoanvien`.`hoten`,
-	               `thongtindoanvien`.`gioitinh`,
-	               `thongtindoanvien`.`ngaysinh`,
-	               `xeploaidoanvien`.`loai`,
-	               `xeploaidoanvien`.`diem`,
-	               `xeploaidoanvien`.`Note`
-			FROM `thongtindoanvien`,`xeploaidoanvien`,`qhchidoan`
-	       WHERE   `qhchidoan`.`id_doanvien` = '{$user['id']}'
-	       AND     `thongtindoanvien`.`id_doanvien` = `qhchidoan`.`id_doanvien`
-	       AND     `xeploaidoanvien`.`id_doanvien` = `qhchidoan`.`id_doanvien`	   
-	 ";
+	if (isset($_POST['id_cosodoan'])) $id_cosodoan = $_POST['id_cosodoan'];	 
+	//echo($id_cosodoan);
+	$sql ="SELECT 	`thongtindoanvien`.`hoten`,
+					`cosodoan`.`ten`,
+					`xeploaidoanvien`.`Note`,
+					`xeploaidoanvien`.`diem`,
+					`xeploaidoanvien`.`loai`
+			FROM 	`thongtindoanvien`,
+					`qhchidoan`,
+					`xeploaidoanvien`,
+					`cosodoan`,
+					`doanvien` 
+			WHERE 	`qhchidoan`.`id_cosodoan` = '$id_cosodoan'
+			AND 	`doanvien`.`qh_chidoan`= `qhchidoan`.`qh_chidoan`
+			AND 	`doanvien`.`id_doanvien` = `xeploaidoanvien`.`id_doanvien`
+			AND 	`qhchidoan`.`id_cosodoan`=`cosodoan`.`id_cosodoan` 
+			
+			ORDER BY `thongtindoanvien`.`id_doanvien` LIMIT 0,50";
+	 //echo($sql);
 	$query = $db->query($sql);
-	if($db->num_rows>10){
+	if($db->num_rows>0){
+	$i=0;
 	while($doanvien = mysql_fetch_array($db->query_result))
 		{
-		   $danhsachdoanvien[]=array($doanvien['id_doanvien'], $doanvien[1], $doanvien[2], $doanvien[3], $doanvien[4], $doanvien[5], $doanvien[6]);
+		   $danhsachdoanvien[$i++]= $doanvien;
 		}
 	}
 
@@ -30,8 +38,9 @@ function page_content(){
 		$id = $user ["id"];
 	else
 		$id = post_in ( $_GET ['id_doanvien'] );
-	$sql1= "SELECT    `phongtraodoan`.`ten`,
-					   `phongtraodoan`.`start`	
+	$sql1 = "SELECT    `phongtraodoan`.`ten`,
+					  `phongtraodoan`.`start`,
+					  `thamgiaphongtrao`.`danhgia`	
 					
 			FROM	  `phongtraodoan`,
 					  `thamgiaphongtrao`
@@ -40,11 +49,10 @@ function page_content(){
 			AND		  `thamgiaphongtrao`.`id_phongtraodoan` = `phongtraodoan`.`id_phongtraodoan`";
 	$query1 = $db->query ( $sql1 );
 	$danhsachphongtrao = array ();
-	while ( ($pt = mysql_fetch_row ( $query1 )) != null ) {
+	while ( $pt = mysql_fetch_array ($query1)) {
 		$danhsachphongtrao [] = $pt;
 	}
 	$phongtrao = thongtinphongtrao ( $danhsachphongtrao );
-
 	return user_main_form(user_rate_manage_form($danhsachdoanvien,$phongtrao));
 }
 ?>
