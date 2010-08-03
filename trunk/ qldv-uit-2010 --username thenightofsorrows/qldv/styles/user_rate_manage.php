@@ -4,8 +4,8 @@ function thongtinphongtrao($danhsachphongtrao) {
 	$thongtin = "";
 	for($i = 0; $i < count ($danhsachphongtrao ); $i++) {
 		$thongtin .= "<tr class=\"user_info_group_movement_table_content_highlight\" >
-					<td width=\"160px\">" . $danhsachphongtrao [$i] ['phongtrao'] . "</td>
-					<td width=\"65px\">" . $danhsachphongtrao [$i] ['ngay'] . "</td>
+					<td width=\"160px\">" . $danhsachphongtrao [$i] ['ten'] . "</td>
+					<td width=\"65px\">" . $danhsachphongtrao [$i] ['start'] . "</td>
 					<td width=\"65px\">" . $danhsachphongtrao [$i] ['danhgia'] . "</td>
 				</tr>";
 	};
@@ -44,11 +44,11 @@ $var="";
 for ($i=0;$i<count($danhsachdoanvien);$i++)
 {	
 	$thongtin.="<tr class=\"user_rate_manage_form_table_content_highlight\" onClick=\"javascript:getcontent($i);\">
-						<td width=\"32px\">".$danhsachdoanvien[$i]['stt']."</td>
+						<td width=\"32px\">".($i+1)."</td>
 						<td width=\"180px\">".$danhsachdoanvien[$i]['hoten']."</td>
-						<td width=\"145px\">".$danhsachdoanvien[$i]['chidoan']."</td>
+						<td width=\"145px\">".$danhsachdoanvien[$i]['ten']."</td>
 					</tr>";
-	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['danhgia']."\",\"".$danhsachdoanvien[$i]['diem']."\",\"".$danhsachdoanvien[$i]['loai']."\")".($i<count($danhsachdoanvien)-1?",":"");
+	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['Note']."\",\"".$danhsachdoanvien[$i]['diem']."\",\"".$danhsachdoanvien[$i]['loai']."\")".($i<count($danhsachdoanvien)-1?",":"");
 };
 
 if(check_auth("qlxeploai",2)){
@@ -108,8 +108,8 @@ function getcontent(i){
 					<td colspan="2">
 						<table class = "user_rate_manage_form_table_header" cellspacing="0" border="1">
 						<tr>
-							<td width="30px"><b>STT</b></td>
-							<td width="180px"><b>H&#7885; t&#234;n</b></td>
+							<td width="33px"><b>STT</b></td>
+							<td width="197px"><b>H&#7885; t&#234;n</b></td>
 							<td width="165px"><b>Chi &#272;o&#224;n</b></td>
 							<td width="16px">&nbsp;</td>
 						</tr>
