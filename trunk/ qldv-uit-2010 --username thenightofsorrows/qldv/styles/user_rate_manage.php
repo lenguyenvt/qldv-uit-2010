@@ -1,43 +1,5 @@
 <?php
-function thongtinphongtrao($danhsachphongtrao) {
-	global $db,$user,$_POST;
-	$thongtin = "";
-	for($i = 0; $i < count ($danhsachphongtrao ); $i++) {
-		$thongtin .= "<tr class=\"user_info_group_movement_table_content_highlight\" >
-					<td width=\"160px\">" . $danhsachphongtrao [$i] ['ten'] . "</td>
-					<td width=\"65px\">" . $danhsachphongtrao [$i] ['start'] . "</td>
-					<td width=\"65px\">" . $danhsachphongtrao [$i] ['danhgia'] . "</td>
-				</tr>";
-	};
-return 
-<<<EOF
-<table class="user_rate_manage_movement_table">
-	<tr>
-		<td>
-			<table class = "user_rate_manage_movement_table_header" cellspacing="0" width="100%" border="1">
-			<tr>
-				<td width="160px">Phong tr&#224;o</td>
-				<td width="65px">Ng&#224;y</td>
-				<td>&#272;&#225;nh gi&#225;</td>
-				<td width="16px">&nbsp;</td>
-			</tr>
-			</table>
-		</td>
-	</tr> 
-	<tr>
-		<td>
-		<div class="user_rate_manage_movement_table_scroll">
-			<table class="user_info_group_movement_table_content">
-{$thongtin}
-			</table>
-		</div>
-		</td>
-	</tr>
-</table>
-EOF;
-}
-
-function user_rate_manage_form($danhsachdoanvien,$thongtinphongtrao){
+function user_rate_manage_form($danhsachdoanvien,$danhsachphongtrao){
 global $db,$user,$_POST;
 $thongtin="";
 $var="";
@@ -46,11 +8,17 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 	$thongtin.="<tr class=\"user_rate_manage_form_table_content_highlight\" onClick=\"javascript:getcontent($i);\">
 						<td width=\"32px\">".($i+1)."</td>
 						<td width=\"180px\">".$danhsachdoanvien[$i]['hoten']."</td>
-						<td width=\"145px\">".$danhsachdoanvien[$i]['ten']."</td>
+						<td width=\"145px\">".$danhsachdoanvien[$i]['Note']."</td>
 					</tr>";
-	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['Note']."\",\"".$danhsachdoanvien[$i]['diem']."\",\"".$danhsachdoanvien[$i]['loai']."\")".($i<count($danhsachdoanvien)-1?",":"");
+	$varphongtrao="Array(";
+	for($j = 0; $j < count ($danhsachphongtrao[$i]); $j++) 
+	{	
+		$varphongtrao.="Array(\"".$danhsachphongtrao[$i][$j]['ten']."\",\"".$danhsachphongtrao[$i][$j]['start']."\",\"".$danhsachphongtrao[$i][$j]['danhgia']."\")".($j<count($danhsachphongtrao[$i])-1?",":"");
+	};
+	$varphongtrao.=")";
+	$var.="Array(".$varphongtrao.",\"".$danhsachdoanvien[$i]['id_doanvien']."\",\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['Note']."\",\"".$danhsachdoanvien[$i]['diem']."\",\"".$danhsachdoanvien[$i]['loai']."\")".($i<count($danhsachdoanvien)-1?",":"");
+	
 };
-
 if(check_auth("qlxeploai",2)){
 	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`");
 	$db->query($sql);
@@ -60,20 +28,26 @@ if(check_auth("qlxeploai",2)){
 	}
 	$option_cosodoan="\n<tr><td>Chi &#272;o&#224;n: $option_cosodoan </select> <input id=\"search\" name=\"search\" type=\"submit\" value=\"T&#236;m\" style=\"margin-top:7px;width:70px\"/></td></tr>";
 	}
-	return
+return
 <<<EOF
 <script>
 function getcontent(i){	
 	var danhsach=Array($var);
-	document.getElementById("hoten").value=danhsach[i][0];
-	document.getElementById("danhgia").value=danhsach[i][1];
-	document.getElementById("diem").value=danhsach[i][2];	
-	document.getElementById("loai").value=danhsach[i][3];	
+	var s="";
+	for (j=0;j < danhsach[i][0].length;j++)
+	{
+		s+="<tr class=\"user_info_group_movement_table_content_highlight\"><td width=\"160px\">" + danhsach [i][0][j][0]+ "</td><td width=\"65px\">" + danhsach [i][0][j][1]+ "</td><td width=\"65px\">" + danhsach [i][0][j][2]+ "</td></tr>";				
+	}
+	document.getElementById("phongtrao").innerHTML=s;
+	document.getElementById("hoten").value=danhsach[i][2];
+	document.getElementById("danhgia").value=danhsach[i][3];
+	document.getElementById("diem").value=danhsach[i][4];	
+	document.getElementById("loai").value=danhsach[i][5];
 }
 </script>
 <div class="user_rate_manage_form">
     <!---Form header--->
-    <div class="user_rate_manage_form_header">
+    <div class="user_rate_manage_form_header" >
     <div class="lefthead"></div>
 	<div class="midhead">
         <div class="form_header_text">
@@ -175,7 +149,29 @@ function getcontent(i){
             	<table class="user_rate_manage_form_right_content">
                 <tr>                    
                     <td colspan="2">
-{$thongtinphongtrao}
+                    <table class="user_rate_manage_movement_table">
+                    <tr>
+                        <td>
+                            <table class = "user_rate_manage_movement_table_header" cellspacing="0" width="100%" border="1">
+                            <tr>
+                                <td width="160px">Phong tr&#224;o</td>
+                                <td width="65px">Ng&#224;y</td>
+                                <td>&#272;&#225;nh gi&#225;</td>
+                                <td width="16px">&nbsp;</td>
+                            </tr>
+                            </table>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td>
+                        	<div class="user_rate_manage_movement_table_scroll">
+                            	<table id = "phongtrao" class="user_info_group_movement_table_content">
+
+                            	</table>
+                            </div>
+                            </td>
+                        </tr>
+                        </table>
                     </td>
                 </tr> 
                 </table>
