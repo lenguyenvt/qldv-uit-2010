@@ -50,9 +50,9 @@ function page_content(){
 	$query1 = $db->query ( $sql1 );
 	$danhsachphongtrao = array ();
 	while ( $pt = mysql_fetch_array ($query1)) {
-		$danhsachphongtrao [] = $pt;
+		$danhsachphongtrao [][] = $pt;
 	}
-	$phongtrao = thongtinphongtrao ( $danhsachphongtrao );
-	return user_main_form(user_rate_manage_form($danhsachdoanvien,$phongtrao));
+	//$phongtrao = thongtinphongtrao ( $danhsachphongtrao );
+	return user_main_form(user_rate_manage_form($danhsachdoanvien,$danhsachphongtrao));
 }
 ?>
