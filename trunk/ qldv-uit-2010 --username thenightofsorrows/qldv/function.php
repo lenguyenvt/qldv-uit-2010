@@ -97,8 +97,8 @@ function check_cosodoancaptren($id1, $id2) {
 	else
 		return 0;
 	*/
-	$id2_cosodoan=get_cosodoan_hientai($id2);
-	return get_cosodoan_capduoi($id1,"",1,$id2_cosodoan);
+	$id1_cosodoan=get_cosodoan_hientai($id2);
+	return get_cosodoan($id2,"",1,$id1_cosodoan);
 }
 
 function get_cosodoan($user, $SQL_COMPATIBLE = "", $ARRAY_OUT = "", $CHECK_WITH = "") {
@@ -107,7 +107,7 @@ function get_cosodoan($user, $SQL_COMPATIBLE = "", $ARRAY_OUT = "", $CHECK_WITH 
 	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$user' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
 	$result1=mysql_fetch_array($db->query($sql));
 	*/
-	$id_parent = $user ['id_cosodoan'];
+	if(isset($user['id_cosodoan'])) $id_parent = $user['id_cosodoan']; else $id_parent = get_cosodoan_hientai($user);
 	
 	if ($SQL_COMPATIBLE == "")
 		$output = $id_parent;
@@ -160,7 +160,7 @@ function get_cosodoan_capduoi($user, $SQL_COMPATIBLE = "", $ARRAY_OUT = "", $CHE
 	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$user' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
 	$result1=mysql_fetch_array($db->query($sql));
 	*/
-	$id_parent = get_cosodoan_hientai($user);
+	if(isset($user['id_cosodoan'])) $id_parent = $user['id_cosodoan']; else $id_parent = get_cosodoan_hientai($user);
 	
 	if ($SQL_COMPATIBLE == "")
 		$output = $id_parent;
