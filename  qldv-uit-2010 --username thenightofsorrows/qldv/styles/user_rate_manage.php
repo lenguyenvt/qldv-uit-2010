@@ -16,7 +16,7 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 		$varphongtrao.="Array(\"".$danhsachphongtrao[$i][$j]['ten']."\",\"".$danhsachphongtrao[$i][$j]['start']."\",\"".$danhsachphongtrao[$i][$j]['danhgia']."\")".($j<count($danhsachphongtrao[$i])-1?",":"");
 	};
 	$varphongtrao.=")";
-	$var.="Array(".$varphongtrao.",\"".$danhsachdoanvien[$i]['id_doanvien']."\",\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['Note']."\",\"".$danhsachdoanvien[$i]['diem']."\",\"".$danhsachdoanvien[$i]['loai']."\")".($i<count($danhsachdoanvien)-1?",":"");
+	$var.="Array(".$varphongtrao.",\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['Note']."\",\"".$danhsachdoanvien[$i]['diem']."\",\"".$danhsachdoanvien[$i]['loai']."\")".($i<count($danhsachdoanvien)-1?",":"");
 	
 };
 if(check_auth("qlxeploai",2)){
@@ -40,8 +40,8 @@ function getcontent(i){
 	}
 	document.getElementById("phongtrao").innerHTML=s;
 	document.getElementById("hoten").value=danhsach[i][2];
-	document.getElementById("danhgia").value=danhsach[i][3];
-	document.getElementById("diem").value=danhsach[i][4];	
+	document.getElementById("diem").value=danhsach[i][3];
+	document.getElementById("danhgia").value=danhsach[i][4];	
 	document.getElementById("loai").value=danhsach[i][5];
 }
 </script>
