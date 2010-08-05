@@ -13,8 +13,9 @@ function page_content(){
 		if(isset($_GET['to']) && is_valid_date($_GET['to'])){
 			$_GET['to']=post_in($_GET['to']);
 			$additional.=" AND `phongtraodoan`.`end`<='{$_GET['to']}'";
-		}else $_GET['to']="2010-01-01";
+		}else $_GET['to']="2010-01-01";		
 		$sql="SELECT `phongtraodoan`.`id_phongtraodoan`,`phongtraodoan`.`ten`,`phongtraodoan`.`diengiai`,`phongtraodoan`.`start`,`phongtraodoan`.`end`,`phongtraodoan`.`id_cosodoan` FROM `phongtraodoan` WHERE (".get_cosodoan($user['id_doanvien'],"`phongtraodoan`.`id_cosodoan`")." OR ".get_cosodoan_capduoi($user['id_doanvien'],"`phongtraodoan`.`id_cosodoan`").") $additional ORDER BY `phongtraodoan`.`id_phongtraodoan` DESC LIMIT 0,50";
+		
 		$db->query($sql);
 		if($db->num_rows>0){
 			$i=0;
