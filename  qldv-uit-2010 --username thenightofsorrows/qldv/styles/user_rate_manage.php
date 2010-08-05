@@ -11,9 +11,9 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 						<td width=\"145px\">".$danhsachdoanvien[$i]['Note']."</td>
 					</tr>";
 	$varphongtrao="Array(";
-	for($j = 0; $j < count ($danhsachphongtrao[$i]); $j++) 
+	for($j = 0; $j < count ($danhsachphongtrao[$danhsachdoanvien[$i]['id_doanvien']]); $j++) 
 	{	
-		$varphongtrao.="Array(\"".$danhsachphongtrao[$i][$j]['ten']."\",\"".$danhsachphongtrao[$i][$j]['start']."\",\"".$danhsachphongtrao[$i][$j]['danhgia']."\")".($j<count($danhsachphongtrao[$i])-1?",":"");
+		$varphongtrao.="Array(\"".$danhsachphongtrao[$danhsachdoanvien[$i]['id_doanvien']][$j]['ten']."\",\"".$danhsachphongtrao[$danhsachdoanvien[$i]['id_doanvien']][$j]['start']."\",\"".$danhsachphongtrao[$danhsachdoanvien[$i]['id_doanvien']][$j]['danhgia']."\")".($j<count($danhsachphongtrao[$danhsachdoanvien[$i]['id_doanvien']])-1?",":"");
 	};
 	$varphongtrao.=")";
 	$var.="Array(".$varphongtrao.",\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['Note']."\",\"".$danhsachdoanvien[$i]['diem']."\",\"".$danhsachdoanvien[$i]['loai']."\")".($i<count($danhsachdoanvien)-1?",":"");
