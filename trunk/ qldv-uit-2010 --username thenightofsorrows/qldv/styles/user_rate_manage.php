@@ -39,10 +39,10 @@ function getcontent(i){
 		s+="<tr class=\"user_info_group_movement_table_content_highlight\"><td width=\"160px\">" + danhsach [i][0][j][0]+ "</td><td width=\"65px\">" + danhsach [i][0][j][1]+ "</td><td width=\"65px\">" + danhsach [i][0][j][2]+ "</td></tr>";				
 	}
 	document.getElementById("phongtrao").innerHTML=s;
-	document.getElementById("hoten").value=danhsach[i][2];
-	document.getElementById("diem").value=danhsach[i][3];
-	document.getElementById("danhgia").value=danhsach[i][4];	
-	document.getElementById("loai").value=danhsach[i][5];
+	document.getElementById("hoten").value=danhsach[i][1];
+	document.getElementById("danhgia").value=danhsach[i][2];
+	document.getElementById("diem").value=danhsach[i][3];		
+	document.getElementById("loai").value=danhsach[i][4];
 }
 </script>
 <div class="user_rate_manage_form">
