@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.1.1
+-- version 3.2.0.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 27, 2010 at 01:38 AM
--- Server version: 5.1.30
--- PHP Version: 5.2.8
+-- Generation Time: Aug 08, 2010 at 09:20 PM
+-- Server version: 5.1.35
+-- PHP Version: 5.3.0
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
@@ -16,7 +16,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `qldv2`
+-- Database: `qldv`
 --
 
 -- --------------------------------------------------------
@@ -79,22 +79,20 @@ INSERT INTO `chucvu` (`id`, `id_doanvien`, `id_chucvu`, `id_cosodoan`, `start`, 
 
 CREATE TABLE IF NOT EXISTS `cosodoan` (
   `id_cosodoan` int(11) NOT NULL AUTO_INCREMENT,
-  `cap` int(11) NOT NULL,
   `ten` text NOT NULL,
   `parent` int(11) NOT NULL,
   `co_dau` int(1) NOT NULL,
   PRIMARY KEY (`id_cosodoan`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `cosodoan`
 --
 
-INSERT INTO `cosodoan` (`id_cosodoan`, `cap`, `ten`, `parent`, `co_dau`) VALUES
-(1, 1, 'Dai hoc Cong nghe thong tin', 0, 1),
-(2, 2, 'DHCNTT - Khoa Khoa hoc may tinh', 1, 0),
-(3, 1, 'DH KHTN', 0, 1),
-(4, 2, 'KHMT - CNTN', 2, 0);
+INSERT INTO `cosodoan` (`id_cosodoan`, `ten`, `parent`, `co_dau`) VALUES
+(1, 'Äáº¡i há»c cÃ´ng nghá»‡ thÃ´ng tin', 0, 1),
+(2, 'Khoa khoa há»c mÃ¡y tÃ­nh', 1, 0),
+(3, 'DH KHTN', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -122,19 +120,19 @@ INSERT INTO `danhmucchucvu` (`id_chucvu`, `ten`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `doanphi` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_doanphi` int(11) NOT NULL AUTO_INCREMENT,
   `id_doanvien` int(11) NOT NULL,
   `ngaydong` date NOT NULL,
   `sotien` double NOT NULL,
   `id_cosodoan` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id_doanphi`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `doanphi`
 --
 
-INSERT INTO `doanphi` (`id`, `id_doanvien`, `ngaydong`, `sotien`, `id_cosodoan`) VALUES
+INSERT INTO `doanphi` (`id_doanphi`, `id_doanvien`, `ngaydong`, `sotien`, `id_cosodoan`) VALUES
 (1, 1, '2010-05-15', 20000, 1);
 
 -- --------------------------------------------------------
@@ -147,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `doanvien` (
   `id_doanvien` int(11) NOT NULL AUTO_INCREMENT,
   `username` char(64) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `doan_phi` date NOT NULL,
+  `doan_phi` int(11) NOT NULL,
   `auth` tinyint(4) NOT NULL,
   `sid` varchar(255) NOT NULL,
   `ip` varchar(16) NOT NULL,
@@ -161,9 +159,9 @@ CREATE TABLE IF NOT EXISTS `doanvien` (
 --
 
 INSERT INTO `doanvien` (`id_doanvien`, `username`, `password`, `doan_phi`, `auth`, `sid`, `ip`, `email`, `qh_chidoan`) VALUES
-(1, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', '2010-06-03', 1, '05f428b3dc8e155453e8a77ff2c9ffad', '127.0.0.1', 'admin@uit.edu.vn', 1),
-(2, 'test1', 'c3284d0f94606de1fd2af172aba15bf3', '0000-00-00', 2, '', '127.0.0.1', '', 4),
-(3, 'test2', 'c3284d0f94606de1fd2af172aba15bf3', '2010-06-16', 2, 'cb74372e0ee10c9ad74c3df67962b0b6', '127.0.0.1', '', 3);
+(1, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', 1, 1, '4b2ihtk0g6gotf4tlcfhvcdo30', '127.0.0.1', 'admin@uit.edu.vn', 1),
+(2, 'test1', 'c3284d0f94606de1fd2af172aba15bf3', 0, 2, '', '127.0.0.1', '', 4),
+(3, 'test2', 'c3284d0f94606de1fd2af172aba15bf3', 0, 2, 'o001pdgh580j773g01l0n814a4', '127.0.0.1', '', 3);
 
 -- --------------------------------------------------------
 
@@ -205,7 +203,6 @@ CREATE TABLE IF NOT EXISTS `phongtraodoan` (
 --
 
 INSERT INTO `phongtraodoan` (`id_phongtraodoan`, `ten`, `diengiai`, `id_cosodoan`, `start`, `end`) VALUES
-(1, 'MÃ¡y tÃ­nh cÅ© tri thá»©c má»›i káº¿t há»£p vá»›i Tinh há»c xanh cá»§a Äáº¡i há»c CÃ´ng nghá»‡ thÃ´ng tin', 'Chien dich Mua he xanh 2010 cua truong Dai hoc Cong nghe thong tin', 1, '2010-07-12', '2010-08-15'),
 (2, 'Thanh nien khoe 2010', 'Phong trao thanh nien khoe, mot trong nhung noi dung de dat duoc danh hieu sinh vien 5 tot', 4, '2010-06-01', '2010-06-03'),
 (3, 'Tiep lua', 'Hoat dong tiep lua do ban Hoc tap cua Hoi sinh vien phat dong', 1, '2010-01-01', '2010-12-31');
 
@@ -231,8 +228,8 @@ CREATE TABLE IF NOT EXISTS `qhchidoan` (
 INSERT INTO `qhchidoan` (`qh_chidoan`, `id_doanvien`, `id_cosodoan`, `start`, `end`) VALUES
 (1, 1, 1, '2010-01-01', '2010-12-31'),
 (2, 2, 2, '2009-06-16', '2010-06-30'),
-(4, 2, 3, '2010-07-26', '2011-07-26'),
-(3, 3, 3, '2010-07-26', '2013-07-26');
+(4, 2, 2, '2010-07-26', '2011-07-26'),
+(3, 3, 1, '2010-07-26', '2013-07-26');
 
 -- --------------------------------------------------------
 
@@ -286,16 +283,16 @@ CREATE TABLE IF NOT EXISTS `thamgiaphongtrao` (
   `id_phongtraodoan` int(11) NOT NULL,
   `danhgia` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `thamgiaphongtrao`
 --
 
 INSERT INTO `thamgiaphongtrao` (`id`, `id_doanvien`, `id_phongtraodoan`, `danhgia`) VALUES
-(1, 1, 1, 'Tot'),
 (2, 1, 2, 'Tam'),
-(3, 1, 3, 'Kem');
+(3, 1, 3, 'Kem'),
+(4, 3, 3, '');
 
 -- --------------------------------------------------------
 
@@ -361,8 +358,8 @@ CREATE TABLE IF NOT EXISTS `thongtindoanvien` (
 --
 
 INSERT INTO `thongtindoanvien` (`id_doanvien`, `congvieclaunhat`, `congviec`, `khenthuong`, `kyluat`, `tinhtrangsuckhoe`, `chieucao`, `cannang`, `nhommau`, `cmnd`, `thuongbinhloai`, `hoten`, `tenkhac`, `gioitinh`, `capuyhientai`, `capuykiem`, `chucvu`, `ngaysinh`, `noisinh`, `quequan`, `noitamtru`, `dienthoainharieng`, `dantoc`, `tongiao`, `xuatthangiadinh`, `ngaytuyendung`, `coquan`, `ngayvaocoquancongtac`, `ngayvaodangdubi`, `ngayvaodangchinhthuc`, `ngaynhapngu`, `ngayxuatngu`, `chucvucaonhat`, `trinhdovanhoa`, `trinhdolyluanchinhtri`, `trinhdongoaingu`, `hochamcaonhat`, `congtacchinh`, `ngachcongchuc`, `bacluong`, `hesoluong`, `danhhieu`, `sotruong`, `giadinhlietsi`, `dacdiembanthan`, `quanhenuocngoai`, `noithuongtru`, `dienthoaididong`, `ngayvaodoan`) VALUES
-('1', NULL, NULL, NULL, NULL, 'Tot', 202, 105, 'AB', '201130402', NULL, 'Nguyen Van A', NULL, 0, NULL, NULL, NULL, '1990-06-01', 'Binh Duong', 'Nghe An', 'KP6, Linh Trung, Thu Duc', '0812345', 'Kinh', 'Cong giao', 'Ban nong', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12/12', 'Trung cap chinh tri', 'Bang C tieng Anh', 'Khong co', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'So 80, Dai lo Binh Duong, Binh Duong', '0973798990|0985848481|0922334455', '2003-03-26'),
-('3', NULL, 'Bi Thu Doan Truong', '1', '1', 'Tot', 170, 70, 'B', 'xxxxxxxxx', NULL, 'Tran Van B', NULL, 0, NULL, NULL, NULL, '1985-07-26', 'khong ro', 'khong hay', 'Tam thoi chua biet', '0832100216', 'Kinh', 'khong', 'Ban nong', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12/12', 'trung cap chinh tri', 'bang C', 'Thac si', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Tam thoi chua biet', '0903002001', '2010-03-26');
+('1', NULL, NULL, NULL, NULL, 'Tot cai gi ma t', 250, 127, 'D', '201130401', NULL, 'Nguyá»…n HoÃ ng Hiáº¿u', NULL, 0, NULL, NULL, NULL, '1990-06-14', 'Ba Ria', 'Vung Tau', 'Binh Thanh', '082761263', 'Kinh', 'Tin Lanh', 'Biet chet', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '10/12', 'Khong co', 'Khong co bang ', 'GS nganh tam than hoc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dau co biet', '09788798990', '2003-03-21'),
+('3', NULL, 'Bi Thu Doan Truong', '1', '1', 'Tot', 170, 70, 'B', 'xxxxxxxxx', NULL, 'Tran Van C', NULL, 0, NULL, NULL, NULL, '1985-07-26', 'khong ro', 'khong hay', 'Tam thoi chua biet', '0832100216', 'Kinh', 'khong', 'Ban nong', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12/12', 'trung cap chinh tri', 'bang C', 'Thac si', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Tam thoi chua biet', '0903002001|37498230|932840923|234567', '1989-01-11');
 
 -- --------------------------------------------------------
 
