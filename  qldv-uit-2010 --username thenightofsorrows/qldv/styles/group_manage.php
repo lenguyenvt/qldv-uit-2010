@@ -1,5 +1,5 @@
 <?php
-function group_manage_form($danhsachcosodoan){
+function group_manage_form($danhsachcosodoan,$error=""){
 global $db,$user;
 $thongtin="";
 $var="";
@@ -14,7 +14,7 @@ for ($i=0;$i<count($danhsachcosodoan);$i++)
 	$thongtin.="<tr class=\"group_manage_form_table_content_highlight\" onClick=\"javascript:getcontent($i);\">
 						<td width=\"31px\">".($i+1)."</td>
 						<td width=\"380px\">".$danhsachcosodoan[$i]['ten']."</td>
-						<td width=\"25px\"><input id=\"select_cosodoan\" name=\"select_cosodoan\" type=\"checkbox\" value=\"".($danhsachcosodoan[$i]['co_dau']==1?"checked":"")."\" /></td>
+						<td width=\"25px\"><input id=\"select_cosodoan[]\" name=\"select_cosodoan[]\" type=\"checkbox\" value=\"".$danhsachcosodoan[$i]['id_cosodoan']."\" /></td>
 					</tr>";
 	$var.="Array(\"".$danhsachcosodoan[$i]['ten']."\",\"".$danhsachcosodoan[$i]['id_cosodoan']."\",\"".$danhsachcosodoan[$i]['parent']."\",\"".($danhsachcosodoan[$i]['co_dau']==1?"checked":"")."\")".($i<count($danhsachcosodoan)-1?",":"");
 };
@@ -51,7 +51,7 @@ function getcontent(i){
 		<table class="group_manage_form_text">
         <tbody>
 		<tr height="24px">
-			<td width="442px">
+			<td width="442px">{$error}
 				Danh s&#225;ch c&#417; s&#7903; &#272;o&#224;n:
 			</td>
 			<td>
@@ -60,6 +60,7 @@ function getcontent(i){
 		</tr>
 		<tr valign="top">
 			<td width="442px">
+				<form method="POST">
 				<table class="group_manage_form_table">
 				<tr>
 					<td>
@@ -85,7 +86,6 @@ function getcontent(i){
 				</table>                
 			</td>
 			<td>
-		<form method="POST">
             	<table class="group_manage_form_right_content">
                 <tr>
                     <td colspan="2">
@@ -106,7 +106,7 @@ function getcontent(i){
                     	C&#243; d&#7845;u &#273;&#7887;:
                     </td>
                     <td align="center">
-                    	<input id="co_dau" name="co_dau" type="checkbox" value="" />
+                    	<input id="co_dau" name="co_dau" type="checkbox" value="1" />
                     </td>
                 </tr>
                 </table>
