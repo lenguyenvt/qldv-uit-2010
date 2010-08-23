@@ -1,7 +1,11 @@
 <?php
+
+
+	
+
+	
 function submit_button() {
 	global $user, $_GET;
-	
 	if (! isset ( $_GET ['id_doanvien'] ))
 		$id = $user ["id"];
 	else
@@ -72,6 +76,12 @@ function thongtincanhan($hoten, $gioitinh, $ngaysinh, $dantoc, $tongiao, $cmnd) 
 EOF;
 }
 function thongtinlienlac($email, $dcgiadinh, $dchientru, $dienthoainr, $dienthoaidd) {
+	global $user, $_GET;
+	if (! isset ( $_GET ['id_doanvien'] ))
+		$id = $user ["id"];
+	else
+		$id = post_in ( $_GET ['id_doanvien'] );
+		
 	return <<<EOF
 	<fieldset class="user_info_group_contact">
                     <legend>Li&#234;n l&#7841;c</legend>
@@ -98,7 +108,7 @@ function thongtinlienlac($email, $dcgiadinh, $dchientru, $dienthoainr, $dienthoa
                         </tr>
                         <tr>
                             <td class="user_info_group_contact_table_left">&nbsp;</td>
-                            <td class="user_info_group_contact_table_right"><a href="?type=phone_history">Tra c&#7913;u c&#225;c s&#7889; &#272;T &#273;&#227; d&#249;ng</a></td>
+                            <td class="user_info_group_contact_table_right"><a href="?type=phone_history&id_doanvien=$id">Tra c&#7913;u c&#225;c s&#7889; &#272;T &#273;&#227; d&#249;ng</a></td>
                         </tr>
                     </table>
                     </fieldset> 
