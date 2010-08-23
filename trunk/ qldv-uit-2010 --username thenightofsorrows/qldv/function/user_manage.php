@@ -9,9 +9,25 @@ function page_content(){
 		
 	$capduoi = get_cosodoan_capduoi($user["id"]);
 	$dscapduoi = explode(',',$capduoi);
+<<<<<<< .mine
+	$id_cosodoan = $dscapduoi[0];
+	$danhsachdoanvien = array();
+	echo $id_cosodoan;
+=======
 	$id_cosodoan = $dscapduoi[0];	
 	$dsdoanvien = $_POST['dsdoanvien'];
-
+	echo "4 1 = " . check_cosodoancaptren(4, 1);
+	echo "<br/>";
+	echo "1 4 = " . check_cosodoancaptren(1, 4);
+	echo "<br/>";
+	echo "1 3 = " . check_cosodoancaptren(1, 3);
+	echo "<br/>";
+	echo "3 1 = " . check_cosodoancaptren(3, 1);
+	echo "<br/>";
+	echo "1 2 = " . check_cosodoancaptren(1, 2);
+	echo "<br/>";
+	echo "2 1 = " . check_cosodoancaptren(2, 1);
+	echo "<br/>";
 	if ((isset($_POST['delete'])) && (sizeof($_POST['dsdoanvien'] > 0)))
 	{ 	
 		
@@ -19,7 +35,7 @@ function page_content(){
 		{			
 			$id_dv = $value;
 
-			if (check_cosodoancaptren($user['id'], $id_dv))
+			if (check_cosodoancaptren(get_cosodoan_hientai($user['id']), get_cosodoan_hientai($id_dv)))
 			{
 				if (check_auth("qldoanvien", 4))
 				{
@@ -61,6 +77,7 @@ function page_content(){
 		}
 		
 	}
+>>>>>>> .r75
 	
 	if (isset($_POST['id_cosodoan'])) $id_cosodoan = $_POST['id_cosodoan'];	 
 	 	 		
@@ -93,7 +110,7 @@ function page_content(){
 				$danhsachdoanvien[$i++]=$doanvien;
 			}
 		}
-		else $danhsachdoanvien=array();
-	return user_main_form(user_manage_form($danhsachdoanvien,$error));
+
+	return user_main_form(user_manage_form($danhsachdoanvien));
 }
 ?>

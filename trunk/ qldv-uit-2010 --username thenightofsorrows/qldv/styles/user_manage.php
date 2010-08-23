@@ -14,7 +14,11 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 						<td width=\"29px\">".($danhsachdoanvien[$i]['gioitinh']==0?"Nam":"N&#7919;")."</td>
 						<td width=\"85px\">".$danhsachdoanvien[$i]['ngaysinh']."</td>
 						<td width=\"85px\">".$danhsachdoanvien[$i]['doan_phi']."</td>
+<<<<<<< .mine
+						<td width=\"25px\"><input id=\"xoa_doanvien[]\" name=\"xoa_doanvien[]\" type=\"checkbox\" value=\"checked\" /></td>
+=======
 						<td width=\"25px\"><input id=\"dsdoanvien[{$danhsachdoanvien[$i]['id_doanvien']}]\" name=\"dsdoanvien[]\" type=\"checkbox\" value=\"$id_dv\" /></td>
+>>>>>>> .r75
 					</tr>";
 	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['id_doanvien']."\",\"".$danhsachdoanvien[$i]['chucvu']."\")".($i<count($danhsachdoanvien)-1?",":"");
 };
@@ -72,6 +76,7 @@ function resetimage()
         {$option_cosodoan}
         </tr>
 		<tr height="24px">
+		<form method="POST">
 			<td width="521px">
 				Danh s&#225;ch &#273;o&#224;n vi&#234;n:
 			</td>
