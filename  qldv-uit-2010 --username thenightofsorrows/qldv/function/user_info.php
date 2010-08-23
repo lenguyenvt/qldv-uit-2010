@@ -9,10 +9,17 @@ function page_content() {
 	$page_header = "Th&#244;ng tin c&#225; nh&#226;n";
 	
 	$this_year = date ( "Y" );
+	var_dump($user);
+	
 	if (! isset ( $_GET ['id_doanvien'] ))
 		$id = $user ["id"];
 	else
 		$id = post_in ( $_GET ['id_doanvien'] );
+	
+	echo "<br/>";
+	echo $id;
+	echo "<br/>";
+	echo $user["id"];
 	
 	if (isset($_POST ['sua_doanvien'])) {
 		
