@@ -48,6 +48,9 @@ if(check_auth("qlphongtrao",1)) $ql.='			<tr>
 if(check_auth("qldoanvien",1)) $ql.='			<tr>
 			<td align="left"><a href="index.php?type=user_manage">Qu&#7843;n l&#253; &#273;o&#224;n vi&#234;n</td>
 			</tr>';
+if(check_auth("qldoanvien",4)) $ql.='			<tr>
+			<td align="left"><a href="index.php?type=user_register">Th&#234;m &#273;o&#224;n vi&#234;n</td>
+			</tr>';
 if(check_auth("qlchucvu",1)) $ql.='			<tr>
 			<td align="left"><a href="index.php?type=account">Qu&#7843;n l&#253; ch&#7913;c v&#7909;</td>
 			</tr>';

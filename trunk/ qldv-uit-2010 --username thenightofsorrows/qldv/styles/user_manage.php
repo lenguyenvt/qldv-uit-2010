@@ -14,30 +14,34 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 						<td width=\"29px\">".($danhsachdoanvien[$i]['gioitinh']==0?"Nam":"N&#7919;")."</td>
 						<td width=\"85px\">".$danhsachdoanvien[$i]['ngaysinh']."</td>
 						<td width=\"85px\">".$danhsachdoanvien[$i]['doan_phi']."</td>
-<<<<<<< .mine
-						<td width=\"25px\"><input id=\"xoa_doanvien[]\" name=\"xoa_doanvien[]\" type=\"checkbox\" value=\"checked\" /></td>
-=======
+						<!-- <td width=\"25px\"><input id=\"xoa_doanvien[]\" name=\"xoa_doanvien[]\" type=\"checkbox\" value=\"checked\" /></td> -->
 						<td width=\"25px\"><input id=\"dsdoanvien[{$danhsachdoanvien[$i]['id_doanvien']}]\" name=\"dsdoanvien[]\" type=\"checkbox\" value=\"$id_dv\" /></td>
->>>>>>> .r75
 					</tr>";
 	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['id_doanvien']."\",\"".$danhsachdoanvien[$i]['chucvu']."\")".($i<count($danhsachdoanvien)-1?",":"");
 };
 
 if(check_auth("qldoanvien",2)){
-	$buttons_1=" <input id =\"delete\" name =\"delete\" type =\"submit\" value =\"X&#243;a\" style=\"margin-top:7px;width:70px\"/>";
+	$buttons_1="<input id =\"delete\" name =\"delete\" type =\"submit\" value =\"X&#243;a\" style=\"margin-top:7px;width:70px\"/>";
 	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`");
 	$db->query($sql);
-	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:120px;font-size:9pt\">";
+	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:220px;font-size:9pt\">";
 	while($tmp=mysql_fetch_array($db->query_result)){
 		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
 	}
+	$buttons_2="Chi &#272;o&#224;n: $option_cosodoan </select><input id=\"change_group\" name=\"change_group\" type=\"submit\" value=\"Chuy&#7875;n sinh ho&#7841;t\"/>";
 	$option_cosodoan="\n<tr><td>Chi &#272;o&#224;n: $option_cosodoan </select> <input id=\"search\" name=\"search\" type=\"submit\" value=\"T&#236;m\" style=\"margin-top:7px;width:70px\"/></td></tr>";
 }
 else{
 	$option_cosodoan="";
-	$buttons_1="";	
+	$buttons_1="";
+	$buttons_2="";
 }
-
+$dschucvu='<select id="chucvu" name="chucvu" type="text" class="user_manage_form_textbox">';
+$db->query("SELECT `id`,`name` FROM `auth`");
+while($dschucvu_tmp=$db->fetch_array()){
+	$dschucvu.="<option value=\"{$dschucvu_tmp['id']}\">{$dschucvu_tmp['name']}</option>\n";
+}
+$dschucvu.="</select>";
 return
 <<<EOF
 <script>
@@ -69,14 +73,15 @@ function resetimage()
     <div class="user_manage_form_body">
     <div class="left"></div>
 	<div class="mid">
-	<form method="POST">
 		<table class="user_manage_form_text">
         <tbody>        
 		<tr>
-        {$option_cosodoan}
-        </tr>
-		<tr height="24px">
 		<form method="POST">
+        {$option_cosodoan}
+        </form>
+        </tr>
+        <form method="POST">
+		<tr height="24px">
 			<td width="521px">
 				Danh s&#225;ch &#273;o&#224;n vi&#234;n:
 			</td>
@@ -139,7 +144,7 @@ function resetimage()
                     	Ch&#7913;c v&#7909;:
 					</td>
                     <td align="right">
-                    	<input id="chucvu" name="chucvu" type="text" class="user_manage_form_textbox" />
+                    {$dschucvu}
                     </td>
                 </tr> 
                 <tr>   
@@ -149,11 +154,8 @@ function resetimage()
                     	<a id="url" href="index.php?type=user_info&id_doanvien=">Th&#244;ng tin chi ti&#7871;t</a>
                     </td>
                 </tr>
-                <tr>   
+                <tr>
                 	<td>   
-                    </td>
-                    <td align="right">
-                    	<a href="index.php?type=change_group">Chuy&#7875;n sinh ho&#7841;t &#273;o&#224;n</a>
                     </td>
                 </tr>
 				</table>
@@ -163,10 +165,10 @@ function resetimage()
 			<td align="right" width="521px">
 			{$buttons_1}
 			</td>
-		</tr>        
+		</tr><tr><td>{$buttons_2}</td></tr>
         </tbody>
-        </table> 
-        </form>
+        </table>
+        	</form>
     </div>
 	<div class="right"></div>       
 	</div>

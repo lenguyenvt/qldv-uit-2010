@@ -3,17 +3,11 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Aug 08, 2010 at 09:20 PM
+-- Generation Time: Sep 27, 2010 at 09:21 PM
 -- Server version: 5.1.35
 -- PHP Version: 5.3.0
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `qldv`
@@ -51,29 +45,6 @@ INSERT INTO `auth` (`id`, `name`, `level`, `thongtincanhan`, `qlchucvu`, `qlthon
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chucvu`
---
-
-CREATE TABLE IF NOT EXISTS `chucvu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_doanvien` int(11) NOT NULL,
-  `id_chucvu` int(11) NOT NULL,
-  `id_cosodoan` int(11) NOT NULL,
-  `start` date NOT NULL,
-  `end` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `chucvu`
---
-
-INSERT INTO `chucvu` (`id`, `id_doanvien`, `id_chucvu`, `id_cosodoan`, `start`, `end`) VALUES
-(1, 1, 1, 1, '2010-01-01', '2010-12-31');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `cosodoan`
 --
 
@@ -93,25 +64,6 @@ INSERT INTO `cosodoan` (`id_cosodoan`, `ten`, `parent`, `co_dau`) VALUES
 (1, 'Äáº¡i há»c cÃ´ng nghá»‡ thÃ´ng tin', 0, 1),
 (2, 'Khoa khoa há»c mÃ¡y tÃ­nh', 1, 0),
 (3, 'DH KHTN', 0, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `danhmucchucvu`
---
-
-CREATE TABLE IF NOT EXISTS `danhmucchucvu` (
-  `id_chucvu` int(11) NOT NULL AUTO_INCREMENT,
-  `ten` text NOT NULL,
-  PRIMARY KEY (`id_chucvu`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `danhmucchucvu`
---
-
-INSERT INTO `danhmucchucvu` (`id_chucvu`, `ten`) VALUES
-(1, 'Bi thu Chi Doan');
 
 -- --------------------------------------------------------
 
@@ -152,16 +104,27 @@ CREATE TABLE IF NOT EXISTS `doanvien` (
   `email` text NOT NULL,
   `qh_chidoan` int(11) NOT NULL,
   PRIMARY KEY (`id_doanvien`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
 
 --
 -- Dumping data for table `doanvien`
 --
 
 INSERT INTO `doanvien` (`id_doanvien`, `username`, `password`, `doan_phi`, `auth`, `sid`, `ip`, `email`, `qh_chidoan`) VALUES
-(1, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', 1, 1, '4b2ihtk0g6gotf4tlcfhvcdo30', '127.0.0.1', 'admin@uit.edu.vn', 1),
+(1, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', 1, 1, 'i2dj0aeiggtl4sna67rvact3q7', '127.0.0.1', 'admin@uit.edu.vn', 1),
 (2, 'test1', 'c3284d0f94606de1fd2af172aba15bf3', 0, 2, '', '127.0.0.1', '', 4),
-(3, 'test2', 'c3284d0f94606de1fd2af172aba15bf3', 0, 2, 'o001pdgh580j773g01l0n814a4', '127.0.0.1', '', 3);
+(3, 'test2', 'c3284d0f94606de1fd2af172aba15bf3', 0, 2, '657frldnub9imon7nkapql4qg0', '127.0.0.1', '', 13),
+(4, 'abc', 'cba', 0, 2, '', '', 'cpa', 0),
+(5, 'a_nguyen_van', '5b1bcc0f6e7f0267f0bf93f161e69d5d', 0, 2, '', '', 'test@test.com', 0),
+(6, 'b_nguyen_van', '5b1bcc0f6e7f0267f0bf93f161e69d5d', 0, 2, '', '', 'test@test.com', 0),
+(7, 'c_nguyen_van', '5b1bcc0f6e7f0267f0bf93f161e69d5d', 0, 2, '', '', 'test@test.com', 0),
+(8, 'd_nguyen_van', '5b1bcc0f6e7f0267f0bf93f161e69d5d', 0, 2, '', '', 'test@test.com', 0),
+(9, 'e_nguyen_van', '5b1bcc0f6e7f0267f0bf93f161e69d5d', 0, 2, '', '', 'test@test.com', 19),
+(10, 'f_nguyen_van', '5b1bcc0f6e7f0267f0bf93f161e69d5d', 0, 2, '', '', 'test@test.com', 20),
+(11, 'h_nguyen_van', '5b1bcc0f6e7f0267f0bf93f161e69d5d', 0, 2, '', '', 'test@test.com', 21),
+(12, 'l_nguyen_van', '5b1bcc0f6e7f0267f0bf93f161e69d5d', 0, 2, '', '', 'test@test.com', 22),
+(13, 'm_nguyen_van', '5b1bcc0f6e7f0267f0bf93f161e69d5d', 0, 2, '', '', 'test@test.com', 23),
+(14, 'n_nguyen_van', '5b1bcc0f6e7f0267f0bf93f161e69d5d', 0, 2, '', '', 'test@test.com', 24);
 
 -- --------------------------------------------------------
 
@@ -219,17 +182,31 @@ CREATE TABLE IF NOT EXISTS `qhchidoan` (
   `start` date NOT NULL,
   `end` date NOT NULL,
   PRIMARY KEY (`qh_chidoan`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `qhchidoan`
 --
 
 INSERT INTO `qhchidoan` (`qh_chidoan`, `id_doanvien`, `id_cosodoan`, `start`, `end`) VALUES
-(1, 1, 1, '2010-01-01', '2010-12-31'),
-(2, 2, 2, '2009-06-16', '2010-06-30'),
+(1, 1, 1, '2010-01-01', '2010-09-20'),
+(2, 2, 1, '2009-06-16', '2010-06-30'),
 (4, 2, 2, '2010-07-26', '2011-07-26'),
-(3, 3, 1, '2010-07-26', '2013-07-26');
+(3, 3, 1, '2010-07-26', '2010-09-20'),
+(5, 2, 3, '0000-00-00', '0000-00-00'),
+(18, 8, 1, '2010-09-27', '2010-09-27'),
+(17, 7, 1, '2010-09-27', '2010-09-27'),
+(16, 6, 1, '2010-09-27', '2010-09-27'),
+(15, 5, 1, '2010-09-27', '2010-09-27'),
+(14, 4, 1, '2010-09-28', '2010-09-28'),
+(13, 3, 2, '2010-09-20', '2010-09-20'),
+(12, 3, 1, '2010-09-20', '2010-09-20'),
+(19, 9, 1, '2010-09-27', '2010-09-27'),
+(20, 10, 2, '2010-09-27', '2010-09-27'),
+(21, 11, 2, '2010-09-27', '2010-09-27'),
+(22, 12, 2, '2010-09-27', '2010-09-27'),
+(23, 13, 2, '2010-09-27', '2010-09-27'),
+(24, 14, 2, '2010-09-27', '2010-09-27');
 
 -- --------------------------------------------------------
 
@@ -359,7 +336,10 @@ CREATE TABLE IF NOT EXISTS `thongtindoanvien` (
 
 INSERT INTO `thongtindoanvien` (`id_doanvien`, `congvieclaunhat`, `congviec`, `khenthuong`, `kyluat`, `tinhtrangsuckhoe`, `chieucao`, `cannang`, `nhommau`, `cmnd`, `thuongbinhloai`, `hoten`, `tenkhac`, `gioitinh`, `capuyhientai`, `capuykiem`, `chucvu`, `ngaysinh`, `noisinh`, `quequan`, `noitamtru`, `dienthoainharieng`, `dantoc`, `tongiao`, `xuatthangiadinh`, `ngaytuyendung`, `coquan`, `ngayvaocoquancongtac`, `ngayvaodangdubi`, `ngayvaodangchinhthuc`, `ngaynhapngu`, `ngayxuatngu`, `chucvucaonhat`, `trinhdovanhoa`, `trinhdolyluanchinhtri`, `trinhdongoaingu`, `hochamcaonhat`, `congtacchinh`, `ngachcongchuc`, `bacluong`, `hesoluong`, `danhhieu`, `sotruong`, `giadinhlietsi`, `dacdiembanthan`, `quanhenuocngoai`, `noithuongtru`, `dienthoaididong`, `ngayvaodoan`) VALUES
 ('1', NULL, NULL, NULL, NULL, 'Tot cai gi ma t', 250, 127, 'D', '201130401', NULL, 'Nguyá»…n HoÃ ng Hiáº¿u', NULL, 0, NULL, NULL, NULL, '1990-06-14', 'Ba Ria', 'Vung Tau', 'Binh Thanh', '082761263', 'Kinh', 'Tin Lanh', 'Biet chet', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '10/12', 'Khong co', 'Khong co bang ', 'GS nganh tam than hoc', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Dau co biet', '09788798990', '2003-03-21'),
-('3', NULL, 'Bi Thu Doan Truong', '1', '1', 'Tot', 170, 70, 'B', 'xxxxxxxxx', NULL, 'Tran Van C', NULL, 0, NULL, NULL, NULL, '1985-07-26', 'khong ro', 'khong hay', 'Tam thoi chua biet', '0832100216', 'Kinh', 'khong', 'Ban nong', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12/12', 'trung cap chinh tri', 'bang C', 'Thac si', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Tam thoi chua biet', '0903002001|37498230|932840923|234567', '1989-01-11');
+('3', NULL, 'Bi Thu Doan Truong', '1', '1', 'Tot', 170, 70, 'B', 'xxxxxxxxx', NULL, 'Tráº§n VÄƒn An', NULL, 0, NULL, NULL, NULL, '1985-07-26', 'khong ro', 'khong hay', 'Tam thoi chua biet', '0832100216', 'KhÆ¡ me Ä‘á»', 'BÃ¡ Ä‘áº¡o', 'Ban nong', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '12/12', 'trung cap chinh tri', 'bang C', 'Thac si', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Biáº¿t cháº¿t liá»n', '0903002001', '1989-01-11'),
+('13', NULL, NULL, NULL, NULL, ' ', 0, 0, '0', '0', NULL, 'Nguyá»…n VÄƒn A', NULL, 0, NULL, NULL, NULL, '1980-10-20', ' ', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ' ', ' ', ' ', ' ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ' ', ' ', '2010-09-27'),
+('12', NULL, NULL, NULL, NULL, ' ', 0, 0, '0', '0', NULL, 'ï»¿Nguyá»…n VÄƒn A', NULL, 0, NULL, NULL, NULL, '1980-10-20', ' ', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ' ', ' ', ' ', ' ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ' ', ' ', '2010-09-27'),
+('14', NULL, NULL, NULL, NULL, ' ', 0, 0, '0', '0', NULL, 'Nguyá»…n VÄƒn A', NULL, 0, NULL, NULL, NULL, '1980-10-20', ' ', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ' ', ' ', ' ', ' ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ' ', ' ', '2010-09-27');
 
 -- --------------------------------------------------------
 

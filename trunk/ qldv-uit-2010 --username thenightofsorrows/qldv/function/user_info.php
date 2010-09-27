@@ -9,18 +9,12 @@ function page_content() {
 	$page_header = "Th&#244;ng tin c&#225; nh&#226;n";
 	
 	$this_year = date ( "Y" );
-	var_dump($user);
 	
 	if (! isset ( $_GET ['id_doanvien'] ))
 		$id = $user ["id"];
 	else
 		$id = post_in ( $_GET ['id_doanvien'] );
-	
-	echo "<br/>";
-	echo $id;
-	echo "<br/>";
-	echo $user["id"];
-	
+		
 	if (isset($_POST ['sua_doanvien'])) {
 		
 		if (isset ( $_POST ['hoten'] ))
@@ -104,7 +98,6 @@ function page_content() {
 			
 		WHERE `thongtindoanvien`.`id_doanvien` =  '$id';
 		";
-		echo($sql_update);
 		$query = $db->query ( $sql_update );
 	}
 	
@@ -139,13 +132,11 @@ function page_content() {
 	";
 	
 	$sql3 = "
-		SELECT 	 `danhmucchucvu`.`ten` as `tenchucvu`
+		SELECT 	 `auth`.`name` as `tenchucvu`
 		
-		FROM	 `danhmucchucvu`, 
-				 `chucvu`
+		FROM	 `auth`, `doanvien`
 				 
-		WHERE	 `danhmucchucvu`.`id_chucvu` = `chucvu`.`id_chucvu`
-		AND		 `chucvu`.`id_doanvien` = '{$id}'
+		WHERE	 `auth`.`id` = `doanvien`.`auth`
 	";
 	
 	$sql4 = "

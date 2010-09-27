@@ -1,9 +1,5 @@
 <?php
 
-
-	
-
-	
 function submit_button() {
 	global $user, $_GET;
 	if (! isset ( $_GET ['id_doanvien'] ))

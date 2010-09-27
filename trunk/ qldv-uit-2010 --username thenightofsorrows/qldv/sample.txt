@@ -1,0 +1,5 @@
+﻿Nguyễn Văn A	test@test.com	1980-10-20	l_nguyen_van	mat_khau
+Nguyễn Văn A	test@test.com	1980-10-20	m_nguyen_van	mat_khau
+Nguyễn Văn A	test@test.com	1980-10-20	n_nguyen_van	mat_khau
+Nguyễn Văn A	test@test.com	1980-10-20	a_nguyen_van	mat_khau
+Nguyễn Văn A	test@test.com	1980-10-20	a_nguyen_van	mat_khau
