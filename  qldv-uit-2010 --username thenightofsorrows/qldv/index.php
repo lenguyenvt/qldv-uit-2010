@@ -4,7 +4,7 @@ require_once("function.php");
 require_once("style.php");
 
 if(isset($_GET['type'])) $t=post_in($_GET['type']); else $t="login";
-if(isset($_GET['type'])) $_t=post_in($_GET['type']); else $_t="";
+$_t=$t;
 if(isset($_GET['page'])) $p=post_in($_GET['page']); else $p="1";
 $page_header="";
 $page_description="";
@@ -75,6 +75,9 @@ else switch($t){
 		break;
 	case "activity_info":
 		$t="activity_info";
+		break;
+	case "user_register":
+		$t="user_register";
 		break;
 }
 if($t!=$_t){

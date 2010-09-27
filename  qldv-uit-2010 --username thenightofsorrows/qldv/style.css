@@ -521,6 +521,20 @@ input[type="submit"]{
 	margin-right:10px;
 }
 
+/*
+User register
+*/
+.user_register_form_header{
+	width: 760px;
+	height: 25px;
+}
+.user_register_form{
+	width: 760px;
+	height: 405px;
+	margin-left:10px;
+	float:left;
+}
+
 /*=============================
 	User Manage
 =============================*/
