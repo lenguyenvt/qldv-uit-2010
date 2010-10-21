@@ -6,6 +6,7 @@ if(isset($_SERVER['HTTP_REFERER']) && strstr($_SERVER['HTTP_REFERER'],".swf"))
 	exit("wow");
 	die("Dummy");
 }
+
 session_start();
 define("DB_HOST", "127.0.0.1");
 define("DB_USER", "root");

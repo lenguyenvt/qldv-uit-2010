@@ -4,6 +4,7 @@ require_once ("./styles/user_info.php");
 // to do list: (give to SQL statement) more conditions to some column chidoan, ngaydong
 // Check input's date format 
 // hien thi thong bao update thanh cong hay that bai
+
 function page_content() {
 	global $s, $t, $p, $page_header, $_GET, $_POST, $user, $db;
 	$page_header = "Th&#244;ng tin c&#225; nh&#226;n";
