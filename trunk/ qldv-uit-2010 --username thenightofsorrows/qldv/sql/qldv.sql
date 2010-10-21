@@ -1,13 +1,19 @@
 -- phpMyAdmin SQL Dump
--- version 3.2.0.1
+-- version 3.1.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 27, 2010 at 09:21 PM
--- Server version: 5.1.35
--- PHP Version: 5.3.0
+-- Generation Time: Oct 21, 2010 at 11:06 AM
+-- Server version: 5.1.30
+-- PHP Version: 5.2.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `qldv`
@@ -77,6 +83,7 @@ CREATE TABLE IF NOT EXISTS `doanphi` (
   `ngaydong` date NOT NULL,
   `sotien` double NOT NULL,
   `id_cosodoan` int(11) NOT NULL,
+  `hanphi` date DEFAULT NULL,
   PRIMARY KEY (`id_doanphi`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
@@ -84,8 +91,8 @@ CREATE TABLE IF NOT EXISTS `doanphi` (
 -- Dumping data for table `doanphi`
 --
 
-INSERT INTO `doanphi` (`id_doanphi`, `id_doanvien`, `ngaydong`, `sotien`, `id_cosodoan`) VALUES
-(1, 1, '2010-05-15', 20000, 1);
+INSERT INTO `doanphi` (`id_doanphi`, `id_doanvien`, `ngaydong`, `sotien`, `id_cosodoan`, `hanphi`) VALUES
+(1, 1, '2010-05-15', 20000, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -111,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `doanvien` (
 --
 
 INSERT INTO `doanvien` (`id_doanvien`, `username`, `password`, `doan_phi`, `auth`, `sid`, `ip`, `email`, `qh_chidoan`) VALUES
-(1, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', 1, 1, 'i2dj0aeiggtl4sna67rvact3q7', '127.0.0.1', 'admin@uit.edu.vn', 1),
+(1, 'admin', 'c3284d0f94606de1fd2af172aba15bf3', 1, 1, '36dbce902d0bb948b839a0e492bb3fe4', '127.0.0.1', 'admin@uit.edu.vn', 1),
 (2, 'test1', 'c3284d0f94606de1fd2af172aba15bf3', 0, 2, '', '127.0.0.1', '', 4),
 (3, 'test2', 'c3284d0f94606de1fd2af172aba15bf3', 0, 2, '657frldnub9imon7nkapql4qg0', '127.0.0.1', '', 13),
 (4, 'abc', 'cba', 0, 2, '', '', 'cpa', 0),
@@ -159,7 +166,7 @@ CREATE TABLE IF NOT EXISTS `phongtraodoan` (
   `start` date NOT NULL,
   `end` date NOT NULL,
   PRIMARY KEY (`id_phongtraodoan`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `phongtraodoan`
@@ -167,7 +174,8 @@ CREATE TABLE IF NOT EXISTS `phongtraodoan` (
 
 INSERT INTO `phongtraodoan` (`id_phongtraodoan`, `ten`, `diengiai`, `id_cosodoan`, `start`, `end`) VALUES
 (2, 'Thanh nien khoe 2010', 'Phong trao thanh nien khoe, mot trong nhung noi dung de dat duoc danh hieu sinh vien 5 tot', 4, '2010-06-01', '2010-06-03'),
-(3, 'Tiep lua', 'Hoat dong tiep lua do ban Hoc tap cua Hoi sinh vien phat dong', 1, '2010-01-01', '2010-12-31');
+(3, 'Tiep lua', 'Hoat dong tiep lua do ban Hoc tap cua Hoi sinh vien phat dong', 1, '2010-01-01', '2010-12-31'),
+(4, 'test', 'abc xyz', 1, '2010-01-01', '2010-12-31');
 
 -- --------------------------------------------------------
 
@@ -260,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `thamgiaphongtrao` (
   `id_phongtraodoan` int(11) NOT NULL,
   `danhgia` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `thamgiaphongtrao`
@@ -269,7 +277,8 @@ CREATE TABLE IF NOT EXISTS `thamgiaphongtrao` (
 INSERT INTO `thamgiaphongtrao` (`id`, `id_doanvien`, `id_phongtraodoan`, `danhgia`) VALUES
 (2, 1, 2, 'Tam'),
 (3, 1, 3, 'Kem'),
-(4, 3, 3, '');
+(4, 3, 3, ''),
+(5, 1, 4, '');
 
 -- --------------------------------------------------------
 
