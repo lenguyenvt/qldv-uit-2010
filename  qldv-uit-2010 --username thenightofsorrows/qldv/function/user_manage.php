@@ -24,34 +24,42 @@ function page_content(){
 				$id_dv = post_in($id_dv);
 				if (check_cosodoancaptren($user['id_cosodoan'], get_cosodoan_hientai($id_dv)))
 				{
-						$sql_delete = 
-						"DELETE FROM `thongtindoanvien`,
-							 `chucvu`,
-							 `doanphi`,
-							 `doanvien`,
-							 `qhchidoan`,	
-							 `quatrinhcongtac`,
-							 `quatrinhoctap`,
-							 `hoancanhkinhte`,
-							 `thamgiaphongtrao`,
-							 `xeploaidoanvien`			
-							 
-						WHERE `thongtindoanvien`.`id_doanvien` = '$id_dv'
-						AND `qhchucvu`.`id_doanvien` = '$id_dv'
-						AND `doanphi`.`id_doanvien` = '$id_dv'
-						AND `doanvien`.`id_doanvien` = '$id_dv'
-						AND `qhchidoan`.`id_doanvien` = '$id_dv'
-						AND `quatrinhcongtac`.`id_doanvien` = '$id_dv'
-						AND `quatrinhhoctap`.`id_doanvien` = '$id_dv'
-						AND `hoancanhkinhte`.`id_doanvien` = '$id_dv'
-						AND `thamgiaphongtrao`.`id_doanvien` = '$id_dv'
-						AND `xeploaidoanvien`.`id_doanvien` = '$id_dv'";
+						$sql1 = 
+						"
+						DELETE 
+						FROM `doanphi`						
+						WHERE `doanphi`.`id_doanvien` = '$id_dv'
+						";
 						
-						echo $sql_delete;
-						//$query = $db->query($sql_detele);
+						$sql2 = 
+						"
+						DELETE
+						FROM `doanvien`
+						WHERE `doanvien`.`id_doanvien` = '$id_dv'
+						";
+						
+						$sql3 =
+						"
+						DELETE 
+						FROM `qhchidoan`
+						WHERE `qhchidoan`.`id_doanvien` = '$id_dv'
+						";
+						
+						$sql4 = 
+						"
+						DELETE 
+						FROM `thamgiaphongtrao`
+						WHERE `thamgiaphongtrao`.`id_doanvien` = '$id_dv'
+						";						
+											
+						$db->query($sql1);
+						$db->query($sql2);
+						$db->query($sql3);
+						$db->query($sql4);
 				}
 			}
 		}
+		
 		if (isset($_POST['change_group']) && isset($_POST['dsdoanvien']) && (sizeof($_POST['dsdoanvien'] > 0)) && check_auth("qldoanvien", 4))
 		{
 			$ddtime=ddtime();
