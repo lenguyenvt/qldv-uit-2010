@@ -79,6 +79,9 @@ else switch($t){
 	case "user_register":
 		$t="user_register";
 		break;
+	case "qldoanphi":
+		$t="qldoanphi";
+		break;
 }
 if($t!=$_t){
 	header("Location: index.php?type=$t");
