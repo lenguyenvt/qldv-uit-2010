@@ -240,4 +240,77 @@ function check_log_in($username, $password) {
 function encode($str) {
 	return md5 ( md5 ( $str ) ); //ma hoa md5 2 lan
 }
+function upbcode($text) {
+        if(substr_count($text,"[") > 0 && substr_count($text,"]") > 0) {
+$addon = "064829693";
+do {
+$text = preg_replace("#\[code\](.*?)\[([a-z])(.*?)\[/code\]#si",'[code]\1['. $addon .'\2\3[/code]',$text);
+} while(preg_match("#\[code\](.*?)\[([a-z])(.*?)\[/code\]#siU",$text));
+		    $text = preg_replace("#\[size=([1-2]?[0-9])\](.*?)\[/size\]#si", "<font size=\\1>\\2</font>", $text);
+		    $text = preg_replace("#\[font=(\#[0-9a-f]{6}|[a-z]+)\](.*?)\[/font\]#si","<font face=\\1>\\2</font>",$text);
+                $text = preg_replace("#\[color=(\#[0-9a-f]{6}|[a-z]+)\](.*?)\[/color\]#si",'<font color="\1">\2</font>',$text);
+                $text = preg_replace("#\[u\](.*?)\[/u\]#si",'<u>\1</u>',$text);
+                $text = preg_replace("#\[s\](.*?)\[/s\]#si",'<s>\1</s>',$text);
+                $text = preg_replace("#\[i\](.*?)\[/i\]#si",'<i>\1</i>',$text);
+                $text = preg_replace("#\[b\](.*?)\[/b\]#si",'<b>\1</b>',$text);
+                $text = preg_replace("#\[center\](.*?)\[/center\]#si",'<center>\1</center>',$text);
+                $text = preg_replace("#\[marquee\](.*?)\[/marquee\]#si",'<marquee>\1</marquee>',$text);
+                $text = preg_replace("#\[url\]([a-z]+?://)([^\[]*)\[/url\]#si",'<a href="\1\2" target="_blank">\1\2</a>',$text);
+                $text = preg_replace("#\[url\]([^\[]*)\[/url\]#si",'<a href="http://\1" target="_blank">\1</a>',$text);
+                $text = preg_replace("#\[url=([a-z]+?://)([^\]]*)\](.*?)\[/url\]#si",'<a href="\1\2" target="_blank">\3</a>',$text);
+                $text = preg_replace("#\[url=([^\]]*)\](.*?)\[/url\]#si",'<a href="http://\1" target="_blank">\2</a>',$text);
+                $text = preg_replace("#\[email\]([^\[]+@[^\[]+)\[/email\]#si",'<a href="mailto:\1">\1</a>',$text);
+                $text = preg_replace('=\[img\](http:[^\[]*|[^\[:]*)\[/img\]=si','<img src="$1" border="0">',$text);
+		    $text = preg_replace("=\[rm\]([^\[]*)\[/rm\]=si", '<object name="rpcontrol" width=300 height=300 CLASSID="clsid:CFCDAA03-8BE4-11cf-B84B-0020AFBBCCFA"><param name="controls" value="ImageWindow,StatusBar,ControlPanel"><param name="autostart" value="false"><param name="src" value="$1"></object>',$text);
+		    $text = preg_replace('=\[flash\]([^\[]*)\[/flash\]=si','<object classid="clsid: D27CDB6E-AE6D-11cf-96B8-444553540000" width="300" height="300"><param name=movie value="$1"><param name=play value=true><param name=loop value=true><param name=quality value=high><param name=backgroundcolor value=transparent><embed src="$1" width="300" height="300" play=true loop=true quality=high backgroundcolor=transparent></embed></object>',$text);
+		    $text = preg_replace('=\[wm\]([^\[]*)\[/wm\]=si','
+<center><object classid="clsid:6BF52A52-394A-11d3-B153-00C04F79FAA6" id="Player" width="340" height="320">
+  <param name="URL" value="\1" border="0" alt="T&#7853;p tin nh&#7841;c - B&#7841;n &#273;ang &#7903; website Châu Thành">
+  <param name="showpositioncontrols" value="true">
+  <param name="ShowAudioControls" value="true">
+  <param name="ShowStatusBar" value="true">
+  <param name="ShowTracker" value="true">
+  <param name="enableContextMenu" value="false">
+  <param name="showpositioncontrols" value="true">
+  <param name="ShowDisplay" value="false">
+  <param name="EnableTracker" value="true">
+  <param name="rate" value="1">
+  <param name="balance" value="0">
+  <param name="currentPosition" value="1">
+  <param name="defaultFrame" value>
+  <param name="playCount" value="1000">
+  <param name="autoStart" value="true">
+  <param name="currentMarker" value="0">
+  <param name="invokeURLs" value="-1">
+  <param name="baseURL" value>
+  <param name="volume" value="100">
+  <param name="mute" value="0">
+  <param name="uiMode" value="full">
+  <param name="stretchToFit" value="0">
+  <param name="windowlessVideo" value="0">
+  <param name="enabled" value="-1">
+  <param name="enableContextMenu" value="-1">
+  <param name="fullScreen" value="0">
+  <param name="SAMIStyle" value>
+  <param name="SAMILang" value>
+  <param name="SAMIFilename" value>
+  <param name="captioningID" value>
+  <param name="enableErrorDialogs" value="0">
+  <param name="_cx" value="7938">
+  <param name="_cy" value="6482">
+</object>
+<br><a href="\1">[Nh&#7845;n vào &#273;ây n&#7871;u không xem &#273;&#432;&#7907;c]</a></center>',$text);
+                
+                do {
+                        $text = preg_replace("#\[quote\](.*?)\[/quote\]#si",'<div class="small"><b>Tr&#237;ch d&#7851;n:</b></div><div class="quote">\1</div>',$text);
+                } while(preg_match("#\[quote\](.*?)\[/quote\]#si",$text));
+do{
+                        $text = preg_replace("#\[code\](.*?)\[". $addon ."(.*?)\[/code\]#si",'[code]\1[\2\3[/code]',$text);
+} while(preg_match("#\\[code\](.*?)\[". $addon ."(.*?)\[/code\]#siU",$text));
+		    do {
+                        $text = preg_replace("#\[code\](.*?)\[/code\]#si",'<div class="small"><b>Code:</b></div><div class="code">\1</div>',$text);
+                } while(preg_match("#\[code\](.*?)\[/code\]#si",$text));
+        }
+        return $text;
+}
 ?>
