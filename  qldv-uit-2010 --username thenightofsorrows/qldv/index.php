@@ -25,7 +25,7 @@ if(!is_logged_in()){
 }
 else switch($t){
 	default:
-		$t="user_info";
+		$t="tintuc";
 		break;
 /*	case "index":
 		$t="user_info";
@@ -37,6 +37,9 @@ else switch($t){
 		$t="lostpwd";
 		break;
 */
+	case "tintuc":
+		$t="tintuc";
+		break;
 	case "changepwd":  
 		$t="changepwd";
 		break;
