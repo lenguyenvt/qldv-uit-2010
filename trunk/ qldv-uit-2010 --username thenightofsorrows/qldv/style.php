@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once("function.php");
 require_once("config.php");
 function page_header($title,$des,$refresh=""){
@@ -55,11 +55,15 @@ if(check_auth("qlchucvu",1)) $ql.='			<tr>
 			<td align="left"><a href="index.php?type=account">Qu&#7843;n l&#253; ch&#7913;c v&#7909;</td>
 			</tr>';
 if(check_auth("qlxeploai",1)) $ql.='			<tr>
-			<td align="left"><a href="index.php?type=user_rate_manage">Đ&#225;nh gi&#225; &#273;o&#224;n vi&#234;n</td>
+			<td align="left"><a href="index.php?type=user_rate_manage">&#272;&#225;nh Gi&#225; &#272;o&#224;n Vi&#234;n</td>
 			</tr>';
 if(check_auth("qlcosodoan",1)) $ql.='			<tr>
 			<td align="left"><a href="index.php?type=group_manage">C&#417; s&#7903; &#272;o&#224;n</td>
 			</tr>';
+if(check_auth("qlcosodoan",1)) $ql.='			<tr>
+			<td align="left"><a href="index.php?type=qldoanphi">Qu&#7843;n L&#253; &#272;o&#224;n Ph&#237;</td>
+			</tr>';
+
 return
 <<<EOF
 {$ql}
@@ -116,7 +120,7 @@ return
 		<div class="lefthead"></div>
 		<div class="midhead">
 		<div class="form_header_text">
-			<b>Trang quản lý</b>        
+			<b>Trang qu?n l�</b>        
 		</div>
 		</div>
 		<div class="righthead"></div>

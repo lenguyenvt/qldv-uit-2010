@@ -95,18 +95,20 @@ function page_content(){
 						`thongtindoanvien`.`hoten`,
 						`thongtindoanvien`.`gioitinh`,
 						`thongtindoanvien`.`ngaysinh`,
-						`doanvien`.`doan_phi`,
+						`doanphi`.`hanphi`,
 						`auth`.`id` as `chucvu`
 						
 				FROM 	`thongtindoanvien`,
 						`qhchidoan`,
 						`auth`,
 						`cosodoan`,
-						`doanvien` 
+						`doanvien`,
+						`doanphi`
 						
 				WHERE 	`qhchidoan`.`id_cosodoan` = '$id_cosodoan'
 				AND 	`doanvien`.`qh_chidoan`= `qhchidoan`.`qh_chidoan`
 				AND 	`auth`.`id` = `doanvien`.`auth`
+				AND 	`doanvien`.`id_doanvien` = `doanphi`.`id_doanvien`
 				AND 	`qhchidoan`.`id_cosodoan`=`cosodoan`.`id_cosodoan` 
 				AND		`thongtindoanvien`.`id_doanvien`=`doanvien`.`id_doanvien`
 				ORDER BY `thongtindoanvien`.`id_doanvien`";
