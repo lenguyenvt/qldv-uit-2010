@@ -12,8 +12,8 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 						<td width=\"171px\">".$danhsachdoanvien[$i]['hoten']."</td>
 						<td width=\"30px\">".($danhsachdoanvien[$i]['gioitinh']==0?"Nam":"N&#7919;")."</td>
 						<td width=\"83px\">".$danhsachdoanvien[$i]['ngaysinh']."</td>
-						<td width=\"83px\">".$danhsachdoanvien[$i]['ngaydong']."</td>
-						<td width=\"87px\">".$danhsachdoanvien[$i]['hanphi']."</td>
+						<td width=\"83px\"><input class=\"user_manage_form_textbox\" name=\"ngaydong[]\" value=\"".$danhsachdoanvien[$i]['ngaydong']."\"></td>
+						<td width=\"87px\"><input class =\"user_manage_form_textbox\" name=\"sotien[]\" value=\"".$danhsachdoanvien[$i]['sotien']."\"></td>
 						<!-- <td width=\"25px\"><input id=\"xoa_doanvien[]\" name=\"xoa_doanvien[]\" type=\"checkbox\" value=\"checked\" /></td> -->
 						<td width=\"25px\"><input id=\"dsdoanvien[{$danhsachdoanvien[$i]['id_doanvien']}]\" name=\"dsdoanvien[]\" type=\"checkbox\" value=\"$id_dv\" /></td>
 					</tr>";

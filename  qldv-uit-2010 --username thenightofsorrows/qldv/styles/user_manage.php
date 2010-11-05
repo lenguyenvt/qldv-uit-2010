@@ -13,7 +13,7 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 						<td width=\"170px\">".$danhsachdoanvien[$i]['hoten']."</td>
 						<td width=\"29px\">".($danhsachdoanvien[$i]['gioitinh']==0?"Nam":"N&#7919;")."</td>
 						<td width=\"85px\">".$danhsachdoanvien[$i]['ngaysinh']."</td>
-						<td width=\"85px\">".$danhsachdoanvien[$i]['ngaydong']."</td>
+						<td width=\"85px\">".$danhsachdoanvien[$i]['hanphi']."</td>
 						<!-- <td width=\"25px\"><input id=\"xoa_doanvien[]\" name=\"xoa_doanvien[]\" type=\"checkbox\" value=\"checked\" /></td> -->
 						<td width=\"25px\"><input id=\"dsdoanvien[{$danhsachdoanvien[$i]['id_doanvien']}]\" name=\"dsdoanvien[]\" type=\"checkbox\" value=\"$id_dv\" /></td>
 					</tr>";
@@ -22,7 +22,6 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 
 if(check_auth("qldoanvien",2)){
 	$buttons_1="<input id =\"delete\" name =\"delete\" type =\"submit\" value =\"X&#243;a\" style=\"margin-top:7px;width:70px\"/>";
-	$buttons_0="<input id =\"update_dp\" name =\"update_dp\"type =\"submit\" value =\"&#272;&#243;ng &#272;o&#224;n ph&#237;\" style=\"margin-top:7px;width:100px\"/>";
 	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`");
 	$db->query($sql);
 	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:220px;font-size:9pt\">";
@@ -164,7 +163,6 @@ function resetimage()
 		</tr>
         <tr>
 			<td align="right" width="521px">
-			<a href="?type=qldoanphi" id="url">{$buttons_0}</a>
 			{$buttons_1}
 			</td>
 		</tr><tr><td>{$buttons_2}</td></tr>
