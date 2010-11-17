@@ -120,7 +120,7 @@ return
 		<div class="lefthead"></div>
 		<div class="midhead">
 		<div class="form_header_text">
-			<b>Trang qu?n lı</b>        
+			<b>Trang qu&#7843;n l&#253;</b>        
 		</div>
 		</div>
 		<div class="righthead"></div>
