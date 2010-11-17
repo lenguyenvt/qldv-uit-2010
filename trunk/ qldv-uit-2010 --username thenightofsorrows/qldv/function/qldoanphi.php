@@ -13,23 +13,47 @@ function page_content(){
 	
 	if(isset($_POST['update_dp']) && isset($_POST['dsdoanvien']) && (sizeof($_POST['dsdoanvien'] > 0)))
 	{
-		for($i=0; i<sizeof($dsdoanvien); $i++)
+		for($i=0; $i<sizeof($dsdoanvien); $i++)
 		{
 				$id_dv = $dsdoanvien[$i];
+				$id_cosodoan = get_cosodoan_hientai($id_dv);
 				$ngaydong = $ngaydong[$i];
 				$sotien = $sotien[$i];
 				$temp = (int)$sotien;
 				$temp = $temp/1000;
-				$sql1 = "SELECT `doanphi`.`hanphi` FORM `doanphi` WHERE `doanphi`.`id_doanvien` = '$id_dv'";
+				$sql1 = "SELECT `doanphi`.`hanphi` FROM `doanphi` WHERE `doanphi`.`id_doanvien` = '$id_dv' AND `doanphi`.`id_cosodoan`= '$id_cosodoan'";
+				echo $sql1;
 				$db->query($sql1);
-				// thao tac cap nhat ngay o day. temp la so thang cong them
-				// hanphi=null thi lay thang hien tai de cong. ket qua cong duoc gan cho bien temp
-				$sql2 = "	UPDATE `doanphi` 
-							SET `doanphi`.`sotien` = '$sotien' , `doanphi`.`ngaydong` = '$ngaydong' , `doanphi`.`hanphi` = '$temp'
-							WHERE `doanphi`.`id_doanvien` = '$id_dv'";
+				while($rows = $db->fetch_array())
+				{
+						$hanphi = $rows["hanphi"];
+				}
+				$year = (int)substr($hanphi,0,4);
+				$month = (int)substr($hanphi,5,2);
+				$day = (int)substr($hanphi,8,2);
+				$month = $month +$temp;
+				while($month >12)
+				{
+					$temp1 = $month-12;
+					$month = $temp1;
+					$year +=1;
+				}
+				$new_hanphi = $year.'-'.$month.'-'.$day;
+				$new_hanphi = strtotime($new_hanphi);
+				$new_hanphi = date('Y-m-d',$new_hanphi);
+				$sql2 = "INSERT INTO `doanphi`(
+								`id_doanphi` ,
+								`id_doanvien` ,
+								`ngaydong` ,
+								`sotien` ,
+								`id_cosodoan`,
+								`hanphi`
+								)
+								VALUES (
+								NULL , '$id_dv', '$ngaydong', '$sotien', '$id_cosodoan', '$new_hanphi'
+								)";
 				$db->query($sql2);
 		}
-	
 	}
 	if(check_auth("qldoanvien",1)){
 	$sql ="SELECT 	DISTINCT `thongtindoanvien`.`id_doanvien`,
