@@ -22,7 +22,6 @@ function page_content(){
 				$temp = (int)$sotien;
 				$temp = $temp/1000;
 				$sql1 = "SELECT `doanphi`.`hanphi` FROM `doanphi` WHERE `doanphi`.`id_doanvien` = '$id_dv' AND `doanphi`.`id_cosodoan`= '$id_cosodoan'";
-				echo $sql1;
 				$db->query($sql1);
 				while($rows = $db->fetch_array())
 				{
