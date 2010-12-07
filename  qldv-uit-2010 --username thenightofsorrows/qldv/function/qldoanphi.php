@@ -17,9 +17,9 @@ function page_content(){
 		{
 				$id_dv = $dsdoanvien[$i];
 				$id_cosodoan = get_cosodoan_hientai($id_dv);
-				$ngaydong = $ngaydong[$i];
-				$sotien = $sotien[$i];
-				$temp = (int)$sotien;
+				$_ngaydong = $ngaydong[$i];
+				$_sotien = $sotien[$i];
+				$temp = (int)$_sotien;
 				$temp = $temp/1000;
 				$sql1 = "SELECT `doanphi`.`hanphi` FROM `doanphi` WHERE `doanphi`.`id_doanvien` = '$id_dv' AND `doanphi`.`id_cosodoan`= '$id_cosodoan'";
 				$db->query($sql1);
@@ -49,7 +49,7 @@ function page_content(){
 								`hanphi`
 								)
 								VALUES (
-								NULL , '$id_dv', '$ngaydong', '$sotien', '$id_cosodoan', '$new_hanphi'
+								NULL , '$id_dv', '$_ngaydong', '$_sotien', '$id_cosodoan', '$new_hanphi'
 								)";
 				$db->query($sql2);
 		}
