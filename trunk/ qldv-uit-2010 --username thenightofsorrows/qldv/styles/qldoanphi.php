@@ -4,6 +4,8 @@ global $db,$user;
 $thongtin="";
 $var="";
 $id="";
+if($error!="") $error="<font color=\"red\">$error</font><br />";
+
 for ($i=0;$i<count($danhsachdoanvien);$i++)
 {	
 	$id_dv = $danhsachdoanvien[$i]['id_doanvien'];
@@ -22,12 +24,7 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 
 if(check_auth("qldoanvien",2)){
 	$buttons_0="<input id =\"update_dp\" name =\"update_dp\"type =\"submit\" value =\"C&#7853;p nh&#7853;t\" style=\"margin-top:7px;width:100px\"/>";
-	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`");
-	$db->query($sql);
-	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:220px;font-size:9pt\">";
-	while($tmp=mysql_fetch_array($db->query_result)){
-		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
-	}
+	$option_cosodoan=make_select_cosodoan();
 	$option_cosodoan="\n<tr><td>Chi &#272;o&#224;n: $option_cosodoan </select> <input id=\"search\" name=\"search\" type=\"submit\" value=\"T&#236;m\" style=\"margin-top:7px;width:70px\"/></td></tr>";
 }
 else{
@@ -74,7 +71,7 @@ function resetimage()
 		<table class="user_manage_form_text">
         <tbody>        
 		<tr>
-		<form method="POST">
+		<form method="POST">{$error}
         {$option_cosodoan}
         </form>
         </tr>

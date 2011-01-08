@@ -84,39 +84,43 @@ function page_content(){
 								VALUES (
 								NULL , '$id_dv', '$id_cosodoan', '$ddtime', '0000-00-00'
 								);");
-					$db->query("SELECT `qh_chidoan` FROM `qhchidoan` WHERE `id_doanvien`='$id_dv' ORDER BY `qh_chidoan` DESC LIMIT 0,1");
+					$db->query("SELECT `qh_chidoan` FROM `qhchidoan` WHERE `id_doanvien`='$id_dv' ORDER BY `qh_chidoan` DESC  LIMIT 0,1");
 					$qhchidoan_tmp=$db->fetch_array();
 					$db->query("UPDATE `doanvien` SET `qh_chidoan`='{$qhchidoan_tmp['qh_chidoan']}' WHERE `id_doanvien`='$id_dv'");
 				}
 			}
 		}
 		
-		$sql ="SELECT 	DISTINCT `thongtindoanvien`.`id_doanvien`,
+		$sql ="SELECT 	`thongtindoanvien`.`id_doanvien`,
 						`thongtindoanvien`.`hoten`,
 						`thongtindoanvien`.`gioitinh`,
 						`thongtindoanvien`.`ngaysinh`,
-						`doanphi`.`hanphi`,
 						`auth`.`id` as `chucvu`
 						
 				FROM 	`thongtindoanvien`,
 						`qhchidoan`,
 						`auth`,
 						`cosodoan`,
-						`doanvien`,
-						`doanphi`
+						`doanvien`
 						
 				WHERE 	`qhchidoan`.`id_cosodoan` = '$id_cosodoan'
 				AND 	`doanvien`.`qh_chidoan`= `qhchidoan`.`qh_chidoan`
 				AND 	`auth`.`id` = `doanvien`.`auth`
-				AND 	`doanvien`.`id_doanvien` = `doanphi`.`id_doanvien`
 				AND 	`qhchidoan`.`id_cosodoan`=`cosodoan`.`id_cosodoan` 
 				AND		`thongtindoanvien`.`id_doanvien`=`doanvien`.`id_doanvien`
-				ORDER BY `thongtindoanvien`.`id_doanvien`";
+				ORDER BY `thongtindoanvien`.`id_doanvien` ASC";
 			$db->query($sql);
 			if($db->num_rows>0){
 				$i=0;
 				while($doanvien=$db->fetch_array()){
-					$danhsachdoanvien[$i++]=$doanvien;
+					$danhsachdoanvien[$i]=$doanvien;
+					$xtmp=mysql_query("SELECT `hanphi` FROM `doanphi` WHERE `id_doanvien`='{$doanvien['id_doanvien']}' ORDER BY `id_doanphi` DESC LIMIT 0,1");
+					if(mysql_num_rows($xtmp)==1){
+						$xtmp=mysql_fetch_array($xtmp);
+						$danhsachdoanvien[$i]['hanphi']=$xtmp['hanphi'];
+					}
+					else $danhsachdoanvien[$i]['hanphi']="";
+					$i++;
 				}
 			}
 

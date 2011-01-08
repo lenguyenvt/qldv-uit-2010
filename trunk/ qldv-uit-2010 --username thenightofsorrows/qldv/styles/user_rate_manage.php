@@ -8,15 +8,16 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 	$thongtin.="<tr class=\"user_rate_manage_form_table_content_highlight\" onClick=\"javascript:getcontent($i);\">
 						<td width=\"32px\">".($i+1)."</td>
 						<td width=\"180px\">".$danhsachdoanvien[$i]['hoten']."</td>
-						<td width=\"145px\">".$danhsachdoanvien[$i]['Note']."</td>
+						<td width=\"145px\">".$danhsachdoanvien[$i]['ten']."</td>
 					</tr>";
 	$varphongtrao="Array(";
-	for($j = 0; $j < count ($danhsachphongtrao[$danhsachdoanvien[$i]['id_doanvien']]); $j++) 
+	if(isset($danhsachphongtrao[$danhsachdoanvien[$i]['id_doanvien']]))
+	for($j = 0; $j < sizeof($danhsachphongtrao[$danhsachdoanvien[$i]['id_doanvien']]); $j++) 
 	{	
 		$varphongtrao.="Array(\"".$danhsachphongtrao[$danhsachdoanvien[$i]['id_doanvien']][$j]['ten']."\",\"".$danhsachphongtrao[$danhsachdoanvien[$i]['id_doanvien']][$j]['start']."\",\"".$danhsachphongtrao[$danhsachdoanvien[$i]['id_doanvien']][$j]['danhgia']."\")".($j<count($danhsachphongtrao[$danhsachdoanvien[$i]['id_doanvien']])-1?",":"");
 	};
 	$varphongtrao.=")";
-	$var.="Array(".$varphongtrao.",\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['Note']."\",\"".$danhsachdoanvien[$i]['diem']."\",\"".$danhsachdoanvien[$i]['loai']."\")".($i<count($danhsachdoanvien)-1?",":"");
+	$var.="Array(".$varphongtrao.",\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['Note']."\",\"".$danhsachdoanvien[$i]['diem']."\",\"".$danhsachdoanvien[$i]['loai']."\",\"".$danhsachdoanvien[$i]['id_doanvien']."\")".($i<count($danhsachdoanvien)-1?",":"");
 	
 };
 if(check_auth("qlxeploai",2)){
@@ -26,7 +27,7 @@ if(check_auth("qlxeploai",2)){
 	while($tmp=mysql_fetch_array($db->query_result)){
 		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
 	}
-	$option_cosodoan="\n<tr><td>Chi &#272;o&#224;n: $option_cosodoan </select> <input id=\"search\" name=\"search\" type=\"submit\" value=\"T&#236;m\" style=\"margin-top:7px;width:70px\"/></td></tr>";
+	$option_cosodoan="\n<tr><td>Chi &#272;o&#224;n: $option_cosodoan </select> <input id=\"search\" type=\"submit\" value=\"T&#236;m\" style=\"margin-top:7px;width:70px\"/></td></tr>";
 	}
 return
 <<<EOF
@@ -43,6 +44,7 @@ function getcontent(i){
 	document.getElementById("danhgia").value=danhsach[i][2];
 	document.getElementById("diem").value=danhsach[i][3];		
 	document.getElementById("loai").value=danhsach[i][4];
+	document.getElementById("id_doanvien").value=danhsach[i][5];
 }
 </script>
 <div class="user_rate_manage_form">
@@ -60,12 +62,14 @@ function getcontent(i){
     <div class="user_rate_manage_form_body">
     <div class="left"></div>
 	<div class="mid">
-      <form method = "POST">
 		<table class="user_rate_manage_form_text">
         <tbody>
 
 		<tr>
+      <form method= "GET">
         {$option_cosodoan}
+	<input type="hidden" name="type" value="user_rate_manage">
+      </form>
 		</tr>
 		<tr height="24px">
 			<td width="390px">
@@ -109,6 +113,7 @@ function getcontent(i){
                 <tr>
                     <td align="right" colspan="2" >
                     	<input name="hoten" id="hoten" type="text" style="width:386px;" class="user_rate_manage_form_textbox"/>
+		<input name="id_doanvien" id="id_doanvien" type="hidden">
                     </td>
                 </tr>   
                 
@@ -135,12 +140,7 @@ function getcontent(i){
                     	X&#7871;p lo&#7841;i:
                     </td>
                     <td align="right">
-                    	<select id="loai" name="loai" class="user_rate_manage_form_textbox">
-                            <option value="1">T&#7889;t</option>
-                            <option value="2">Kh&#225;</option>
-                            <option value="3">Trung b&#236;nh</option>
-                            <option value="4">Y&#7871;u</option>
-						</select>
+                    	<input id="loai" name="loai" class="user_rate_manage_form_textbox">
                     </td>
                 </tr>
                 </table>
@@ -175,12 +175,19 @@ function getcontent(i){
                     </td>
                 </tr> 
                 </table>
-                <input name="" type="submit" value="C&#7853;p nh&#7853;t" style="width:80px;height:25px; margin-top:7px"/>
+	<script>
+		function click_update(){
+			$.ajax({ url: "index.php?type=user_rate_manage", context: document.body,type:"POST",data:"update_thongtin=1&id_doanvien="+$("#id_doanvien").val()+"&danhgia="+$("#danhgia").val()+"&diem="+$("#diem").val()+"&loai="+$("#loai").val(),success: function(msg){
+				if(msg.indexOf("update finish")>0) window.alert("Đã cập nhật thành công cho đoàn viên "+$('#hoten').val()+". Bạn sẽ thấy thay đổi sau khi refresh lại trang.");
+				else window.alert("Có lỗi xảy ra, bạn vui lòng kiểm tra lại!");
+			}});
+		}
+	</script>
+                <input name="" type="submit" value="C&#7853;p nh&#7853;t" style="width:80px;height:25px; margin-top:7px" onClick="javascript:click_update();" />
 			</td>
 		</tr>
         </tbody>
         </table> 
-      </form> 
     </div>
 	<div class="right"></div>        
 	</div>

@@ -5,11 +5,67 @@ function page_content(){
 	$page_header="Th&#234;m &#273;o&#224;n vi&#234;n";
 	if(check_auth("qldoanvien",4)){
 		$info="";
-		
-		if(isset($_POST['is_upload']) && isset($_POST['id_cosodoan']) && $_POST['id_cosodoan']!=""){
+		if(isset($_POST['is_single']) && isset($_POST['id_cosodoan']) && $_POST['id_cosodoan']!=""){
+			$usr=take_post('username');
+			$pw=encode(take_post('pw'));
+			$name=take_post('name');
+			$id_cosodoan=take_post('id_cosodoan');
+			$email=take_post('email');
+			$birthday=take_post('birthday');
+			if($name=="" || $usr== "" || $pw=="" || $birthday=="" || $email==""){
+				$info="B&#7841;n ch&#432;a &#273;i&#7873;n &#273;&#7847;y &#273;&#7911; th&#244;ng tin!";
+			}else{
+							    	$sql="SELECT `id_doanvien` from `doanvien` WHERE UCASE(`username`)=UCASE('$usr')";
+			    	$db->query($sql);
+			    	if($db->num_rows>0){
+			    		$info.="<br />T&#234;n &#273;&#259;ng nh&#7853;p n&#224;y &#273;&#227; t&#7891;n t&#7841;i!";
+			    	}else{
+			    		$sql="INSERT INTO `qldv`.`doanvien` (
+								`id_doanvien` ,
+								`username` ,
+								`password` ,
+								`doan_phi` ,
+								`auth` ,
+								`sid` ,
+								`ip` ,
+								`email` ,
+								`qh_chidoan` 
+								)
+								VALUES (
+								NULL , '$usr', '$pw', '0', '2', '', '', '$email', '0'
+								);";
+						$db->query($sql);
+						$sql="SELECT `id_doanvien` FROM `doanvien` WHERE `username`='$usr'";
+						$db->query($sql);
+						$id_doanvien=$db->fetch_array();
+						$id_doanvien=$id_doanvien['id_doanvien'];
+						$sql="INSERT INTO `qhchidoan` (
+							`qh_chidoan` ,
+							`id_doanvien` ,
+							`id_cosodoan` ,
+							`start` ,
+							`end` 
+							)
+							VALUES (
+							NULL , '$id_doanvien', '$id_cosodoan', '".ddtime()."', '".ddtime()."'
+							);";
+						$db->query($sql);
+						$sql="SELECT `qh_chidoan` FROM `qhchidoan` WHERE `id_doanvien`=$id_doanvien AND `id_cosodoan`=$id_cosodoan";
+						$db->query($sql);
+						$qh_chidoan=$db->fetch_array();
+						$qh_chidoan=$qh_chidoan['qh_chidoan'];
+						$sql="UPDATE `doanvien` SET `qh_chidoan`=$qh_chidoan WHERE `id_doanvien`=$id_doanvien";
+						$db->query($sql);
+						$sql="INSERT INTO `thongtindoanvien` (`id_doanvien`, `congvieclaunhat`, `congviec`, `khenthuong`, `kyluat`, `tinhtrangsuckhoe`, `chieucao`, `cannang`, `nhommau`, `cmnd`, `thuongbinhloai`, `hoten`, `tenkhac`, `gioitinh`, `capuyhientai`, `capuykiem`, `chucvu`, `ngaysinh`, `noisinh`, `quequan`, `noitamtru`, `dienthoainharieng`, `dantoc`, `tongiao`, `xuatthangiadinh`, `ngaytuyendung`, `coquan`, `ngayvaocoquancongtac`, `ngayvaodangdubi`, `ngayvaodangchinhthuc`, `ngaynhapngu`, `ngayxuatngu`, `chucvucaonhat`, `trinhdovanhoa`, `trinhdolyluanchinhtri`, `trinhdongoaingu`, `hochamcaonhat`, `congtacchinh`, `ngachcongchuc`, `bacluong`, `hesoluong`, `danhhieu`, `sotruong`, `giadinhlietsi`, `dacdiembanthan`, `quanhenuocngoai`, `noithuongtru`, `dienthoaididong`, `ngayvaodoan`) VALUES ('$id_doanvien', NULL, NULL, NULL, NULL, ' ', '0', '0', '0', '0', NULL, '$name', NULL, '0', NULL, NULL, NULL, '$birthday', ' ', ' ', ' ', ' ', ' ', ' ', ' ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ' ', ' ', ' ', ' ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ' ', ' ', '".ddtime()."');";
+						$db->query($sql);
+						$info="&#272;&#227; t&#7841;o &#273;o&#224;n vi&#234;n $name.";
+				}
+			}
+		}
+		else if(isset($_POST['is_upload']) && isset($_POST['id_cosodoan']) && $_POST['id_cosodoan']!=""){
 			$target_path = "uploads/";
 			$target_path = $target_path . basename( $_FILES['uploadedfile']['name']); 
-			$id_cosodoan=post_in($_POST['id_cosodoan']);
+			$id_cosodoan=take_post('id_cosodoan');
 			if(get_cosodoan_capduoi ( $user ['id_doanvien'], "", 1, $id_cosodoan ))
 			if(move_uploaded_file($_FILES['uploadedfile']['tmp_name'], $target_path)) {
 			    $info.="&#272;&#227; upload t&#7853;p tin ".  basename( $_FILES['uploadedfile']['name']);
