@@ -21,14 +21,8 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 	
 };
 if(check_auth("qlxeploai",2)){
-	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`");
-	$db->query($sql);
-	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:260px;font-size:9pt\">";
-	while($tmp=mysql_fetch_array($db->query_result)){
-		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
-	}
-	$option_cosodoan="\n<tr><td>Chi &#272;o&#224;n: $option_cosodoan </select> <input id=\"search\" type=\"submit\" value=\"T&#236;m\" style=\"margin-top:7px;width:70px\"/></td></tr>";
-	}
+	$option_cosodoan="Chi &#273;o&#224;n: ".make_select_cosodoan()." <input id=\"search\" type=\"submit\" value=\"T&#236;m\" style=\"margin-top:7px;width:70px\"/></td></tr>";
+}
 return
 <<<EOF
 <script>

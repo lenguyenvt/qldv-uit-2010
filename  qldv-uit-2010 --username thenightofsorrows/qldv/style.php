@@ -188,7 +188,12 @@ function make_select_cosodoan($get_capduoi=1,$class="",$style="width:220px;font-
 		$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`");
 	$db->query($sql);
 	$option_cosodoan="<select name=\"$myname\" id=\"$myname\" style=\"$style\" class=\"$class\">";
+	$id_cosodoan=take_get('id_cosodoan');
+	if($id_cosodoan=="") $id_cosodoan=take_post('id_cosodoan');
 	while($tmp=$db->fetch_array()){
+		if($tmp['id_cosodoan']==$id_cosodoan)
+		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\" selected>{$tmp['ten']}</option>";
+		else
 		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
 	}
 	$option_cosodoan="$option_cosodoan </select>";
