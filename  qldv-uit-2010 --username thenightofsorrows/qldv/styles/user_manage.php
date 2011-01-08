@@ -22,14 +22,9 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 
 if(check_auth("qldoanvien",2)){
 	$buttons_1="<input id =\"delete\" name =\"delete\" type =\"submit\" value =\"X&#243;a\" style=\"margin-top:7px;width:70px\"/>";
-	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`");
-	$db->query($sql);
-	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:220px;font-size:9pt\">";
-	while($tmp=mysql_fetch_array($db->query_result)){
-		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
-	}
-	$buttons_2="Chi &#272;o&#224;n: $option_cosodoan </select><input id=\"change_group\" name=\"change_group\" type=\"submit\" value=\"Chuy&#7875;n sinh ho&#7841;t\"/>";
-	$option_cosodoan="\n<tr><td>Chi &#272;o&#224;n: $option_cosodoan </select> <input id=\"search\" name=\"search\" type=\"submit\" value=\"T&#236;m\" style=\"margin-top:7px;width:70px\"/></td></tr>";
+	$option_cosodoan=make_select_cosodoan();
+	$buttons_2="Chi &#272;o&#224;n: $option_cosodoan <input id=\"change_group\" name=\"change_group\" type=\"submit\" value=\"Chuy&#7875;n sinh ho&#7841;t\"/>";
+	$option_cosodoan="\n<tr><td>Chi &#272;o&#224;n: $option_cosodoan  <input id=\"search\" name=\"search\" type=\"submit\" value=\"T&#236;m\" style=\"margin-top:7px;width:70px\"/></td></tr>";
 }
 else{
 	$option_cosodoan="";

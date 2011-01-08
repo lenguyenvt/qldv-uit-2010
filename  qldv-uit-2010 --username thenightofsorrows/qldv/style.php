@@ -14,6 +14,7 @@ return
 <meta name="description" content="$des">
 {$refresh}
 <link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="includes/clientscript/jquery.js"></script>
 </head>
 
 <body>
@@ -97,9 +98,6 @@ return
 			<td align="center"><a href="index.php?type=user_info">Th&#244;ng tin c&#225; nh&#226;n</a></td>
 			</tr>
 			<tr>
-			<td align="center"><a href="index.php?type=change_group_info">Chuy&#7875;n SH &#273;o&#224;n</a></td>
-			</tr>
-			<tr>
 			<td align="center"><a href="index.php?type=changepwd">&#272;&#7893;i m&#7853;t kh&#7849;u</a></td>
 			</tr>
 			<tr>
@@ -181,5 +179,19 @@ return
 </body>
 </html>
 EOF;
+}
+function make_select_cosodoan($get_capduoi=1,$class="",$style="width:220px;font-size:9pt",$myname="id_cosodoan"){
+	global $db,$user;
+	if($get_capduoi==1)
+		$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`");
+	else
+		$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`");
+	$db->query($sql);
+	$option_cosodoan="<select name=\"$myname\" id=\"$myname\" style=\"$style\" class=\"$class\">";
+	while($tmp=$db->fetch_array()){
+		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
+	}
+	$option_cosodoan="$option_cosodoan </select>";
+return $option_cosodoan;
 }
 ?>

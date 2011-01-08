@@ -72,41 +72,12 @@ function check_cungcosodoan($id1, $id2) {
 }
 
 function check_cosodoancaptren($id1, $id2) {
-	/*
-	global $db;
-	$sql = "SELECT `qhchidoan`.`id_cosodoan` FROM `qhchidoan`,`doanvien` WHERE `doanvien`.`id_doanvien`='$id1' AND `qhchidoan`.`qh_chidoan`=`doanvien`.`qh_chidoan` ORDER BY `qhchidoan`.`qh_chidoan` DESC LIMIT 0,1";
-	$result1 = mysql_fetch_array ( $db->query ( $sql ) );
-	
-	$sql = "SELECT `qhchidoan`.`id_cosodoan` FROM `qhchidoan`,`doanvien` WHERE `doanvien`.`id_doanvien`='$id2' AND `qhchidoan`.`qh_chidoan`=`doanvien`.`qh_chidoan` ORDER BY `qhchidoan`.`qh_chidoan` DESC LIMIT 0,1";
-	$db->query ( $sql );
-	$result2 = mysql_fetch_array ( $db->query ( $sql ) );
-	
-	$id_parent = $result2 ['id_cosodoan'];
-	$id_parent_tocheck = $result1 ['id_cosodoan'];
-	if ($id_parent == 0)
-		return 0;
-	$sql = "SELECT `id_cosodoan`,`cap`,`parent` FROM `cosodoan` WHERE `id_cosodoan`='{$id_parent}'";
-	$result3 = mysql_fetch_array ( $db->query ( $sql ) );
-	while ( $result3 ['parent'] != 0 && $result3 ['id_cosodoan'] != $id_parent_tocheck ) {
-		$id_parent = $result3 ['parent'];
-		$sql = "SELECT `id_cosodoan`,`cap`,`parent` FROM `cosodoan` WHERE `id_cosodoan`='{$id_parent}'";
-		$result3 = mysql_fetch_array ( $db->query ( $sql ) );
-	}
-	if ($result3 ['id_cosodoan'] == $id_parent_tocheck)
-		return 1;
-	else
-		return 0;
-	*/
-	$id1_cosodoan=get_cosodoan_hientai($id2);
+	$id1_cosodoan=get_cosodoan_hientai($id1);
 	return get_cosodoan($id2,"",1,$id1_cosodoan);
 }
 
 function get_cosodoan($user, $SQL_COMPATIBLE = "", $ARRAY_OUT = "", $CHECK_WITH = "") {
 	global $db;
-	/*
-	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$user' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
-	$result1=mysql_fetch_array($db->query($sql));
-	*/
 	if(is_array($user) && isset($user['id_cosodoan'])) $id_parent = $user['id_cosodoan']; else $id_parent = get_cosodoan_hientai($user);
 	if ($SQL_COMPATIBLE == "")
 		$output = $id_parent;
@@ -312,5 +283,15 @@ do{
                 } while(preg_match("#\[code\](.*?)\[/code\]#si",$text));
         }
         return $text;
+}
+function take_post($var){
+	global $_POST;
+	if(isset($_POST[$var])) return post_in($_POST[$var]);
+	return "";
+}
+function take_get($var){
+	global $_GET;
+	if(isset($_GET[$var])) return post_in($_GET[$var]);
+	return "";
 }
 ?>

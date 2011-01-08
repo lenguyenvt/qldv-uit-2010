@@ -3,6 +3,7 @@ function group_manage_form($danhsachcosodoan,$error=""){
 global $db,$user;
 $thongtin="";
 $var="";
+
 $sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`")." OR ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`");
 $db->query($sql);
 $select_cosodoan="";

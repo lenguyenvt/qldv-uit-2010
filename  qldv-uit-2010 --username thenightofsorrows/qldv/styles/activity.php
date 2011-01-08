@@ -25,13 +25,8 @@ if(check_auth("qlphongtrao",2)){
 	$buttons_1="							<input id=\"attend\" name=\"attend\" type=\"submit\" value=\"Tham gia\" style=\"margin-top:7px;width:70px\"/>";
 	$buttons_2="";
 }
-	$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`")." OR ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`");
-	$db->query($sql);
-	$option_cosodoan="<select name=\"id_cosodoan\" id=\"id_cosodoan\" style=\"width:120px;font-size:8pt\">";
-	while($tmp=mysql_fetch_array($db->query_result)){
-		$option_cosodoan.="\n<option value=\"{$tmp['id_cosodoan']}\">{$tmp['ten']}</option>";
-	}
-	$option_cosodoan="\n<tr><td>C&#417; s&#7903; &#273;o&#224;n</td><td align=\"right\">$option_cosodoan</select></td></tr>";
+	$option_cosodoan=make_select_cosodoan(1,"","width:120px;font-size:8pt");
+	$option_cosodoan="\n<tr><td>C&#417; s&#7903; &#273;o&#224;n</td><td align=\"right\">$option_cosodoan</td></tr>";
 return
 <<<EOF
 <script>
