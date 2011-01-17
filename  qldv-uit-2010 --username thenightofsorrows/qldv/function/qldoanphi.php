@@ -6,7 +6,7 @@ require_once("./function.php");
 function page_content(){
 	global $page_header,$_GET,$_POST,$db,$refresh,$user;
 	$page_header="Qu&#7843;n l&#253; &#272;o&#224;n ph&#237;";
-	if(!check_auth("qldoanvien",1)) return page_error("B&#7841;n kh&#244;ng c&#243; quy&#7873;n truy c&#7853;p trang n&#224;y!");
+	if(!check_auth("qlhannopphi",1)) return page_error("B&#7841;n kh&#244;ng c&#243; quy&#7873;n truy c&#7853;p trang n&#224;y!");
 	if(isset($_POST['id_cosodoan'])) $id_cosodoan = post_in($_POST['id_cosodoan']); else $id_cosodoan=$user['id_cosodoan'];
 	if(isset($_POST['ngaydong'])) $ngaydong = $_POST['ngaydong']; else $ngaydong="";
 	if(isset($_POST['sotien'])) $sotien = $_POST['sotien']; else $sotien="";
@@ -64,7 +64,7 @@ function page_content(){
 		}
 		$info="&#272;&#227; c&#7853;p nh&#7853;t &#273;o&#224;n ph&#237;.";
 	}
-	if(check_auth("qldoanvien",1)){
+	if(check_auth("qlhannopphi",1)){
 	$sql ="SELECT 	DISTINCT `thongtindoanvien`.`id_doanvien`,
 						`thongtindoanvien`.`hoten`,
 						`thongtindoanvien`.`gioitinh`,

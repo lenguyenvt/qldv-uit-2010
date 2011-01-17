@@ -10,14 +10,16 @@ function page_content() {
 	$page_header = "Th&#244;ng tin c&#225; nh&#226;n";
 	
 	$this_year = date ( "Y" );
-	
+
 	if (! isset ( $_GET ['id_doanvien'] ))
-		$id = $user ["id"];
+		$id = $user ["id_doanvien"];
 	else
-		$id = post_in ( $_GET ['id_doanvien'] );
-		
+		$id = take_get ( 'id_doanvien' );
+	if(!check_auth("thongtincanhan",1)) return "B&#7841;n kh&#244;ng c&#243; quy&#7873;n truy c&#7853;p trang n&#224;y!";
 	if (isset($_POST ['sua_doanvien'])) {
-		
+		if($id!=$user['id_doanvien']){
+			if(!check_cosodoancaptren($user['id_cosodoan'], get_cosodoan_hientai($id))||!check_auth("thongtincanhan",2)) exit();
+		}
 		if (isset ( $_POST ['hoten'] ))
 			$hoten = post_in ( $_POST ['hoten'] );
 		else
@@ -41,47 +43,52 @@ function page_content() {
 		if (isset ( $_POST ['cmnd'] ))
 			$cmnd = post_in ( $_POST ['cmnd'] );
 		else
-			$error = "";
+			$cmnd = "";
 		
 		if (isset ( $_POST ['email'] ))
 			$email = post_in ( $_POST ['email'] );
 		else
-			$error = "";
+			$email = "B&#7841;n ch&#432;a nh&#7853;p email!";
 		
 		if (isset ( $_POST ['dcgiadinh'] ))
 			$dcgiadinh = post_in ( $_POST ['dcgiadinh'] );
 		else
-			$error = "";
+			$dcgiadinh = "";
 		
 		if (isset ( $_POST ['dchientru'] ))
 			$dchientru = post_in ( $_POST ['dchientru'] );
 		else
-			$error = "";
+			$dcgiadinh = "";
 		
 		if (isset ( $_POST ['dienthoainr'] ))
 			$dienthoainr = post_in ( $_POST ['dienthoainr'] );
 		else
-			$error = "";
+			$dienthoainr = "";
 		
 		if (isset ( $_POST ['dienthoaidd'] ))
 			$dienthoaidd = post_in ( $_POST ['dienthoaidd'] );
 		else
-			$error = "";
+			$dienthoaidd = "";
 		
-		if (isset ( $_POST ['chidoan'] ))
-			$chidoan = post_in ( $_POST ['chidoan'] );
+		if (isset ( $_POST ['chucvu'] ))
+			$chucvu = post_in ( $_POST ['chucvu'] );
 		else
-			$error = "";
+			$chucvu = "";
+
+		if (isset ( $_POST ['change_pass'] ) && $_POST ['change_pass'] !="")
+			$change_pass = encode ( $_POST ['change_pass'] );
+		else
+			$change_pass = "";
 		
 		if (isset ( $_POST ['ngayvaodoan'] ))
 			$ngayvaodoan = post_in ( $_POST ['ngayvaodoan'] );
 		else
-			$error = "";
+			$ngayvaodoan = "";
 		
 		if (isset ( $_POST ['dantoc'] ))
 			$dantoc = post_in ( $_POST ['dantoc'] );
 		else
-			$error = "";
+			$dantoc = "";
 		
 		$sql_update = "UPDATE `thongtindoanvien` 
 
@@ -100,6 +107,17 @@ function page_content() {
 		WHERE `thongtindoanvien`.`id_doanvien` =  '$id';
 		";
 		$query = $db->query ( $sql_update );
+		if($chucvu!="" && check_auth("qlchucvu",1)){
+			$db->query("SELECT `id` FROM `auth` WHERE `level`<='{$user['level']}' AND `id`='$chucvu'");
+			if($db->num_rows==1){
+				$sql="UPDATE `doanvien` SET `auth`='$chucvu' WHERE `id_doanvien`='$id'";
+				$db->query($sql);
+			}
+		}
+		if($change_pass!="" && check_auth("thongtincanhan",4)){
+			$sql="UPDATE `doanvien` SET `password`='$change_pass',`sid`='' WHERE `id_doanvien`='$id'";
+			$db->query($sql);
+		}
 	}
 	
 	// get member infomation 
@@ -132,17 +150,10 @@ function page_content() {
 		AND		 `qhchidoan`.`id_cosodoan` = `cosodoan`.`id_cosodoan`
 	";
 	
-	$sql3 = "
-		SELECT 	 `auth`.`name` as `tenchucvu`
-		
-		FROM	 `auth`, `doanvien`
-				 
-		WHERE	 `auth`.`id` = `doanvien`.`auth`
-	";
-	
 	$sql4 = "
 		SELECT	 `doanphi`.`hanphi`,
-				 `doanvien`.`email`
+				 `doanvien`.`email`,
+				`doanvien`.`auth`
 		
 		FROM 	 `doanvien` LEFT JOIN `doanphi` ON `doanphi`.`id_doanvien`=`doanvien`.`id_doanvien`
 		
@@ -165,9 +176,6 @@ function page_content() {
 	$query = $db->query ( $sql2 );
 	$cosodoan = mysql_fetch_array ( $query );
 	
-	$query = $db->query ( $sql3 );
-	$chucvu = mysql_fetch_array ( $query );
-	
 	$query = $db->query ( $sql4 );
 	$doanvien = mysql_fetch_array ( $query );
 	
@@ -179,7 +187,7 @@ function page_content() {
 	
 	$canhan = thongtincanhan ( $canhan_data ["hoten"], $canhan_data ["gioitinh"], $canhan_data ["ngaysinh"], $canhan_data ["dantoc"], $canhan_data ["tongiao"], $canhan_data ["cmnd"] );
 	
-	$chidoan = thongtinchidoan ( $cosodoan ["tencosodoan"], $canhan_data ["ngayvaodoan"], $chucvu ["tenchucvu"], $doanvien ["hanphi"], $xeploai ["loai"] );
+	$chidoan = thongtinchidoan ( $cosodoan ["tencosodoan"], $canhan_data ["ngayvaodoan"], $doanvien['auth'], $doanvien ["hanphi"], $xeploai ["loai"] );
 	
 	$lienlac = thongtinlienlac ( $doanvien ["email"], $canhan_data ["noithuongtru"], $canhan_data ["noitamtru"], $canhan_data ["dienthoainharieng"], $phone_history [0] );
 	

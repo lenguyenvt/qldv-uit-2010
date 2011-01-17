@@ -51,10 +51,10 @@ if(check_auth("qlphongtrao",1)) $ql.='			<tr>
 if(check_auth("qldoanvien",1)) $ql.='			<tr>
 			<td align="left"><a href="index.php?type=user_manage">Qu&#7843;n l&#253; &#273;o&#224;n vi&#234;n</td>
 			</tr>';
-if(check_auth("qldoanvien",4)) $ql.='			<tr>
+if(check_auth("qldoanvien",2)) $ql.='			<tr>
 			<td align="left"><a href="index.php?type=user_register">Th&#234;m &#273;o&#224;n vi&#234;n</td>
 			</tr>';
-if(check_auth("qlchucvu",1)) $ql.='			<tr>
+if(check_auth("qlchucvu",4)) $ql.='			<tr>
 			<td align="left"><a href="index.php?type=account">Qu&#7843;n l&#253; ch&#7913;c v&#7909;</td>
 			</tr>';
 if(check_auth("qlxeploai",1)) $ql.='			<tr>
@@ -63,7 +63,7 @@ if(check_auth("qlxeploai",1)) $ql.='			<tr>
 if(check_auth("qlcosodoan",1)) $ql.='			<tr>
 			<td align="left"><a href="index.php?type=group_manage">C&#417; s&#7903; &#272;o&#224;n</td>
 			</tr>';
-if(check_auth("qlcosodoan",1)) $ql.='			<tr>
+if(check_auth("qlhannopphi",1)) $ql.='			<tr>
 			<td align="left"><a href="index.php?type=qldoanphi">Qu&#7843;n L&#253; &#272;o&#224;n Ph&#237;</td>
 			</tr>';
 
@@ -181,6 +181,19 @@ return
 </body>
 </html>
 EOF;
+}
+function make_select_chucvu($id_chucvu=0,$name="chucvu",$class="user_manage_form_textbox"){
+global $db;
+$dschucvu='<select id="'.$name.'" name="'.$name.'" type="text" class="'.$class.'">';
+$db->query("SELECT `id`,`name` FROM `auth`");
+while($dschucvu_tmp=$db->fetch_array()){
+	if($dschucvu_tmp['id']==$id_chucvu)
+		$dschucvu.="<option value=\"{$dschucvu_tmp['id']}\" selected>{$dschucvu_tmp['name']}</option>\n";
+	else
+		$dschucvu.="<option value=\"{$dschucvu_tmp['id']}\">{$dschucvu_tmp['name']}</option>\n";
+}
+$dschucvu.="</select>";
+return $dschucvu;
 }
 function make_select_cosodoan($get_capduoi=1,$class="",$style="width:220px;font-size:9pt",$myname="id_cosodoan"){
 	global $db,$user;
