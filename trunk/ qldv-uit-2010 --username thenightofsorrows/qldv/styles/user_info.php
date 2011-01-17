@@ -8,13 +8,13 @@ function submit_button() {
 		$id = post_in ( $_GET ['id_doanvien'] );
 	
 	if (((isset($_GET['id_doanvien']) && ($_GET ['id_doanvien'] == $id)) || (! isset ( $_GET ['id_doanvien'] )))
-		&& (check_auth("qlthongtin", 1)))	
+		&& (check_auth("thongtincanhan", 1)))	
 	{
 		$button = "<div class=\"user_info_button\"><input id=\"sua_doanvien\" name=\"sua_doanvien\" type=\"submit\" value=\"S&#7917;a\" class=\"user_info_form_submit\"></input></div>";
 	}
 	
 	else 
-	if (($_GET ['id_doanvien'] == $id) && (check_auth ( "qlthongtin", 2 ) && (check_cosodoancaptren ( get_cosodoan ( $user ['id'] ), get_cosodoan ( $id ) )))) {
+	if ((take_get('id_doanvien') == $id) && (check_auth ( "thongtincanhan", 2 ) && (check_cosodoancaptren ( get_cosodoan ( $user ['id'] ), get_cosodoan ( $id ) )))) {
 		$button = "<div class=\"user_info_button\"><input id=\"sua_doanvien\" name=\"sua_doanvien\" type=\"submit\" value=\"S&#7917;a\" class=\"user_info_form_submit\"></input></div>";
 	}
 	 
@@ -112,6 +112,7 @@ EOF;
 }
 
 function thongtinchidoan($chidoan, $ngayvaodoan, $chucvu, $hannopphi, $loai) {
+$chucvu=make_select_chucvu($chucvu,'chucvu',"user_info_group_personal_textbox");
 	return <<<EOF
 <fieldset class="user_info_group_member">
                     <legend>Th&#244;ng tin &#272;o&#224;n vi&#234;n</legend>
@@ -125,9 +126,13 @@ function thongtinchidoan($chidoan, $ngayvaodoan, $chucvu, $hannopphi, $loai) {
                             <td class="user_info_group_personal_table_right"><input class="user_info_group_personal_textbox" name="ngayvaodoan" id="ngayvaodoan" value="{$ngayvaodoan}" type="text" /></td>
 		<script>$("#ngaysinh,#ngayvaodoan").datepick();</script>
                         </tr>
-						<tr>
+		<tr>
                             <td class="user_info_group_personal_table_left">Ch&#7913;c v&#7909;:</td>
-                            <td class="user_info_group_personal_table_right"><input class="user_info_group_personal_textbox" name="chucvu" id="chucvu" value="{$chucvu}" type="text" /></td>
+                            <td class="user_info_group_personal_table_right">{$chucvu}</td>
+                        </tr>
+		<tr>
+                            <td class="user_info_group_personal_table_left">&#272;&#7893;i m&#7853;t kh&#7849;u:</td>
+                            <td class="user_info_group_personal_table_right"><input class="user_info_group_personal_textbox" name="change_pass" id="change_pass" value="" type="text" /></td>
                         </tr>
                         <tr>
                             <td class="user_info_group_personal_table_left">H&#7841;n n&#7897;p ph&#237;:</td>

@@ -3,7 +3,7 @@ require_once("./styles/user_register.php");
 function page_content(){
 	global $s,$t,$p,$page_header,$_GET,$_POST,$db,$user;
 	$page_header="Th&#234;m &#273;o&#224;n vi&#234;n";
-	if(check_auth("qldoanvien",4)){
+	if(check_auth("qldoanvien",2)){
 		$info="";
 		if(isset($_POST['is_single']) && isset($_POST['id_cosodoan']) && $_POST['id_cosodoan']!=""){
 			$usr=take_post('username');

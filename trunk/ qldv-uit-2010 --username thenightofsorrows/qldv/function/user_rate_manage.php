@@ -4,7 +4,7 @@ function page_content()
 {
 	global $s,$t,$p,$page_header,$_GET,$_POST, $user, $db;
 	$page_header="&#272;&#225;nh gi&#225; x&#7871;p lo&#7841;i &#273;o&#224;n vi&#234;n";
-	if (!check_auth ( "qlcosodoan", 2 ) || (isset($_GET['id_cosodoan']) && !get_cosodoan_capduoi($user['id_doanvien'],"",1,post_in($_GET['id_cosodoan'])))) {
+	if (!check_auth ( "qlxeploai", 1 ) || (isset($_GET['id_cosodoan']) && !get_cosodoan_capduoi($user['id_doanvien'],"",1,post_in($_GET['id_cosodoan'])))) {
 		return page_error("B&#7841;n kh&#244;ng c&#243; quy&#7873;n v&#224;o trang n&#224;y!");
 	}
 	$danhsachdoanvien=array();

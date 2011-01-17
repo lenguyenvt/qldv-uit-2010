@@ -14,7 +14,6 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 						<td width=\"29px\">".($danhsachdoanvien[$i]['gioitinh']==0?"Nam":"N&#7919;")."</td>
 						<td width=\"85px\">".$danhsachdoanvien[$i]['ngaysinh']."</td>
 						<td width=\"85px\">".$danhsachdoanvien[$i]['hanphi']."</td>
-						<!-- <td width=\"25px\"><input id=\"xoa_doanvien[]\" name=\"xoa_doanvien[]\" type=\"checkbox\" value=\"checked\" /></td> -->
 						<td width=\"25px\"><input id=\"dsdoanvien[{$danhsachdoanvien[$i]['id_doanvien']}]\" name=\"dsdoanvien[]\" type=\"checkbox\" value=\"$id_dv\" /></td>
 					</tr>";
 	$var.="Array(\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['id_doanvien']."\",\"".$danhsachdoanvien[$i]['chucvu']."\")".($i<count($danhsachdoanvien)-1?",":"");
@@ -31,12 +30,7 @@ else{
 	$buttons_1="";
 	$buttons_2="";
 }
-$dschucvu='<select id="chucvu" name="chucvu" type="text" class="user_manage_form_textbox">';
-$db->query("SELECT `id`,`name` FROM `auth`");
-while($dschucvu_tmp=$db->fetch_array()){
-	$dschucvu.="<option value=\"{$dschucvu_tmp['id']}\">{$dschucvu_tmp['name']}</option>\n";
-}
-$dschucvu.="</select>";
+$dschucvu=make_select_chucvu();
 return
 <<<EOF
 <script>

@@ -868,7 +868,7 @@ User register
 	width:710px; 
 	overflow:scroll; 
 	background-color:#FFFFFF;
-	height:250px;
+	height:100px;
 }
 .account_form_table_content{
 	text-align:center;
@@ -876,6 +876,10 @@ User register
 	line-height:24px;
 }
 .account_form_table_content_highlight:hover{
+	background-color:#2288DD;
+	cursor:pointer;
+}
+.account_form_table_content_highlighted{
 	background-color:#2288DD;
 	cursor:pointer;
 }

@@ -3,7 +3,7 @@ require_once("./styles/tintuc.php");
 function page_content(){
 	global $s,$t,$p,$page_header,$db,$user,$_GET,$_POST;
 	$page_header="Th&#244;ng tin tin t&#7913;c";
-	if(isset($_GET['del']) && check_auth("qlthongtin",2)){
+	if(isset($_GET['del']) && check_auth("qlthongtin",4)){
 		$del=post_in($_GET['del']);
 		$sql="DELETE FROM `tintuc` WHERE `id`=$del AND (".get_cosodoan($user['id_doanvien'],"`id_cosodoan`").")";
 		$db->query($sql);
