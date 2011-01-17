@@ -67,7 +67,8 @@ function page_content(){
 								}
 								else $_id_cosodoan_tmp['id_cosodoan']=$_id_cosodoan;
 							if($_id_phongtraodoan_exist==1){
-								if(get_cosodoan_capduoi($user['id_doanvien'],"",1,$_id_cosodoan) && get_cosodoan_capduoi($user['id_doanvien'],"",1,$_id_cosodoan_tmp['id_cosodoan'])){
+echo get_cosodoan_capduoi($user['id_doanvien']);
+								if((get_cosodoan_capduoi($user['id_doanvien'],"",1,$_id_cosodoan) && get_cosodoan_capduoi($user['id_doanvien'],"",1,$_id_cosodoan_tmp['id_cosodoan']))||$_id_cosodoan==$user['id_cosodoan']){
 									$sql="UPDATE `phongtraodoan` SET `diengiai` = '{$_diengiai}',
 										`id_cosodoan` = '{$_id_cosodoan}',
 										`start` = '{$_start}',

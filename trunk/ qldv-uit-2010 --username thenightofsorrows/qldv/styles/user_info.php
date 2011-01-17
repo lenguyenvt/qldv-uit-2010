@@ -123,6 +123,7 @@ function thongtinchidoan($chidoan, $ngayvaodoan, $chucvu, $hannopphi, $loai) {
                         <tr>
                             <td class="user_info_group_personal_table_left">Ng&#224;y v&#224;o &#272;o&#224;n:</td>
                             <td class="user_info_group_personal_table_right"><input class="user_info_group_personal_textbox" name="ngayvaodoan" id="ngayvaodoan" value="{$ngayvaodoan}" type="text" /></td>
+		<script>$("#ngaysinh,#ngayvaodoan").datepick();</script>
                         </tr>
 						<tr>
                             <td class="user_info_group_personal_table_left">Ch&#7913;c v&#7909;:</td>

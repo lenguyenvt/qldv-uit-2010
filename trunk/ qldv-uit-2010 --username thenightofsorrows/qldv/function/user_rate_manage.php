@@ -35,13 +35,9 @@ function page_content()
 		$sql ="SELECT 	DISTINCT `thongtindoanvien`.`hoten`,
 						`cosodoan`.`ten`,
 						`thongtindoanvien`.`id_doanvien`
-				FROM 	`thongtindoanvien`,
-						`qhchidoan`,
-						`cosodoan`,
-						`doanvien`
+				FROM 	((`thongtindoanvien` JOIN `doanvien` ON `thongtindoanvien`.`id_doanvien`=`doanvien`.`id_doanvien`) JOIN  `qhchidoan` ON `doanvien`.`qh_chidoan`= `qhchidoan`.`qh_chidoan`) JOIN `cosodoan` ON `qhchidoan`.`id_cosodoan`=`cosodoan`.`id_cosodoan`
+						
 				WHERE 	`qhchidoan`.`id_cosodoan` = '$id_cosodoan'
-				AND 	`doanvien`.`qh_chidoan`= `qhchidoan`.`qh_chidoan`
-				AND 	`qhchidoan`.`id_cosodoan`=`cosodoan`.`id_cosodoan`
 
 				ORDER BY `thongtindoanvien`.`id_doanvien`";
 		$query = $db->query($sql);
@@ -60,7 +56,7 @@ function page_content()
 
 						WHERE	  `thamgiaphongtrao`.`id_doanvien` = '{$id1}'
 						AND		  `thamgiaphongtrao`.`id_phongtraodoan` = `phongtraodoan`.`id_phongtraodoan`";
-				$query1 = $db->query ( $sql1 );
+						$query1 = $db->query ( $sql1 );
 				$j=0;
 				while ( $pt = mysql_fetch_array ($query1))
 				{

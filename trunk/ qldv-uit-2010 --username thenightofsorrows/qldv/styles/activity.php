@@ -164,6 +164,7 @@ function getcontent(i){
 					<td width="115px" align="right">
 						<input id= "end" name="end" type="text" class="activity_form_textbox" />
 					</td>
+					<script>$("#start,#end,#from,#to").datepick();</script>
 				</tr>
 {$option_cosodoan}
 				<tr>   

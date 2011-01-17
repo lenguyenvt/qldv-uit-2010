@@ -95,7 +95,8 @@ function page_content(){
 						`thongtindoanvien`.`hoten`,
 						`thongtindoanvien`.`gioitinh`,
 						`thongtindoanvien`.`ngaysinh`,
-						`auth`.`id` as `chucvu`
+						`auth`.`id` as `chucvu`,
+						`doanvien`.`doan_phi`
 						
 				FROM 	`thongtindoanvien`,
 						`qhchidoan`,
@@ -114,12 +115,15 @@ function page_content(){
 				$i=0;
 				while($doanvien=$db->fetch_array()){
 					$danhsachdoanvien[$i]=$doanvien;
-					$xtmp=mysql_query("SELECT `hanphi` FROM `doanphi` WHERE `id_doanvien`='{$doanvien['id_doanvien']}' ORDER BY `id_doanphi` DESC LIMIT 0,1");
-					if(mysql_num_rows($xtmp)==1){
-						$xtmp=mysql_fetch_array($xtmp);
-						$danhsachdoanvien[$i]['hanphi']=$xtmp['hanphi'];
+					$danhsachdoanvien[$i]['hanphi']="";
+					if($doanvien['doan_phi']!=0){
+						$xtmp=mysql_query("SELECT `hanphi` FROM `doanphi` WHERE `id_doanvien`='{$doanvien['id_doanvien']}' ORDER BY `id_doanphi` DESC LIMIT 0,1");
+						if(mysql_num_rows($xtmp)==1){
+							$xtmp=mysql_fetch_array($xtmp);
+							$danhsachdoanvien[$i]['hanphi']=$xtmp['hanphi'];
+						}
 					}
-					else $danhsachdoanvien[$i]['hanphi']="";
+					
 					$i++;
 				}
 			}

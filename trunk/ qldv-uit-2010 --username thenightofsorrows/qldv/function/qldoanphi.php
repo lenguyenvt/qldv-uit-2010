@@ -8,22 +8,24 @@ function page_content(){
 	$page_header="Qu&#7843;n l&#253; &#272;o&#224;n ph&#237;";
 	if(!check_auth("qldoanvien",1)) return page_error("B&#7841;n kh&#244;ng c&#243; quy&#7873;n truy c&#7853;p trang n&#224;y!");
 	if(isset($_POST['id_cosodoan'])) $id_cosodoan = post_in($_POST['id_cosodoan']); else $id_cosodoan=$user['id_cosodoan'];
-	if(isset($_POST['dsdoanvien'])) $dsdoanvien = $_POST['dsdoanvien']; else $dsdoanvien="";
 	if(isset($_POST['ngaydong'])) $ngaydong = $_POST['ngaydong']; else $ngaydong="";
 	if(isset($_POST['sotien'])) $sotien = $_POST['sotien']; else $sotien="";
 	
 	$info="";
-	if(isset($_POST['update_dp']) && isset($_POST['dsdoanvien']) && (sizeof($_POST['dsdoanvien'] > 0)))
+	if(isset($_POST['update_dp']) && isset($_POST['sotien']) && (sizeof($_POST['sotien'] > 0)))
 	{
-		for($i=0; $i<sizeof($dsdoanvien); $i++)
+		foreach($sotien as $id_dv => $_s)
+		if($_s!="" && $_s>0)
 		{
-				$id_dv = post_in($dsdoanvien[$i]);
+				$id_dv = post_in($id_dv);
 				$id_cosodoan = get_cosodoan_hientai($id_dv);
-				$_ngaydong = post_in($ngaydong[$i]);
-				$_sotien = post_in($sotien[$i]);
+				if(!check_cosodoancaptren($user['id_doanvien'],$id_dv)) exit();
+				$_ngaydong = post_in($ngaydong[$id_dv]);
+				if($_ngaydong=="") $_ngaydong=ddtime();
+				$_sotien = post_in($sotien[$id_dv]);
 				$temp = (int)$_sotien;
 				$temp = $temp/1000;
-				$sql1 = "SELECT `doanphi`.`hanphi` FROM `doanphi` WHERE `doanphi`.`id_doanvien` = '$id_dv' AND `doanphi`.`id_cosodoan`= '$id_cosodoan'";
+				$sql1 = "SELECT `doanphi`.`hanphi` FROM `doanphi`,`doanvien` WHERE `doanvien`.`id_doanvien` = '$id_dv' AND `doanvien`.`doan_phi`=`doanphi`.`id_doanphi`";
 				$db->query($sql1);
 				if($db->num_rows!=0)
 				while($rows = $db->fetch_array())
@@ -55,6 +57,10 @@ function page_content(){
 								NULL , '$id_dv', '$_ngaydong', '$_sotien', '$id_cosodoan', '$new_hanphi'
 								)";
 				$db->query($sql2);
+				$xtmp=mysql_query("SELECT `id_doanphi` FROM `doanphi` WHERE `id_doanvien`='$id_dv' ORDER BY `id_doanphi` DESC LIMIT 0,1");
+				$xtmp=mysql_fetch_array($xtmp);
+				$sql3="UPDATE `doanvien` SET `doan_phi`='{$xtmp['id_doanphi']}' WHERE `id_doanvien`='$id_dv'";
+				$db->query($sql3);
 		}
 		$info="&#272;&#227; c&#7853;p nh&#7853;t &#273;o&#224;n ph&#237;.";
 	}

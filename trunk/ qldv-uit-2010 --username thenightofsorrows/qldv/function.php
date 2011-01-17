@@ -129,7 +129,7 @@ function cosodoan_get_cosodoan_capduoi($id_cosodoan, $SQL_COMPATIBLE = "", $ARRA
 }
 
 function get_cosodoan_capduoi($user, $SQL_COMPATIBLE = "", $ARRAY_OUT = "", $CHECK_WITH = "") {
-	global $db;
+	global $db,$user;
 	/*
 	$sql="SELECT `id_cosodoan` FROM `qhchidoan` WHERE `id_doanvien`='$user' ORDER BY `qh_chidoan` DESC LIMIT 0,1";
 	$result1=mysql_fetch_array($db->query($sql));
@@ -141,14 +141,15 @@ function get_cosodoan_capduoi($user, $SQL_COMPATIBLE = "", $ARRAY_OUT = "", $CHE
 	else
 		$output = "{$SQL_COMPATIBLE}='{$id_parent}'";
 	$i = 0;
-	$ar [$i ++] = $id_parent;
+	$ar [$i++] = $id_parent;
+
 	for($j = 0; $j < $i; $j ++) {
 		$sql = "SELECT `id_cosodoan` FROM `cosodoan` WHERE `parent`='{$ar[$j]}'";
 		$db->query ( $sql );
 		while ( $result2 = mysql_fetch_array ( $db->query_result ) ) {
 			$id_parent = $result2 ['id_cosodoan'];
+			if(!in_array($id_parent,$ar))
 			$ar [$i++] = $id_parent;
-			//$mytmp=get_cosodoan_capduoi($user
 			if ($SQL_COMPATIBLE == "")
 				$output = $id_parent . "," . $output;
 			else
