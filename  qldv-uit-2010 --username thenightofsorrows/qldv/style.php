@@ -15,8 +15,10 @@ return
 {$refresh}
 <link rel="stylesheet" type="text/css" href="style.css">
 <script type="text/javascript" src="includes/clientscript/jquery.js"></script>
+<style type="text/css">@import "includes/clientscript/jquery.datepick.css";</style> 
+<script type="text/javascript" src="includes/clientscript/jquery.datepick.js"></script>
+<script type="text/javascript" src="includes/clientscript/jquery.datepick.vn.js"></script>
 </head>
-
 <body>
 <div class="main_content">
 	<div class="header">
@@ -183,7 +185,7 @@ EOF;
 function make_select_cosodoan($get_capduoi=1,$class="",$style="width:220px;font-size:9pt",$myname="id_cosodoan"){
 	global $db,$user;
 	if($get_capduoi==1)
-		$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`");
+		$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan_capduoi($user['id_doanvien'],"`id_cosodoan`")." OR ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`");
 	else
 		$sql="SELECT `id_cosodoan`,`ten` FROM `cosodoan` WHERE ".get_cosodoan($user['id_doanvien'],"`id_cosodoan`");
 	$db->query($sql);

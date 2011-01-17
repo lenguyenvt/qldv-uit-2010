@@ -37,7 +37,8 @@ return
 		<tr><td>Password:</td><td><input type="password" name="pw"></td></tr>
 		<tr><td>Email:</td><td><input type="text" name="email"></td></tr>
 		<tr><td>H&#7885; t&#234;n:</td><td><input type="text" name="name"></td></tr>
-		<tr><td>Ng&#224;y th&#225;ng n&#259;m sinh:</td><td><input type="text" name="birthday"></td></tr>
+		<tr><td>Ng&#224;y th&#225;ng n&#259;m sinh:</td><td><input type="text" name="birthday" id="birthday"></td></tr>
+		<script>$("#birthday").datepick();</script>
 		</table>
 		<input type="submit" name="is_single" value="T&#7841;o &#273;o&#224;n vi&#234;n" />
 		</form>

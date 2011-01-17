@@ -141,10 +141,10 @@ function page_content() {
 	";
 	
 	$sql4 = "
-		SELECT	 `doanvien`.`doan_phi`,
+		SELECT	 `doanphi`.`hanphi`,
 				 `doanvien`.`email`
 		
-		FROM 	 `doanvien`
+		FROM 	 `doanvien` LEFT JOIN `doanphi` ON `doanphi`.`id_doanvien`=`doanvien`.`id_doanvien`
 		
 		WHERE 	 `doanvien`.`id_doanvien` = '{$id}' 
 	";
@@ -179,7 +179,7 @@ function page_content() {
 	
 	$canhan = thongtincanhan ( $canhan_data ["hoten"], $canhan_data ["gioitinh"], $canhan_data ["ngaysinh"], $canhan_data ["dantoc"], $canhan_data ["tongiao"], $canhan_data ["cmnd"] );
 	
-	$chidoan = thongtinchidoan ( $cosodoan ["tencosodoan"], $canhan_data ["ngayvaodoan"], $chucvu ["tenchucvu"], $doanvien ["doan_phi"], $xeploai ["loai"] );
+	$chidoan = thongtinchidoan ( $cosodoan ["tencosodoan"], $canhan_data ["ngayvaodoan"], $chucvu ["tenchucvu"], $doanvien ["hanphi"], $xeploai ["loai"] );
 	
 	$lienlac = thongtinlienlac ( $doanvien ["email"], $canhan_data ["noithuongtru"], $canhan_data ["noitamtru"], $canhan_data ["dienthoainharieng"], $phone_history [0] );
 	
