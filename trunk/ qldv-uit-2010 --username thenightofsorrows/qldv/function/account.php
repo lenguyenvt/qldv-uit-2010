@@ -32,7 +32,7 @@ function page_content(){
 				`level`='$level' WHERE `id` ='$id'";
 				$db->query($sql);
 			}else if(isset($_POST['add'])){
-				$sql="INSERT INTO `qldv`.`auth` (
+				$sql="INSERT INTO `auth` (
 				`id` ,
 				`name` ,
 				`level` ,

@@ -12,6 +12,7 @@ function page_content(){
 			$id_cosodoan=take_post('id_cosodoan');
 			$email=take_post('email');
 			$birthday=take_post('birthday');
+			if(get_cosodoan_capduoi ( $user ['id_doanvien'], "", 1, $id_cosodoan )){
 			if($name=="" || $usr== "" || $pw=="" || $birthday=="" || $email==""){
 				$info="B&#7841;n ch&#432;a &#273;i&#7873;n &#273;&#7847;y &#273;&#7911; th&#244;ng tin!";
 			}else{
@@ -20,7 +21,7 @@ function page_content(){
 			    	if($db->num_rows>0){
 			    		$info.="<br />T&#234;n &#273;&#259;ng nh&#7853;p n&#224;y &#273;&#227; t&#7891;n t&#7841;i!";
 			    	}else{
-			    		$sql="INSERT INTO `qldv`.`doanvien` (
+			    		$sql="INSERT INTO `doanvien` (
 								`id_doanvien` ,
 								`username` ,
 								`password` ,
@@ -61,6 +62,9 @@ function page_content(){
 						$info="&#272;&#227; t&#7841;o &#273;o&#224;n vi&#234;n $name.";
 				}
 			}
+			}else{
+				$info="B&#7841;n kh&#244;ng c&#243; quy&#7873;n th&#234;m &#273;o&#224;n vi&#234;n &#7903; chi &#273;o&#224;n n&#224;y.";
+			}
 		}
 		else if(isset($_POST['is_upload']) && isset($_POST['id_cosodoan']) && $_POST['id_cosodoan']!=""){
 			$target_path = "uploads/";
@@ -93,7 +97,7 @@ function page_content(){
 			    		$info.="<br />B&#7883; tr&#249;ng t&#234;n &#273;&#259;ng nh&#7853;p &#7903; th&#244;ng tin &#273;o&#224;n vi&#234;n th&#7913; ".($i+1)." (t&#234;n &#273;&#259;ng nh&#7853;p $usr).<br />Ng&#432;ng qu&#225; tr&#236;nh nh&#7853;p.";
 			    		break;
 			    	}else{
-			    		$sql="INSERT INTO `qldv`.`doanvien` (
+			    		$sql="INSERT INTO `doanvien` (
 								`id_doanvien` ,
 								`username` ,
 								`password` ,

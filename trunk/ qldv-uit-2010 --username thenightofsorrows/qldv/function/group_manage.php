@@ -36,7 +36,7 @@ function page_content() {
 				}else if (isset ( $_POST ['them'] )) {
 					if(get_cosodoan_capduoi ( $user ['id_doanvien'], "", 1, $_parent )){
 						if(!check_auth("qlcosodoan",4)) $_co_dau="";
-						$sql="INSERT INTO `qldv`.`cosodoan` (
+						$sql="INSERT INTO `cosodoan` (
 								`id_cosodoan` ,
 								`ten` ,
 								`parent` ,
