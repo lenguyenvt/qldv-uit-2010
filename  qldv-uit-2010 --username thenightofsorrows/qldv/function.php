@@ -55,6 +55,13 @@ function check_auth($action, $required_auth) {
 	} else
 		return 0;
 }
+function check_auth_level($user_id){
+	global $db;
+	$sql="SELECT `auth`.`level` FROM `auth`,`doanvien` WHERE `auth`.`id`=`doanvien`.`auth` AND `doanvien`.`id_doanvien`=$user_id";
+	$db->query( $sql );
+	$re = $db->result;
+	return $re['level'];
+}
 
 function check_cungcosodoan($id1, $id2) {
 	global $db;

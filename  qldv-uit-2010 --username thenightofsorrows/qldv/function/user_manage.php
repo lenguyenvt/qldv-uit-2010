@@ -22,7 +22,7 @@ function page_content(){
 			{
 				$id_dv = $dsdoanvien[$i];
 				$id_dv = post_in($id_dv);
-				if (check_cosodoancaptren($user['id_cosodoan'], get_cosodoan_hientai($id_dv)))
+				if (check_cosodoancaptren($user['id_cosodoan'], get_cosodoan_hientai($id_dv)) && check_auth_level($id_dv)<=check_auth_level($user['id_cosodoan']))
 				{
 						$sql1 = 
 						"
@@ -86,7 +86,7 @@ function page_content(){
 								);");
 					$db->query("SELECT `qh_chidoan` FROM `qhchidoan` WHERE `id_doanvien`='$id_dv' ORDER BY `qh_chidoan` DESC  LIMIT 0,1");
 					$qhchidoan_tmp=$db->fetch_array();
-					$db->query("UPDATE `doanvien` SET `qh_chidoan`='{$qhchidoan_tmp['qh_chidoan']}' WHERE `id_doanvien`='$id_dv'");
+					$db->query("UPDATE `doanvien` SET `qh_chidoan`='{$qhchidoan_tmp['qh_chidoan']}',`auth`=2 WHERE `id_doanvien`='$id_dv'");
 				}
 			}
 		}

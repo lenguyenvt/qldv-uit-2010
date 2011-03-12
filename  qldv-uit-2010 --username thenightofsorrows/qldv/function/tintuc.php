@@ -12,7 +12,7 @@ function page_content(){
 	if(isset($_POST['tieude']) && check_auth("qlthongtin",1)){
 		$tieude=post_in($_POST['tieude']);
 		$noidung=post_in($_POST['noidung']);
-		$sql="INSERT INTO `qldv`.`tintuc` (
+		$sql="INSERT INTO `tintuc` (
 		`id` ,
 		`time` ,
 		`id_doanvien` ,
