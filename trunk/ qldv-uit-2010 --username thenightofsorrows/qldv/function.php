@@ -59,7 +59,7 @@ function check_auth_level($user_id){
 	global $db;
 	$sql="SELECT `auth`.`level` FROM `auth`,`doanvien` WHERE `auth`.`id`=`doanvien`.`auth` AND `doanvien`.`id_doanvien`=$user_id";
 	$db->query( $sql );
-	$re = $db->result;
+	$re = $db->query_result;
 	return $re['level'];
 }
 

@@ -22,7 +22,7 @@ function page_content(){
 			{
 				$id_dv = $dsdoanvien[$i];
 				$id_dv = post_in($id_dv);
-				if (check_cosodoancaptren($user['id_cosodoan'], get_cosodoan_hientai($id_dv)) && check_auth_level($id_dv)<=check_auth_level($user['id_cosodoan']))
+				if (check_cosodoancaptren($user['id_doanvien'],$id_dv) && check_auth_level($id_dv)<=check_auth_level($user['id_cosodoan']))
 				{
 						$sql1 = 
 						"
@@ -69,7 +69,7 @@ function page_content(){
 				$id_dv = post_in($id_dv);
 				$id_cosodoan_dv=get_cosodoan_hientai($id_dv);
 				if($id_cosodoan_dv!=$id_cosodoan)
-				if(check_cosodoancaptren($user['id_cosodoan'], $id_cosodoan_dv)){
+				if(check_cosodoancaptren($user['id_doanvien'],$id_dv) && check_auth_level($id_dv)<=check_auth_level($user['id_cosodoan'])){
 					$sql="UPDATE `qhchidoan`,`doanvien` 
 					SET `qhchidoan`.`end`='$ddtime' 
 					WHERE `qhchidoan`.`qh_chidoan`=`doanvien`.`qh_chidoan` AND `doanvien`.`id_doanvien`='$id_dv'";
