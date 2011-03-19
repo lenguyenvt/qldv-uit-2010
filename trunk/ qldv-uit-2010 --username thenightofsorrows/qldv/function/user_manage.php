@@ -90,7 +90,7 @@ function page_content(){
 				}
 			}
 		}
-		
+		if(!get_cosodoan_capduoi($user['id_doanvien'],"",1,$id_cosodoan)) return user_main_form(page_error("B&#7841;n kh&#244;ng c&#243; quy&#7873;n truy c&#7853;p trang n&#224;y!"));
 		$sql ="SELECT 	`thongtindoanvien`.`id_doanvien`,
 						`thongtindoanvien`.`hoten`,
 						`thongtindoanvien`.`gioitinh`,

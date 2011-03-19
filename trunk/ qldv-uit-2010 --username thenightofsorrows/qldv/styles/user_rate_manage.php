@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 function user_rate_manage_form($danhsachdoanvien,$danhsachphongtrao){
 global $db,$user,$_POST;
 $thongtin="";
@@ -20,7 +20,7 @@ for ($i=0;$i<count($danhsachdoanvien);$i++)
 	$var.="Array(".$varphongtrao.",\"".$danhsachdoanvien[$i]['hoten']."\",\"".$danhsachdoanvien[$i]['Note']."\",\"".$danhsachdoanvien[$i]['diem']."\",\"".$danhsachdoanvien[$i]['loai']."\",\"".$danhsachdoanvien[$i]['id_doanvien']."\")".($i<count($danhsachdoanvien)-1?",":"");
 	
 };
-if(check_auth("qlxeploai",2)){
+if(check_auth("qlxeploai",1)){
 	$option_cosodoan="Chi &#273;o&#224;n: ".make_select_cosodoan()." <input id=\"search\" type=\"submit\" value=\"T&#236;m\" style=\"margin-top:7px;width:70px\"/></td></tr>";
 }
 return

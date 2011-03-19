@@ -16,6 +16,9 @@ function page_content() {
 	else
 		$id = take_get ( 'id_doanvien' );
 	if(!check_auth("thongtincanhan",1)) return "B&#7841;n kh&#244;ng c&#243; quy&#7873;n truy c&#7853;p trang n&#224;y!";
+	if($id!=$user['id_doanvien']){
+		if(!check_cosodoancaptren($user['id_doanvien'],$id)||!check_auth("thongtincanhan",2)||check_auth_level($id)>check_auth_level($user['id_cosodoan']))  return "B&#7841;n kh&#244;ng c&#243; quy&#7873;n truy c&#7853;p trang n&#224;y!";
+	}
 	if (isset($_POST ['sua_doanvien'])) {
 		if($id!=$user['id_doanvien']){
 			if(!check_cosodoancaptren($user['id_doanvien'],$id)||!check_auth("thongtincanhan",2)||check_auth_level($id)>check_auth_level($user['id_cosodoan']))  return "B&#7841;n kh&#244;ng c&#243; quy&#7873;n truy c&#7853;p trang n&#224;y!";
