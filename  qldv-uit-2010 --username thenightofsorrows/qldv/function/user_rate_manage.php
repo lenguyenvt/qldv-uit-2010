@@ -65,7 +65,7 @@ function page_content()
 				$danhsachdoanvien[$i]= $doanvien;
 				$sql2="SELECT `diem`,`loai`,`Note` FROM `xeploaidoanvien` WHERE `id_doanvien`='{$doanvien['id_doanvien']}' AND `year_start`='$ystart' AND `year_end`='$yend' AND `quarter`='$quart' ORDER BY `id` DESC LIMIT 0,1";
 				$query2=mysql_query($sql2);
-				if(mysql_num_rows($query2)==1){
+				if(@mysql_num_rows($query2)==1){
 					$data=mysql_fetch_array($query2);
 					$danhsachdoanvien[$i]['diem']=$data['diem'];
 					$danhsachdoanvien[$i]['loai']=$data['loai'];
