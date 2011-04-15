@@ -14,7 +14,7 @@ for ($i=0;$i<sizeof($danhsachphongtrao);$i++)
 					<td width=\"100px\">".$danhsachphongtrao[$i]['end']."</td>
 					<td width=\"25px\"><input name=\"xoa_phong_trao[]\" type=\"checkbox\" value=\"".$danhsachphongtrao[$i]['id_phongtraodoan']."\" /></td>
 				</tr>";
-	$var.="Array(\"".$danhsachphongtrao[$i]['ten']."\",\"".$danhsachphongtrao[$i]['id_phongtraodoan']."\",\"".$danhsachphongtrao[$i]['diengiai']."\",\"".$danhsachphongtrao[$i]['start']."\",\"".$danhsachphongtrao[$i]['end']."\",\"".$danhsachphongtrao[$i]['id_cosodoan']."\")".($i<count($danhsachphongtrao)-1?",":"");
+	$var.="Array(\"".$danhsachphongtrao[$i]['ten']."\",\"".$danhsachphongtrao[$i]['id_phongtraodoan']."\",\"".str_replace("\r","",str_replace("\n",'\n',$danhsachphongtrao[$i]['diengiai']))."\",\"".$danhsachphongtrao[$i]['start']."\",\"".$danhsachphongtrao[$i]['end']."\",\"".$danhsachphongtrao[$i]['id_cosodoan']."\")".($i<count($danhsachphongtrao)-1?",":"");
 };
 if(check_auth("qlphongtrao",2)){
 	$buttons_1="							<input id=\"insert\" name=\"insert\" type=\"submit\" value=\"Th&#234;m\" style=\"margin-top:7px;width:70px\"/>
