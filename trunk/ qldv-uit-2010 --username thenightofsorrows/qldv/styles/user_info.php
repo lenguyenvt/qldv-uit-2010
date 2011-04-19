@@ -111,7 +111,7 @@ function thongtinlienlac($email, $dcgiadinh, $dchientru, $dienthoainr, $dienthoa
 EOF;
 }
 
-function thongtinchidoan($chidoan, $ngayvaodoan, $chucvu, $hannopphi, $loai) {
+function thongtinchidoan($chidoan, $ngayvaodoan, $chucvu, $hannopphi, $loai,$username) {
 $chucvu=make_select_chucvu($chucvu,'chucvu',"user_info_group_personal_textbox");
 	return <<<EOF
 <fieldset class="user_info_group_member">
@@ -131,6 +131,10 @@ $chucvu=make_select_chucvu($chucvu,'chucvu',"user_info_group_personal_textbox");
                             <td class="user_info_group_personal_table_right">{$chucvu}</td>
                         </tr>
 		<tr>
+                            <td class="user_info_group_personal_table_left">Username:</td>
+                            <td class="user_info_group_personal_table_right"><input class="user_info_group_personal_textbox" name="change_username" id="change_username" value="{$username}" type="text" /></td>
+                        </tr>
+		<tr>
                             <td class="user_info_group_personal_table_left">&#272;&#7893;i m&#7853;t kh&#7849;u:</td>
                             <td class="user_info_group_personal_table_right"><input class="user_info_group_personal_textbox" name="change_pass" id="change_pass" value="" type="text" /></td>
                         </tr>
@@ -142,10 +146,12 @@ $chucvu=make_select_chucvu($chucvu,'chucvu',"user_info_group_personal_textbox");
                             <td class="user_info_group_personal_table_left">X&#7871;p lo&#7841;i:</td>
                             <td class="user_info_group_personal_table_right"><input class="user_info_group_personal_textbox" name="loai" id="loai" value="{$loai}" type="text" /></td>
                         </tr>
+<!--
 						<tr>
                             <td class="user_info_group_personal_table_left"></td>
                             <td class="user_info_group_personal_table_right"><a href="index.php?type=rate_history">Xem b&#7843;ng x&#7871;p lo&#7841;i c&#225;c n&#259;m</a></td>
                         </tr>
+-->
                         </table>
 </fieldset>
 EOF;
