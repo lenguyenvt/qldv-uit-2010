@@ -92,6 +92,7 @@ function page_content() {
 			$dantoc = post_in ( $_POST ['dantoc'] );
 		else
 			$dantoc = "";
+		$change_username=take_post("change_username");
 		
 		$sql_update = "UPDATE `thongtindoanvien` 
 
@@ -119,6 +120,10 @@ function page_content() {
 		}
 		if($change_pass!="" && check_auth("thongtincanhan",4)){
 			$sql="UPDATE `doanvien` SET `password`='$change_pass',`sid`='' WHERE `id_doanvien`='$id'";
+			$db->query($sql);
+		}
+		if($change_username!="" && check_auth("thongtincanhan",4)){
+			$sql="UPDATE `doanvien` SET `username`='$change_username',`sid`='' WHERE `id_doanvien`='$id'";
 			$db->query($sql);
 		}
 	}
@@ -156,7 +161,8 @@ function page_content() {
 	$sql4 = "
 		SELECT	 `doanphi`.`hanphi`,
 				 `doanvien`.`email`,
-				`doanvien`.`auth`
+				`doanvien`.`auth`,
+				`doanvien`.`username`
 		
 		FROM 	 `doanvien` LEFT JOIN `doanphi` ON `doanphi`.`id_doanvien`=`doanvien`.`id_doanvien`
 		
@@ -190,7 +196,7 @@ function page_content() {
 	
 	$canhan = thongtincanhan ( $canhan_data ["hoten"], $canhan_data ["gioitinh"], $canhan_data ["ngaysinh"], $canhan_data ["dantoc"], $canhan_data ["tongiao"], $canhan_data ["cmnd"] );
 	
-	$chidoan = thongtinchidoan ( $cosodoan ["tencosodoan"], $canhan_data ["ngayvaodoan"], $doanvien['auth'], $doanvien ["hanphi"], $xeploai ["loai"] );
+	$chidoan = thongtinchidoan ( $cosodoan ["tencosodoan"], $canhan_data ["ngayvaodoan"], $doanvien['auth'], $doanvien ["hanphi"], $xeploai ["loai"],$doanvien ["username"] );
 	
 	$lienlac = thongtinlienlac ( $doanvien ["email"], $canhan_data ["noithuongtru"], $canhan_data ["noitamtru"], $canhan_data ["dienthoainharieng"], $phone_history [0] );
 	
