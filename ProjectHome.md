@@ -1,0 +1,1 @@
+Đây là một trong những cái project cùi bắp nhất từ xưa tới giờ, phải code chung với Khương sex sệ và Khoa sệ sex. Quốc chỉ có việc là viết documentation.
